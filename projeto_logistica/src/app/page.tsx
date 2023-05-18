@@ -1,8 +1,8 @@
-export default function Login() {
+export default function Home() {
   return (
     <main className="">
       <div className="">
-        TESTETETETTSTETTSTSTTES
+        HOME
       </div>
     </main>
   )
