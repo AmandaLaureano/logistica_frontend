@@ -1,0 +1,14 @@
+{
+    "categorias":[
+        {"id": 1, "nome": "Transportadoras"}
+    ],
+   "subcategorias":[
+       {"id":1, "nome":"Godor"},
+       {"id":2, "nome":"Agex"},
+       {"id":3, "nome":"Logdi"}
+   ],
+   "arquivos":[
+    {"id":1, "nome":"Arquivos Vtex"},
+    {"id":2, "nome":"Arquivos Fretefy"}
+   ]
+}

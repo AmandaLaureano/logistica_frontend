@@ -3,3 +3,14 @@ export type tSubcategoriaTransportadoras = {
     nome?: string | undefined;
     state: boolean;
 }
+
+export type tCategoriasDropdownTrasportadoras = {
+    id: number;
+    nome: string;
+    state: boolean
+}[]
+
+export type tSubcategoriasDropdownTransportadoras = {
+    id: number;
+    nome: string;
+}[]

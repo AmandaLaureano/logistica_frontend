@@ -1,6 +1,7 @@
 import { BsBell, BsChevronCompactDown } from 'react-icons/bs'
 import Image from 'next/image'
 import folha from "../assets/images/folha.png"
+import DropdownPerfil from './dropdown_perfil'
 
 export default function Navbar(props: any){
     return(
@@ -14,11 +15,7 @@ export default function Navbar(props: any){
                 </div>
             </div>
             <div className="containerPerfil flex flex-row-reverse gap-5 justify-items-end items-center pr-10">
-                <div className='containerBotaoDropdownPerfil flex items-end'>
-                    <button>
-                        <BsChevronCompactDown className='flex self-end w-8 h-7 fill-white stroke-white'/>
-                    </button>
-                </div>
+                <DropdownPerfil/>
                 <div className='containerNomeUsuarioLogado'>
                     <h1 className='text-white text-xl'>John Doe</h1>
                 </div>
