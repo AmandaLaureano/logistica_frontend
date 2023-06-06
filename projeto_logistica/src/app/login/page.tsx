@@ -8,13 +8,13 @@ export default function Login() {
 
     const [password, setPassword] = useState('');
 
-    function alteraVisibilidade(event:any){
+    function alteraVisibilidade(event: any) {
         event.preventDefault()
         var input = document.querySelector("#password")
 
         if (input?.getAttribute('type') === 'password') {
-           input.setAttribute("type", "text") 
-        }else{
+            input.setAttribute("type", "text")
+        } else {
             input?.setAttribute("type", "password")
         }
     }
@@ -31,15 +31,15 @@ export default function Login() {
                     </div>
                     <div className="containerEmail flex pt-16 mx-14 justify-center border-b-2 border-white">
                         <AiOutlineMail className='flex mx-2 self-center w-8 h-8 fill-white stroke-white'></AiOutlineMail>
-                        <input className="inputsLogin h-12 outline-0 bg-transparent text-white cursor-default placeholder:text-xl placeholder:font-medium w-full text-xl" type="text" placeholder="E-mail"/>
+                        <input className="inputsLogin h-12 outline-0 bg-transparent text-white cursor-default placeholder:text-xl placeholder:font-medium w-full text-xl" type="text" placeholder="E-mail" />
                     </div>
                     <div className="containerSenha flex pt-12 mx-14 justify-center border-b-2 border-white">
                         <AiOutlineLock className='flex mx-2 self-center w-9 h-9 fill-white stroke-white'></AiOutlineLock>
-                        <input id='password' value={password} className="inputsLogin h-12 outline-0 bg-transparent text-white cursor-default placeholder:text-xl placeholder:font-medium w-full text-xl" type="password" placeholder="Senha" onChange={(e) => setPassword(e.target.value)}/>
+                        <input id='password' value={password} className="inputsLogin h-12 outline-0 bg-transparent text-white cursor-default placeholder:text-xl placeholder:font-medium w-full text-xl" type="password" placeholder="Senha" onChange={(e) => setPassword(e.target.value)} />
                         <VscEye onClick={alteraVisibilidade} className='iconEye flex self-end w-8 h-8 fill-white stroke-white'></VscEye>
                     </div>
                     <div className='containerCheckbox flex mx-14 pt-5'>
-                        <input className='w-5 h-5 mx-3' id="checkbox" type="checkbox"/>
+                        <input className='w-5 h-5 mx-3' id="checkbox" type="checkbox" />
                         <label id='checkbox' className='text-white'>Manter conectado</label>
                     </div>
                     <div className='containerBotaoLogin drop-shadow-2xl flex justify-center pt-14'>
@@ -53,4 +53,3 @@ export default function Login() {
         </main>
     );
 }
-  
