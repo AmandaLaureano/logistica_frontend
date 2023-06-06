@@ -1,6 +1,6 @@
 import { BsBell } from 'react-icons/bs'
 import Image from 'next/image'
-import folha from "@assets/folha.png"
+import folha from "@assets/images/folha.png"
 import  {DropdownPerfil } from '@components/selects'
 
 export default function Navbar(props: any) {
