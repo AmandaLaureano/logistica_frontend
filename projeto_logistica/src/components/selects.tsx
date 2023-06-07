@@ -100,7 +100,7 @@ export function SelectTransportadoras({ ArrayTransportadoras }: any) {
                                 variants={menuVariants}
                                 animate={list ? "open" : "closed"}
                             >
-                                <BiChevronRight size={30} />
+                                <BiChevronRight size={30} className=""/>
                             </motion.div>
                         </div>
                     </div>

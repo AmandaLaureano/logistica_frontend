@@ -1,7 +1,9 @@
 export default function Generalidades(){
     return(
-        <main>
-            
-        </main>
+        <div className="bg-white">
+            <div>
+
+            </div>
+        </div>
     )
 }
