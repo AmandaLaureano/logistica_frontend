@@ -1,14 +1,26 @@
 {
-    "categorias":[
-        {"id": 1, "nome": "Transportadoras"}
+    "transportadoras": [
+        {
+            "id": 1,
+            "nome": "Godor"
+        },
+        {
+            "id": 2,
+            "nome": "Agex"
+        },
+        {
+            "id": 3,
+            "nome": "Logdi"
+        }
     ],
-   "subcategorias":[
-       {"id":1, "nome":"Godor"},
-       {"id":2, "nome":"Agex"},
-       {"id":3, "nome":"Logdi"}
-   ],
-   "arquivos":[
-    {"id":1, "nome":"Arquivos Vtex"},
-    {"id":2, "nome":"Arquivos Fretefy"}
-   ]
+    "arquivos": [
+        {
+            "id": 1,
+            "nome": "Arquivos Vtex"
+        },
+        {
+            "id": 2,
+            "nome": "Arquivos Fretefy"
+        }
+    ]
 }

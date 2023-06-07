@@ -1,13 +1,13 @@
-import React, { useState } from 'react';
-import 'rc-dropdown/assets/index.css';
-import Dropdown from 'rc-dropdown';
-import Menu, { Item as MenuItem } from 'rc-menu';
+"use client"
+
 import { BsChevronCompactDown } from "react-icons/bs";
 import { VscAccount, VscSignOut } from 'react-icons/vsc';
 import Link from 'next/link';
+import { useState } from "react";
+import { motion } from "framer-motion";
+import { BiChevronRight } from "react-icons/bi";
 
 export function DropdownPerfil() {
-    const [DropdownVisivel, setDropdownVisivel] = useState(false)
 
     function onSelect({ key }: { key: string }) {
         console.log(`${key} selected`);
@@ -18,12 +18,14 @@ export function DropdownPerfil() {
     }
 
     const DropdownPerfil = (
-        <Menu className="flex flex-col w-[160px] h-[100px]" onSelect={onSelect}>
+        <div className="flex flex-col w-[160px] h-[100px]"
+        // onSelect={onSelect}
+        >
             <div className='divBotaoPerfil flex px-3 py-3'>
                 <VscAccount className='w-6 h-6 mr-2' />
                 <Link href='/perfil'>
                     <button className=''>
-                        <MenuItem className="text-lg tracking-wider" key="1">Seu perfil</MenuItem>
+                        <div className="text-lg tracking-wider" key="1">Seu perfil </div>
                     </button>
                 </Link>
             </div>
@@ -31,42 +33,96 @@ export function DropdownPerfil() {
                 <VscSignOut className='w-6 h-6 mr-2' />
                 <Link href=''>
                     <button className=''>
-                        <MenuItem className="text-lg tracking-wider" key="2">Sair</MenuItem>
+                        <div className="text-lg tracking-wider" key="2">Sair</div>
                     </button>
                 </Link>
             </div>
-        </Menu>
+        </div>
     )
     return (
         <div className='containerDropdownPerfil flex items-end'>
-            <Dropdown
-                trigger={['click']}
-                visible={DropdownVisivel}
-                overlay={DropdownPerfil}
-                animation="slide-up"
-                onVisibleChange={setDropdownVisivel}
+            <div
+            // trigger={['click']}
+            // visible={undefined}
+            // overlay={DropdownPerfil}
+            // animation="slide-up"
+            // onVisibleChange={undefined}
             >
                 <button>
                     <BsChevronCompactDown className='flex self-end w-8 h-7 fill-white stroke-white' />
                 </button>
-            </Dropdown>
+            </div>
         </div>
     )
 }
 
-export default function DropdownTransportadoras(props: any) {
+export function SelectTransportadoras({ ArrayTransportadoras }: any) {
+    const [list, setList] = useState<boolean>(false)
+    const sidebar = {
+        open: (height = 200) => ({
+            height: 'auto',
+            clipPath: `circle(${height * 2 + 200}px at 40px 40px)`,
+            transition: {
+                type: "spring",
+                stiffness: 20,
+                restDelta: 2,
+                height: 20
+            }
+        }),
+        closed: {
+            height: '0px',
+            opacity: list ? 0 : 1,
+            transition: {
+                type: "spring",
+                stiffness: 400,
+                damping: 40,
+                heigth: 0
+            }
+        }
+    }
+
+    const menuVariants = {
+        open: { rotate: 90, transition: { duration: 0.2 } },
+        closed: { rotate: 0, transition: { duration: 0.2 } },
+    };
+
 
     return (
-        <div className="conteudoDropdown flex items-center place-content-center bg-black w-[380px] h-[60px] rounded-md">
-            <div className="nomeCategoria">
-                <p className="text-white text-2xl font-medium tracking-widest">{props.value}</p>
-            </div>
-            <div className='containerLinhaDivisao rotate-90'>
-                <hr className='bg-white w-8 border-white border-[1]' />
-            </div>
-            <button className="botaoDropdownFlecha ml-3" onClick={props.onClick}>
-                <BsChevronCompactDown className='flex self-end w-10 h-8 fill-white stroke-white' />
+        <div className="bg-black rounded-lg">
+            <button className="text-white p-4" onClick={() => setList(!list)}>
+                <strong className="text-2xl">
+                    <div className="flex justify-between items-center">
+                        <div >
+                            Transportadoras
+                        </div>
+                        <div className="border-l-2 ml-4">
+                            <motion.div
+                                variants={menuVariants}
+                                animate={list ? "open" : "closed"}
+                            >
+                                <BiChevronRight size={30} />
+                            </motion.div>
+                        </div>
+                    </div>
+                </strong>
             </button>
+            <motion.li
+                initial={false}
+                animate={list ? "open" : "closed"}
+                variants={sidebar}
+                style={{ overflow: 'hidden' }}
+                className="list-none"
+            >
+                {ArrayTransportadoras.map((item: any, index: number) => {
+                    return (
+                        <div key={index} className="">
+                            <div className="p-2 text-xl ml-4 hover:underline text-green-simple">
+                                <span className="text-white">{item.nome}</span>
+                            </div>
+                        </div>
+                    )
+                })}
+            </motion.li>
         </div>
     )
 }
