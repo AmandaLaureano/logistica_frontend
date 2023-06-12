@@ -20,14 +20,16 @@ export default function RootLayout({
   return (
     <html lang="pt-BR">
       <body className={montserrat.className}>
-        <div className="conteudoTotal grid justify-items-stretch h-full bg-white">
-          <div className="containerCabecalho z-30 flex flex-wrap w-full h-[90px]">
+        <div>
+          <div className="h-[90px]">
             <Navbar />
           </div>
-          <div className="containerMenuLateral z-20 flex items-end fixed h-full w-[300px]">
+          <div>
             <Aside />
           </div>
-          {children}
+          <div className='ml-[296px]'>
+            {children}
+          </div>
         </div>
       </body>
     </html>
