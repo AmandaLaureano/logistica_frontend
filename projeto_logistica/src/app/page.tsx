@@ -10,7 +10,7 @@ export default async function Dashboard() {
         <div className="flex justify-center m-auto mt-24">
             <div className=" bg-light-gray pb-10 rounded-xl border border-black-gray-border">
                 <div className="flex justify-center pt-5">
-                    <h1 className="text-3xl font-medium text-center p-4">
+                    <h1 className="text-3xl font-medium text-center p-4 px-40">
                         Selecione uma Transportadora
                     </h1>
                 </div>
