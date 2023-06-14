@@ -64,34 +64,32 @@ export function FormTax({ trt, tda, gris, adVal, despacho, pegadio, cam, }: ITax
                 <Line field={"CAM"} valueField={camValue ? camValue : 0} minValueField={0} onChangeValue={(e: any) => setCamValue(e.target.value)} />
             </div>
             <hr className="mt-8 border border-slate-400" />
-
-            <div className="mt-8">
-                <InputFile placeholder={"Anexar Arquivo"} text={"Anexar Arquivo"} onChange={handleFile} />
-                <div className="flex w-72 bg-slate-200 p-1 rounded-md mt-2">
-                    <div className="overflow-auto ContainerScrollHidden w-full">
-                        <span>
-                            {attachment.name}
-                        </span>
+            <div>
+                <div className="mt-8 flex justify-between">
+                    <div>
+                        <InputFile placeholder={"Anexar Arquivo"} text={"Anexar Arquivo"} onChange={handleFile} />
+                        {attachment.name != undefined &&
+                            <div className="flex w-72 bg-slate-200 p-1 rounded-md mt-2">
+                                <div className="overflow-auto ContainerScrollHidden w-full">
+                                    <span>
+                                        {attachment.name}
+                                    </span>
+                                </div>
+                                <div className="flex">
+                                    <button onClick={() => setAttachment({} as File)}>
+                                        <AiFillCloseCircle className="mx-1 my-auto" size={20} />
+                                    </button>
+                                </div>
+                            </div>
+                        }
                     </div>
-                    <div className="flex">
-                        <button onClick={() => setAttachment({} as File)}>
-                            <AiFillCloseCircle className="mx-1 my-auto" size={20} />
+                    <div>
+                        <button className="bg-black text-white rounded-md text-sm px-3 hover:scale-95 transition-all duration-200 py-2" onClick={postForm}>
+                            Salvar Tudo
                         </button>
                     </div>
                 </div>
             </div>
-            {/* <div className="flex">
-                <label className="w-11/12 overflow-x-auto">
-                    {attachment.name}
-                </label>
-                <div className="flex justify-end my-auto w-1/12">
-                    <button onClick={() => setAttachment({} as File)}>
-                        <AiFillCloseCircle className="my-auto" size={20} />
-                    </button>
-                </div> */}
-            {/* <button className="bg-black text-white rounded-md text-sm px-3 mt-6 hover:scale-95 transition-all duration-200 py-2" onClick={postForm}>
-                Salvar Tudo
-            </button> */}
         </div>
     )
 }
