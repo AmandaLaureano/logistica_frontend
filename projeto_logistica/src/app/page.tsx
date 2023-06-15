@@ -1,10 +1,20 @@
 import { SelectTransportadoras } from "../components/selects";
+import { revalidateTag } from 'next/cache'
 
 export default async function Dashboard() {
-    const baseUrl = "http://localhost:3000"
-    const responseTransportadoras = await fetch(`${baseUrl}/transportadoras`)
+    const getTransportadoras = await fetch(`http://localhost:3001/transportadoras`,
+        {
+            next: {
+                revalidate: 10,
+            }
+        })
+        .then(response => {
+            return response.json()
+        }).catch(() => {
+            return []
+        })
 
-    const transportadoras: Array<IArrayTransportadoras> = await responseTransportadoras.json()
+    const transportadoras: Array<IArrayTransportadoras> = await getTransportadoras
 
     return (
         <div className="flex justify-center m-auto mt-24">

@@ -4,10 +4,9 @@ import { InputFile } from "@/src/components/inputs"
 import Line from "./lineForm"
 import { useState } from "react"
 import { AiFillCloseCircle } from "react-icons/ai"
+import { api } from "@/src/services/api"
 
 export function FormTax({ trt, tda, gris, adVal, despacho, pegadio, cam, }: ITaxForms) {
-
-    const baseUrl = "http://192.168.50.100:3000/impostos"
 
     const [trtValue, setTrtValue] = useState(trt)
     const [tdaValue, setTdaValue] = useState(tda)
@@ -19,7 +18,7 @@ export function FormTax({ trt, tda, gris, adVal, despacho, pegadio, cam, }: ITax
     const [attachment, setAttachment] = useState<File>({} as File)
 
     function postForm() {
-        const Form = {
+        api.post("/impostos", {
             id: 1,
             transportadoraId: 1,
             trt: trtValue,
@@ -29,20 +28,12 @@ export function FormTax({ trt, tda, gris, adVal, despacho, pegadio, cam, }: ITax
             despacho: despachoValue,
             pegadio: pegadioValue,
             cam: camValue
-        }
-
-        fetch(baseUrl, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(Form)
-        }).then(res => {
-            console.log(' deu boa pia')
-            console.log(res);
-        }).catch(err => {
-            console.log('Erro:', err);
-        });
+        })
+            .then(res => {
+                console.log(res);
+            }).catch(err => {
+                console.log('Erro:', err);
+            });
     }
 
     function handleFile(e: React.ChangeEvent<HTMLInputElement>) {

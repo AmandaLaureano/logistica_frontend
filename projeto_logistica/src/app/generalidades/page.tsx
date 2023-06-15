@@ -1,18 +1,30 @@
 import { BsArrowLeft } from "react-icons/bs";
 import { FormTax } from "./form"
 import { AiFillEdit } from "react-icons/ai";
+import axios from "axios";
+import { api } from "@/src/services/api";
 
 export default async function Generalidades() {
-    const baseUrl = "http://192.168.50.100:3000"
-    // const responseForms = await fetch(`${baseUrl}/impostos/1`)
 
-    // const TaxForms: ITaxForms = await responseForms.json()
+    const responseForms = await api.get("/impostos/1")
+        .then(resp => {
+            console.log(resp.data)
+            return resp.data
+        })
+        .catch(err => {
+            console.log(err.message)
+            return 0
+        })
+
+    const TaxForms: ITaxForms = await responseForms
 
     return (
         <div className="">
             <div className="w-11/12 m-auto mt-6">
                 <h1 className="flex text-2xl my-auto">
-                    <BsArrowLeft size={30} className="mr-4" />
+                    <button>
+                        <BsArrowLeft size={30} className="mr-4" />
+                    </button>s
                     Generalidades Gobor
                 </h1>
                 <div className="w-full mt-6">
@@ -35,7 +47,15 @@ export default async function Generalidades() {
                             </div>
                         </div>
                         <div>
-                            <FormTax />
+                            <FormTax
+                                adVal={TaxForms.adVal}
+                                cam={TaxForms.cam}
+                                despacho={TaxForms.despacho}
+                                gris={TaxForms.gris}
+                                pegadio={TaxForms.pegadio}
+                                tda={TaxForms.tda}
+                                trt={TaxForms.trt}
+                            />
                         </div>
                     </div>
                 </div>

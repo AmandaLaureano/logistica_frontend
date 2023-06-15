@@ -11,6 +11,10 @@
         {
             "id": 3,
             "nome": "Logdi"
+        },
+        {
+            "id": 4,
+            "nome": "teste"
         }
     ],
     "arquivos": [
@@ -22,5 +26,14 @@
             "id": 2,
             "nome": "Arquivos Fretefy"
         }
-    ]
+    ],
+    "taxs": {
+        " adVal": 123,
+        "cam": 2141,
+        "despacho": 23,
+        "gris": 53,
+        "pegadio": 152,
+        "tda": 213,
+        "trt": 86
+    }
 }
