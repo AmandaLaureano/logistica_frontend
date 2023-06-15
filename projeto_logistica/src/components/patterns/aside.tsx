@@ -17,14 +17,14 @@ export default function Aside(props: any){
                     <FaHome className="w-8 h-8 fill-white"/>
                     <Link href='/'>
                         <button className="px-3">
-                            <p className="text-white text-xl">Dashboard</p>
+                            <p className="text-white text-xl">Tela inicial</p>
                         </button>
                     </Link>
                 </div>
                 <div className="flex pb-8">
                     <IoReceiptSharp className="w-8 h-7 fill-white stroke-white"/>
                     <div className="px-3">
-                        <p className="text-white text-xl">Últimos arquivos</p>
+                        <p className="text-white text-xl">Arquivos gerados</p>
                     </div>
                     <button onClick={props.onClick}>
                         <BsChevronCompactDown className='flex self-end w-6 h-5 fill-white stroke-white'/>
