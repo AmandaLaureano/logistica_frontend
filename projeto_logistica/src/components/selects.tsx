@@ -117,8 +117,8 @@ export function SelectTransportadoras({ ArrayTransportadoras }: any) {
                 {ArrayTransportadoras.map((item: any, index: number) => {
                     return (
                         <div key={index} className="">
-                            <div className="p-2 text-xl ml-4 hover:underline text-green-simple">
-                                <span className="text-white">{item.nome}</span>
+                            <div className="cursor-pointer py-1 text-xl ml-4">
+                                <span className="botaoDropdown text-white">{item.nome}</span>
                             </div>
                         </div>
                     )
