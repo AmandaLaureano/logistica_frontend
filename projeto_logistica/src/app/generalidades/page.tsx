@@ -1,5 +1,5 @@
 import { BsArrowLeft } from "react-icons/bs";
-import { FormTax } from "@/src/components/pages/generalidades/form";
+import { FormTax } from "./form"
 import { AiFillEdit } from "react-icons/ai";
 import axios from "axios";
 import { api } from "@/src/services/api";
