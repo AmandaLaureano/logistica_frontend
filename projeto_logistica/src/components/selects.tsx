@@ -6,6 +6,8 @@ import Link from 'next/link';
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { BsChevronCompactRight } from "react-icons/bs";
+import { BiChevronRight } from "react-icons/bi";
+import { useRouter } from "next/navigation";
 
 export function DropdownPerfil() {
 
@@ -58,6 +60,8 @@ export function DropdownPerfil() {
 
 export function SelectTransportadoras({ ArrayTransportadoras }: any) {
     const [list, setList] = useState<boolean>(false)
+    const router = useRouter()
+
     const sidebar = {
         open: (height = 200) => ({
             height: 'auto',
@@ -88,17 +92,6 @@ export function SelectTransportadoras({ ArrayTransportadoras }: any) {
 
 
     return (
-<<<<<<< Updated upstream
-        <div className="bg-black-light rounded-[4px] shadow-md shadow-black-light mb-2">
-            <button className="text-white px-6 py-2" onClick={() => setList(!list)}>
-                <strong className="xl:text-2xl">
-                    <div className="flex justify-between items-center font-normal">
-                        <span className="px-3 py-1 font-medium">
-                            Transportadoras
-                        </span>
-                        <hr className="bg-light-gray w-8 rotate-90" />
-                        <div className="text-white">
-=======
         <div className="bg-black-light rounded-md">
             <button className="text-white px-6 py-2" onClick={() => setList(!list)}>
                 <strong className="xl:text-2xl">
@@ -107,16 +100,11 @@ export function SelectTransportadoras({ ArrayTransportadoras }: any) {
                             Transportadoras
                         </div>
                         <div className="text-white ml-4">
->>>>>>> Stashed changes
                             <motion.div
                                 variants={menuVariants}
                                 animate={list ? "open" : "closed"}
                             >
-<<<<<<< Updated upstream
-                                <BsChevronCompactRight className="w-6 fill-white"/>
-=======
                                 <BsChevronCompactRight size={20} className=""/>
->>>>>>> Stashed changes
                             </motion.div>
                         </div>
                     </div>
@@ -131,10 +119,10 @@ export function SelectTransportadoras({ ArrayTransportadoras }: any) {
             >
                 {ArrayTransportadoras.map((item: any, index: number) => {
                     return (
-                        <div key={index} className="">
-                            <div className="cursor-pointer py-1 text-xl ml-6">
-                                <span className="botaoDropdown text-white">{item.nome}</span>
-                            </div>
+                        <div key={index}>
+                            <button className="p-2 text-xl ml-4 hover:underline text-green-simple" onClick={()=>{router.push(`generalidades/${item.nome}`)}}>
+                                <span className="text-white">{item.nome}</span>
+                            </button>
                         </div>
                     )
                 })}
