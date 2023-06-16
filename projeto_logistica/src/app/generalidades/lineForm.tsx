@@ -1,3 +1,5 @@
+import { ILinesTaxForms } from "@/src/interfaces/app/generalidades";
+
 export default function Line({ field, valueField, minValueField, onChangeValue, onChangeValueMin }: ILinesTaxForms) {
     return (
         <div className="w-full border-b-2 border-slate-200 h-12">

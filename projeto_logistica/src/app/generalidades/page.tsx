@@ -3,6 +3,7 @@ import { FormTax } from "./form"
 import { AiFillEdit } from "react-icons/ai";
 import axios from "axios";
 import { api } from "@/src/services/api";
+import { ITaxForms } from "@/src/interfaces/app/generalidades";
 
 export default async function Generalidades() {
 
@@ -16,7 +17,7 @@ export default async function Generalidades() {
             return 0
         })
 
-    const TaxForms: ITaxForms = await responseForms
+    const TaxForms: ITaxForms = responseForms
 
     return (
         <div className="">
@@ -24,7 +25,7 @@ export default async function Generalidades() {
                 <h1 className="flex text-2xl my-auto">
                     <button>
                         <BsArrowLeft size={30} className="mr-4" />
-                    </button>s
+                    </button>
                     Generalidades Gobor
                 </h1>
                 <div className="w-full mt-6">

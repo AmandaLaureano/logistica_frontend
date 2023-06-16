@@ -5,6 +5,7 @@ import Line from "./lineForm"
 import { useState } from "react"
 import { AiFillCloseCircle } from "react-icons/ai"
 import { api } from "@/src/services/api"
+import { ITaxForms } from "@/src/interfaces/app/generalidades"
 
 export function FormTax({ trt, tda, gris, adVal, despacho, pegadio, cam, }: ITaxForms) {
 
@@ -27,7 +28,8 @@ export function FormTax({ trt, tda, gris, adVal, despacho, pegadio, cam, }: ITax
             adVal: adValValue,
             despacho: despachoValue,
             pegadio: pegadioValue,
-            cam: camValue
+            cam: camValue,
+            attachment: attachment
         })
             .then(res => {
                 console.log(res);

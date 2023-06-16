@@ -1,6 +1,7 @@
 import { SelectTransportadoras } from "../components/selects";
 import { revalidateTag } from 'next/cache'
 import { api } from "../services/api";
+import { IArrayTransportadoras } from "../interfaces/app/dashboard";
 
 export default async function Dashboard() {
     const getTransportadoras = await api.get(`/transportadoras`,)
@@ -11,7 +12,7 @@ export default async function Dashboard() {
             return []
         })
 
-    const transportadoras: Array<IArrayTransportadoras> = await getTransportadoras
+    const transportadoras: Array<IArrayTransportadoras> = getTransportadoras
 
     return (
         <div className=" m-auto mt-24">
