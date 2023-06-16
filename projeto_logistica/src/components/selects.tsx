@@ -6,6 +6,8 @@ import Link from 'next/link';
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { BsChevronCompactRight } from "react-icons/bs";
+import { BiChevronRight } from "react-icons/bi";
+import { useRouter } from "next/navigation";
 
 export function DropdownPerfil() {
 
@@ -58,6 +60,8 @@ export function DropdownPerfil() {
 
 export function SelectTransportadoras({ ArrayTransportadoras }: any) {
     const [list, setList] = useState<boolean>(false)
+    const router = useRouter()
+
     const sidebar = {
         open: (height = 200) => ({
             height: 'auto',
@@ -116,10 +120,10 @@ export function SelectTransportadoras({ ArrayTransportadoras }: any) {
             >
                 {ArrayTransportadoras.map((item: any, index: number) => {
                     return (
-                        <div key={index} className="">
-                            <div className="cursor-pointer py-1 text-xl ml-4">
-                                <span className="botaoDropdown text-white">{item.nome}</span>
-                            </div>
+                        <div key={index}>
+                            <button className="p-2 text-xl ml-4 hover:underline text-green-simple" onClick={()=>{router.push(`generalidades/${item.nome}`)}}>
+                                <span className="text-white">{item.nome}</span>
+                            </button>
                         </div>
                     )
                 })}

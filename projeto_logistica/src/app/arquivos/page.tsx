@@ -1,6 +1,6 @@
 import { ButtonDefault } from "@/src/components/button";
 import { api } from "@/src/services/api";
-import { ArrayArquivos } from "./arrayArquivos";
+import { ArrayArquivos } from "@components/pages/arquivos/arrayArquivos";
 
 export default async function Arquivos() {
     const getArquivos = await api.get('/arq')
