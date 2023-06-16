@@ -21,7 +21,7 @@ export default function RootLayout({
     <html lang="pt-BR">
       <body className={montserrat.className}>
         <div>
-          <div className="h-[90px]">
+          <div className="h-[60px] xl:h-[70px] 2xl:h-[90px]">
             <Navbar />
           </div>
           <div>

@@ -5,7 +5,7 @@ import { VscAccount, VscSignOut } from 'react-icons/vsc';
 import Link from 'next/link';
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { BiChevronRight } from "react-icons/bi";
+import { BsChevronCompactRight } from "react-icons/bs";
 
 export function DropdownPerfil() {
 
@@ -88,19 +88,20 @@ export function SelectTransportadoras({ ArrayTransportadoras }: any) {
 
 
     return (
-        <div className="bg-black rounded-lg">
-            <button className="text-white p-4" onClick={() => setList(!list)}>
-                <strong className="text-2xl">
-                    <div className="flex justify-between items-center">
-                        <div >
+        <div className="bg-black-light rounded-[4px] shadow-md shadow-black-light">
+            <button className="text-white px-6 py-2" onClick={() => setList(!list)}>
+                <strong className="xl:text-2xl">
+                    <div className="flex justify-between items-center font-normal">
+                        <span className="px-3 py-1 font-medium">
                             Transportadoras
-                        </div>
-                        <div className="border-l-2 ml-4">
+                        </span>
+                        <hr className="bg-light-gray w-8 rotate-90" />
+                        <div className="text-white">
                             <motion.div
                                 variants={menuVariants}
                                 animate={list ? "open" : "closed"}
                             >
-                                <BiChevronRight size={30} className=""/>
+                                <BsChevronCompactRight className="w-6 fill-white"/>
                             </motion.div>
                         </div>
                     </div>

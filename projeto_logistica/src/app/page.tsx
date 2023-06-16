@@ -16,12 +16,10 @@ export default async function Dashboard() {
 
     return (
         <div className=" m-auto mt-24">
-            <div className="flex justify-center pt-5">
-                <h1 className="text-3xl font-medium text-center p-4 px-40">
-                    Selecione uma Transportadora
-                </h1>
-            </div>
-            <div className="w-11/12 lg:w-8/12 m-auto bg-light-gray pb-10 rounded-xl border border-black-gray-border">
+            <div className="w-11/12 lg:w-8/12 shadow-md shadow-gray-shadow m-auto bg-white-gray pb-10 rounded-lg">
+                <p className="text-3xl font-medium text-center pt-12 px-40 tracking-widest">
+                    Selecione uma transportadora
+                </p>
                 <div className="flex justify-center pt-12">
                     <SelectTransportadoras ArrayTransportadoras={transportadoras} />
                 </div>

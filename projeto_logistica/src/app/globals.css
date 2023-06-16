@@ -24,3 +24,7 @@ body::-webkit-scrollbar-thumb {
     width: 0;
     height: 0;
 }
+
+p{
+    text-shadow: rgba(0, 0, 0, 0.25) 0.1em 0.1em 0.1em;
+}
