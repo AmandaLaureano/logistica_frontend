@@ -88,7 +88,7 @@ export function SelectTransportadoras({ ArrayTransportadoras }: any) {
 
 
     return (
-        <div className="bg-black-light rounded-[4px] shadow-md shadow-black-light">
+        <div className="bg-black-light rounded-[4px] shadow-md shadow-black-light mb-2">
             <button className="text-white px-6 py-2" onClick={() => setList(!list)}>
                 <strong className="xl:text-2xl">
                     <div className="flex justify-between items-center font-normal">
@@ -112,12 +112,12 @@ export function SelectTransportadoras({ ArrayTransportadoras }: any) {
                 animate={list ? "open" : "closed"}
                 variants={sidebar}
                 style={{ overflow: 'hidden' }}
-                className="list-none"
+                className="list-none "
             >
                 {ArrayTransportadoras.map((item: any, index: number) => {
                     return (
                         <div key={index} className="">
-                            <div className="cursor-pointer py-1 text-xl ml-4">
+                            <div className="cursor-pointer py-1 text-xl ml-6">
                                 <span className="botaoDropdown text-white">{item.nome}</span>
                             </div>
                         </div>
