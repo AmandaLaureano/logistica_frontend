@@ -88,6 +88,7 @@ export function SelectTransportadoras({ ArrayTransportadoras }: any) {
 
 
     return (
+<<<<<<< Updated upstream
         <div className="bg-black-light rounded-[4px] shadow-md shadow-black-light mb-2">
             <button className="text-white px-6 py-2" onClick={() => setList(!list)}>
                 <strong className="xl:text-2xl">
@@ -97,11 +98,25 @@ export function SelectTransportadoras({ ArrayTransportadoras }: any) {
                         </span>
                         <hr className="bg-light-gray w-8 rotate-90" />
                         <div className="text-white">
+=======
+        <div className="bg-black-light rounded-md">
+            <button className="text-white px-6 py-2" onClick={() => setList(!list)}>
+                <strong className="xl:text-2xl">
+                    <div className="flex justify-between items-center font-normal">
+                        <div >
+                            Transportadoras
+                        </div>
+                        <div className="text-white ml-4">
+>>>>>>> Stashed changes
                             <motion.div
                                 variants={menuVariants}
                                 animate={list ? "open" : "closed"}
                             >
+<<<<<<< Updated upstream
                                 <BsChevronCompactRight className="w-6 fill-white"/>
+=======
+                                <BsChevronCompactRight size={20} className=""/>
+>>>>>>> Stashed changes
                             </motion.div>
                         </div>
                     </div>

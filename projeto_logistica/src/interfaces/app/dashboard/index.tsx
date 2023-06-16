@@ -1,4 +1,4 @@
-export interface IArrayTransportadoras{
+interface IArrayTransportadoras{
     id:number,
     nome:string
 }

@@ -1,4 +1,4 @@
-export interface ITaxForms {
+interface ITaxForms {
     id?: string | number
     transportadoraId?: string | number
     trt?: number | undefined
@@ -10,7 +10,7 @@ export interface ITaxForms {
     cam?: number | undefined
 }
 
-export interface ILinesTaxForms {
+interface ILinesTaxForms {
     field: string,
     valueField: number
     minValueField: number
