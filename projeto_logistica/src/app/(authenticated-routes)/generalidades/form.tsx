@@ -5,17 +5,17 @@ import Line from "./lineForm"
 import { useState } from "react"
 import { AiFillCloseCircle } from "react-icons/ai"
 import { api } from "@/src/services/api"
-import { ITaxForms } from "../../interfaces/app/generalidades"
+import { ITaxForms } from "../../../interfaces/app/generalidades"
 import { useParams } from "next/navigation";
 
-export function FormTax({ trt, tda, gris, adVal, despacho, pegadio, cam, }: ITaxForms,{params} : {params: {slug : string}}) {
+export function FormTax({ trt, tda, gris, adVal, despacho, pedagio, cam, }: ITaxForms,{params} : {params: {slug : string}}) {
 
     const [trtValue, setTrtValue] = useState(trt)
     const [tdaValue, setTdaValue] = useState(tda)
     const [grisValue, setGrisValue] = useState(gris)
     const [adValValue, setAdValValue] = useState(adVal)
     const [despachoValue, setDespachoValue] = useState(despacho)
-    const [pegadioValue, setPegadioValue] = useState(pegadio)
+    const [pedagioValue, setPedagioValue] = useState(pedagio)
     const [camValue, setCamValue] = useState(cam)
     const [attachment, setAttachment] = useState<File>({} as File)
 
@@ -28,7 +28,7 @@ export function FormTax({ trt, tda, gris, adVal, despacho, pegadio, cam, }: ITax
             gris: grisValue,
             adVal: adValValue,
             despacho: despachoValue,
-            pegadio: pegadioValue,
+            pedagio: pedagioValue,
             cam: camValue,
             attachment: attachment
         })
@@ -56,7 +56,7 @@ export function FormTax({ trt, tda, gris, adVal, despacho, pegadio, cam, }: ITax
                 <Line field={"GRIS"} valueField={grisValue ? grisValue : 0} minValueField={0} onChangeValue={(e: any) => setGrisValue(e.target.value)} />
                 <Line field={"AD_VAL"} valueField={adValValue ? adValValue : 0} minValueField={0} onChangeValue={(e: any) => setAdValValue(e.target.value)} />
                 <Line field={"DESPACHO"} valueField={despachoValue ? despachoValue : 0} minValueField={0} onChangeValue={(e: any) => setDespachoValue(e.target.value)} />
-                <Line field={"PED 100KG"} valueField={pegadioValue ? pegadioValue : 0} minValueField={0} onChangeValue={(e: any) => setPegadioValue(e.target.value)} />
+                <Line field={"PED 100KG"} valueField={pedagioValue ? pedagioValue : 0} minValueField={0} onChangeValue={(e: any) => setPedagioValue(e.target.value)} />
                 <Line field={"CAM"} valueField={camValue ? camValue : 0} minValueField={0} onChangeValue={(e: any) => setCamValue(e.target.value)} />
             </div>
             <hr className="mt-8 border border-slate-400" />

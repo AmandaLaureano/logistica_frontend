@@ -3,8 +3,9 @@ import { VscEye } from 'react-icons/vsc'
 import { AiOutlineLock, AiOutlineMail } from 'react-icons/ai'
 import { useState } from 'react';
 import './login.css'
+import { version } from '../../../../package.json';
 
-export default function Login() {
+export default function Login  () {
 
     const [password, setPassword] = useState('');
 
@@ -46,10 +47,10 @@ export default function Login() {
                         <button className='botaoLogin bg-black-light h-12 w-[400px] text-2xl font-medium text-white-normal rounded-md'>LOGIN</button>
                     </div>
                     <div className='containerVersao grid grid-rows-1 justify-center pt-10'>
-                        <span className='text-gray tracking-widest'>Version 0.0.1</span>
+                        <span className='text-gray tracking-widest'>Version {version}</span>
                     </div>
                 </div>
             </section>
-        </main>
+        </main>  
     );
 }

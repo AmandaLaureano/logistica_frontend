@@ -53,7 +53,7 @@ export default async function Generalidades() {
                                 cam={TaxForms.cam}
                                 despacho={TaxForms.despacho}
                                 gris={TaxForms.gris}
-                                pegadio={TaxForms.pegadio}
+                                pedagio={TaxForms.pedagio}
                                 tda={TaxForms.tda}
                                 trt={TaxForms.trt}
                             />

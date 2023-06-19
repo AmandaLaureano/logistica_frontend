@@ -4,7 +4,7 @@ export interface ITaxForms {
     trt?: number | undefined
     tda?: number | undefined
     despacho?: number |undefined
-    pegadio?: number | undefined
+    pedagio?: number | undefined
     gris?: number | undefined
     adVal?: number | undefined
     cam?: number | undefined
