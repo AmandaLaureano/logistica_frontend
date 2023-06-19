@@ -5,9 +5,10 @@ import Line from "./lineForm"
 import { useState } from "react"
 import { AiFillCloseCircle } from "react-icons/ai"
 import { api } from "@/src/services/api"
-import { ITaxForms } from "@/src/interfaces/app/generalidades"
+import { ITaxForms } from "../../interfaces/app/generalidades"
+import { useParams } from "next/navigation";
 
-export function FormTax({ trt, tda, gris, adVal, despacho, pegadio, cam, }: ITaxForms) {
+export function FormTax({ trt, tda, gris, adVal, despacho, pegadio, cam, }: ITaxForms,{params} : {params: {slug : string}}) {
 
     const [trtValue, setTrtValue] = useState(trt)
     const [tdaValue, setTdaValue] = useState(tda)
@@ -45,6 +46,8 @@ export function FormTax({ trt, tda, gris, adVal, despacho, pegadio, cam, }: ITax
         }
     }
 
+    const routerParams = useParams()
+
     return (
         <div>
             <div>
@@ -65,7 +68,6 @@ export function FormTax({ trt, tda, gris, adVal, despacho, pegadio, cam, }: ITax
                             <div className="flex w-72 bg-slate-200 p-1 rounded-md mt-2">
                                 <div className="overflow-auto ContainerScrollHidden w-full">
                                     <span>
-                                        {attachment.name}
                                     </span>
                                 </div>
                                 <div className="flex">
@@ -78,7 +80,7 @@ export function FormTax({ trt, tda, gris, adVal, despacho, pegadio, cam, }: ITax
                     </div>
                     <div>
                         <button className="bg-black text-white rounded-md text-sm px-3 hover:scale-95 transition-all duration-200 py-2" onClick={postForm}>
-                            Salvar Tudo
+                            Salvar Tudo {routerParams.transportadora}
                         </button>
                     </div>
                 </div>
