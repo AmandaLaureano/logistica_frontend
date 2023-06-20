@@ -17,7 +17,7 @@ export default function RootLayout({children}: {children: React.ReactNode}){
     <html lang="pt-BR">
       <body className={montserrat.className}>
         <div>
-            <div className="h-[60px] xl:h-[70px] 2xl:h-[90px]">
+            <div className="h-[60px]">
               <Navbar />
             </div>
             <div>
@@ -27,7 +27,7 @@ export default function RootLayout({children}: {children: React.ReactNode}){
             {children}
             </div>
         </div>  
-      </body>
+      </body>                        
     </html>
   )
 }

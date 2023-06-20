@@ -1,4 +1,3 @@
-import { ButtonDefault } from "@/src/components/button";
 import { api } from "@/src/services/api";
 import { ArrayArquivos } from "./arrayArquivos";
 
@@ -15,11 +14,7 @@ export default async function Arquivos() {
     const arquivos = getArquivos
 
     return (
-        <div className="m-auto mt-8">
-            <h1 className="text-3xl font-medium text-center p-4 px-40">
-                Arquivos
-            </h1>
-
+        <div className="m-auto mt-24">
             <div className="pb-8">
                 <ArrayArquivos arquivo={arquivos} />
             </div>

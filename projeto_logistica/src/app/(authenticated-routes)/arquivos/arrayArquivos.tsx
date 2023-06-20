@@ -22,7 +22,12 @@ export function ArrayArquivos({ arquivo }: IArrayArquivos) {
     }
 
     return (
-        <div className="w-11/12 p-8 lg:w-8/12 m-auto bg-light-gray pb-10 rounded-xl border border-black-gray-border max-h-[700px] overflow-auto ContainerScrollHidden">
+        <div className="ContainerScrollHidden first-letter:w-11/12 p-8 lg:w-8/12 m-auto mt-24 bg-light-gray pb-10 rounded-xl border border-black-gray-border max-h-[700px] overflow-auto ">
+            <div className="flex justify-center">
+                <p className="tracking-widest text-xl lg:text-2xl xl:text-3xl font-medium text-center p-4 ">
+                    Arquivos
+                </p>
+            </div> 
             {archives.map((item, index) => {
                 return (
                     <div className="bg-green-simple/20 rounded-md my-6 py-4 px-6 shadow-lg shadow-black/50" key={item.nome}>

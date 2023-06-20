@@ -1,5 +1,4 @@
 import { SelectTransportadoras } from "../../components/selects";
-import { revalidateTag } from 'next/cache'
 import { api } from "../../services/api";
 import { IArrayTransportadoras } from "../../interfaces/app/dashboard"
 
