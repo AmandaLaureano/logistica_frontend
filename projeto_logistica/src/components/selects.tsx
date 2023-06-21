@@ -62,13 +62,13 @@ export function SelectTransportadoras({ ArrayTransportadoras }: any) {
     const router = useRouter()
     const sidebar = {
         open: (height = 200) => ({
-            height: 'auto',
+            height: '150px',
             clipPath: `circle(${height * 2 + 200}px at 40px 40px)`,
             transition: {
                 type: "spring",
-                stiffness: 20,
+                stiffness: 60,
                 restDelta: 2,
-                height: 20
+                
             }
         }),
         closed: {
@@ -90,7 +90,7 @@ export function SelectTransportadoras({ ArrayTransportadoras }: any) {
 
 
     return (
-        <div className="bg-black-light rounded-[4px] shadow-md shadow-black-lightmb-2">
+        <div className="bg-black-light rounded-[4px] shadow-md shadow-black-light">
             <button className="text-white px-6 py-2" onClick={() => setList(!list)}>
                 <strong className="xl:text-2xl">
                     <div className="flex justify-between items-center font-normal">
@@ -113,14 +113,13 @@ export function SelectTransportadoras({ ArrayTransportadoras }: any) {
                 initial={false}
                 animate={list ? "open" : "closed"}
                 variants={sidebar}
-                style={{ overflow: 'hidden' }}
-                className="list-none "
+                className="listItensDropdown overflow-auto list-none"
             >
                 {ArrayTransportadoras.map((item: any, index: number) => {
                     return (
-                        <div key={index} className="">
-                            <button className="cursor-pointer py-1 text-xl ml-6" onClick={()=>{router.push(`generalidades/${item.nome}`)}}>
-                                <span className="botaoDropdown text-white">{item.nome}</span>
+                        <div key={index} className="pb-2">
+                            <button className="cursor-pointer text-xl ml-6" onClick={()=>{router.push(`generalidades/${item.nome}`)}}>
+                                <span className="buttonGreenHover text-white">{item.nome}</span>
                             </button>
                         </div>
                         

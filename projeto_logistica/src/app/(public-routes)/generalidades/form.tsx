@@ -80,7 +80,7 @@ export function FormTax({ trt, tda, gris, adVal, despacho, pedagio, cam, }: ITax
                     </div>
                     <div>
                         <button className="bg-black text-white rounded-md text-sm px-3 hover:scale-95 transition-all duration-200 py-2" onClick={postForm}>
-                            Salvar Tudo {routerParams.transportadora}
+                            Salvar tudo {routerParams.transportadora}
                         </button>
                     </div>
                 </div>

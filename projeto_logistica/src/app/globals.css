@@ -29,12 +29,16 @@ p{
     text-shadow: rgba(0, 0, 0, 0.25) 0.1em 0.1em 0.1em;
 }
 
-.botaoAside{
+.inputLogin{
+    text-shadow: rgba(255, 255, 255, 0.15) 0.1em 0.1em 0.1em;
+}
+
+.buttonGreenHover{
     position: relative;
     text-decoration: none;
 }
 
-.botaoAside::before{
+.buttonGreenHover::before{
   content: '';
   position: absolute;
   width: 100%;
@@ -48,32 +52,17 @@ p{
   border-radius: 10px;
 }
 
-.botaoAside:hover::before, .botaoAside:active::before{
+.buttonGreenHover:hover::before, .botaoGreenHover:active::before{
   transform-origin: left;
   transform: scaleX(1);
-  
 }
 
-.botaoDropdown{
-    position: relative;
-    text-decoration: none;
+.listItensDropdown::-webkit-scrollbar {
+    width: 2px;
+    height: 5px;
 }
 
-.botaoDropdown::before{
-  content: '';
-  position: absolute;
-  width: 100%;
-  height: 2px;
-  background-color: rgba(80, 157, 69, 1);
-  bottom: 0;
-  left: 0;
-  transform-origin: right;
-  transform: scaleX(0);
-  transition: transform .4s ease-in-out;
-  border-radius: 10px;
-}
-
-.botaoDropdown:hover::before, .botaoDropdown:active::before{
-  transform-origin: left;
-  transform: scaleX(1);
+.listItensDropdown::-webkit-scrollbar-thumb {
+    background-color: #FFFFFF;
+    border-radius: 20px;
 }

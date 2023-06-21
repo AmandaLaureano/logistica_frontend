@@ -22,7 +22,7 @@ export function ArrayArquivos({ arquivo }: IArrayArquivos) {
     }
 
     return (
-        <div className="ContainerScrollHidden first-letter:w-11/12 p-8 lg:w-8/12 m-auto mt-24 bg-light-gray pb-10 rounded-xl border border-black-gray-border max-h-[700px] overflow-auto ">
+        <div className="ContainerScrollHidden first-letter:w-11/12 p-8 lg:w-8/12 m-auto mt-24 bg-light-gray pb-10 rounded-md shadow-md shadow-black-gray-border max-h-[700px] overflow-auto">
             <div className="flex justify-center">
                 <p className="tracking-widest text-xl lg:text-2xl xl:text-3xl font-medium text-center p-4 ">
                     Arquivos

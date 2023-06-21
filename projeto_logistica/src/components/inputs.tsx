@@ -1,4 +1,3 @@
-import { HTMLAttributes, InputHTMLAttributes } from "react";
 import { AiFillFolderOpen } from "react-icons/ai";
 
 interface IInputFile {
