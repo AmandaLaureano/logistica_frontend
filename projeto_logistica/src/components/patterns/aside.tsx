@@ -3,7 +3,7 @@ import { TfiHeadphoneAlt } from "react-icons/tfi"
 import Link from "next/link";
 import { IoHome } from "react-icons/io5"
 import { VscFileSubmodule} from "react-icons/vsc"
-import { LuArrowLeftCircle, LuArrowRightCircle } from "react-icons/lu"
+import { BiMenuAltRight, BiMenuAltLeft } from "react-icons/bi"
 import { useState } from "react";
 import Image from 'next/image'
 import folha from "@assets/folha.png"
@@ -41,22 +41,30 @@ export default function Aside(){
     }
 
     return(
-        <aside className={` ${asideOpened ? 'w-72':'w-20'} duration-500 h-full bg-black-light shadow-md shadow-black-light fixed`}>
-            <div className="flex flex-col px-5 mt-5">
-                <div className="flex pb-12">
-                    {/*<div className="grid justify-items-start w-[150px]">
-                        <Image className=' w-[50px] h-[40px]' src={folha} alt="logo folha" quality={100} />
-                    </div>*/}
-                    {changeIconArrow ? (
-                        <button onClick={changeIconAside}>
-                            <LuArrowRightCircle className="hover:scale-95 w-7 h-7 stroke-white cursor-pointer transition duration-150" onClick={controlAside}></LuArrowRightCircle>
-                        </button>
+        <div className={` ${asideOpened ? 'w-64':'w-20'} duration-500 h-screen border-r-2 border-green-simple bg-black-light shadow-md shadow-gray fixed`}>
+            <div className="grid grid-cols-2 pb-12 px-5 mt-5 w-full">
+                   {/*} {asideOpened ? (
+                        <div className={`flex justify-items-start w-full`}>
+                            <Image className='w-[50px] h-[40px]' src={folha} alt="logo folha" quality={100} />
+                        </div>
                     ):(
-                        <button onClick={changeIconAside}>
-                            <LuArrowLeftCircle className="hover:scale-95 w-7 h-7 stroke-white cursor-pointer transition duration-150" onClick={controlAside}></LuArrowLeftCircle>
+                        "" 
+                    )}*/}
+                {changeIconArrow ? (
+                    <div className="flex justify-items-end w-full">
+                        <button onClick={changeIconAside} className="buttonCollapseAside">
+                            <BiMenuAltRight className="hover:scale-95 w-8 h-8 fill-green-simple cursor-pointer transition duration-150" onClick={controlAside}></BiMenuAltRight>
                         </button>
-                    )}
-                </div>
+                    </div>
+                ):(
+                    <div className="flex justify-items-end w-full">
+                        <button onClick={changeIconAside} className="buttonCollapseAside">
+                            <BiMenuAltLeft className="hover:scale-95 w-8 h-8 fill-green-simple cursor-pointer transition duration-150" onClick={controlAside}></BiMenuAltLeft>
+                        </button>
+                    </div>
+                )}
+            </div>
+            <div className="flex flex-col px-5 mt-5">
                 <div className="flex items-stretch pb-8">
                     <div className="">
                         <Link className="" href='/'>
@@ -97,6 +105,6 @@ export default function Aside(){
             {/*<div className="flex justify-center w-full items-center h-full">
                 <span className='text-sm text-green-simple tracking-widest'>Version {version}</span>
             </div>*/}
-        </aside>
+        </div>
     )
 }

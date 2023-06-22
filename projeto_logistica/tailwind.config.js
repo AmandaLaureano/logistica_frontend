@@ -35,6 +35,7 @@ module.exports = {
       '4xl': '1800px',
     },
     colors: {
+      'gray-line': "rgba(10, 10, 10, 0.25)",
       'gray-shadow': "rgba(0, 0, 0, 0.25)",
       'transparent': 'rgba(0, 0, 0, 0)',
       'black': '#000000',

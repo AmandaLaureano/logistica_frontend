@@ -20,35 +20,26 @@ export default async function Generalidades() {
     const TaxForms: ITaxForms = responseForms
 
     return (
-        <div className="w-full py-24">
+        <div className="bg-white-simple rounded-sm shadow-md shadow-black-gray-border">
             <div className="w-11/12 m-auto mt-20">
-                <div className="flex items-stretch">
-                    <div className="">
-                        <Link href='/'>
-                            <button>
-                                <BsArrowLeft size={30} className="mr-4 hover:scale-90" />
-                            </button>
-                        </Link>
-                    </div>
-                    <div className="">
-                        <p className="flex font-medium text-3xl my-auto ">Generalidades</p>
-                    </div>
-                </div>
-                <div className="w-full mt-6">
-                    <div>
-                        <div className="w-full border-b-2 border-slate-400 h-12">
+                <div className="w-full">
+                    <div className="mb-12">
+                        <div className="w-full flex justify-center py-16">
+                            <p className="font-medium text-3xl my-auto">Generalidades</p>
+                        </div>
+                        <div className="w-full h-12">
                             <div className="flex w-full h-full text-xl my-auto">
-                                <div className="pl-4 w-6/12 flex justify-start my-auto">
+                                <div className=" w-6/12 flex justify-start my-auto">
                                     <p className="flex justify-start text-2xl">
                                         Componentes
                                     </p>
                                 </div>
                                 <div className="flex justify-evenly w-6/12 my-auto">
-                                    <p className="flex text-2xl">
-                                        <AiFillEdit className="mr-2" />Valor
+                                    <p className="flex text-xl h-full items-center">
+                                        <AiFillEdit className="mr-2 fill-green-simple" />Valor
                                     </p>
-                                    <p className="flex text-2xl">
-                                        <AiFillEdit className="mr-2" /> Minímo
+                                    <p className="flex text-xl h-full items-center">
+                                        <AiFillEdit className="mr-2 fill-green-simple" /> Minímo
                                     </p>
                                 </div>
                             </div>

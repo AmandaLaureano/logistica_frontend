@@ -1,23 +1,16 @@
 'use client';
-import { VscEye } from 'react-icons/vsc'
+import { VscEye, VscEyeClosed } from 'react-icons/vsc'
 import { AiOutlineLock, AiOutlineMail } from 'react-icons/ai'
 import { IoLogInOutline } from 'react-icons/io5'
 import { useState } from 'react';
 import { version } from '../../../../package.json';
 
 export default function Login  () {
-
-    const [password, setPassword] = useState('');
-
-    function alteraVisibilidade(event: any) {
-        event.preventDefault()
-        var input = document.querySelector("#password")
-
-        if (input?.getAttribute('type') === 'password') {
-            input.setAttribute("type", "text")
-        } else {
-            input?.setAttribute("type", "password")
-        }
+    const [showPassword, setshowPassword] = useState(false)
+    const [password, setPassword] = useState("")
+    
+    const switchIconEye = () => {
+        setshowPassword(!showPassword)
     }
 
     return (
@@ -36,8 +29,14 @@ export default function Login  () {
                     </div>
                     <div className="containerPassword flex pt-12 mx-14 justify-end border-b border-green-simple">
                         <AiOutlineLock className='flex mb-1 mr-1 self-end w-8 h-7 fill-white stroke-white'></AiOutlineLock>
-                        <input id='password' value={password} className="LoginPassword flex self-center tracking-wide h-fit outline-0 bg-transparent text-white cursor-default placeholder:text-sm w-full text-sm" type="password" placeholder="Senha" onChange={(e) => setPassword(e.target.value)} />
-                        <VscEye onClick={alteraVisibilidade} className='iconEye flex self-end w-7 h-6 fill-white stroke-white'></VscEye>
+                        <input id='password' value={password} className="LoginPassword flex self-center tracking-wide h-fit outline-0 bg-transparent text-white cursor-default placeholder:text-sm w-full text-sm" type={showPassword ? 'text' : 'password'} placeholder="Senha" onChange={(e) => setPassword(e.target.value)} />
+                        <button className='' onClick={switchIconEye}>
+                            {showPassword ? (
+                                <VscEye  className='iconEye cursor-pointer flex self-end w-7 h-6 fill-white stroke-white hover:scale-[110%] transition duration-150'></VscEye>
+                            ):(
+                                <VscEyeClosed className='iconEye cursor-pointer flex self-end w-7 h-6 fill-white stroke-white hover:scale-[110%] transition duration-150'></VscEyeClosed>
+                            )}
+                        </button>
                     </div>
                     <div className='containerCheckbox flex mx-14 pt-5'>
                         <input className='w-5 h-4 mx-1' id="checkbox" type="checkbox" />
@@ -54,7 +53,7 @@ export default function Login  () {
                         </button>
                     </div>
                     <div className='containerSupport flex justify-center items-end w-full pb-5 h-32'>
-                        <button className='botaoGreenHover text-lg text-green-simple tracking-widest'>Suporte</button>
+                        <button className='buttonGreenHover text-lg text-green-simple tracking-widest'>Suporte</button>
                     </div>
                     <div className='containerVersion flex justify-center w-full'>
                         <span className='text-sm text-green-simple tracking-widest'>Version {version}</span>

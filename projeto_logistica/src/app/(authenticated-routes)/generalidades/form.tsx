@@ -50,6 +50,7 @@ export function FormTax({ trt, tda, gris, adVal, despacho, pedagio, cam, }: ITax
 
     return (
         <div>
+            <hr className="border border-gray-line" />
             <div>
                 <Line field={"TRT"} valueField={trtValue ? trtValue : 0} minValueField={0} onChangeValue={(e: any) => setTrtValue(e.target.value)} />
                 <Line field={"TDA"} valueField={tdaValue ? tdaValue : 0} minValueField={0} onChangeValue={(e: any) => setTdaValue(e.target.value)} />
@@ -59,15 +60,16 @@ export function FormTax({ trt, tda, gris, adVal, despacho, pedagio, cam, }: ITax
                 <Line field={"PED 100KG"} valueField={pedagioValue ? pedagioValue : 0} minValueField={0} onChangeValue={(e: any) => setPedagioValue(e.target.value)} />
                 <Line field={"CAM"} valueField={camValue ? camValue : 0} minValueField={0} onChangeValue={(e: any) => setCamValue(e.target.value)} />
             </div>
-            <hr className="mt-8 border border-slate-400" />
+            <hr className="mt-10 border border-gray-line" />
             <div>
-                <div className="mt-8 flex justify-between">
+                <div className="mt-8 flex justify-between pb-12">
                     <div>
-                        <InputFile placeholder={"Anexar Arquivo"} text={"Anexar Arquivo"} onChange={handleFile} />
+                        <InputFile placeholder={"Anexar arquivo"} text={"Anexar arquivo"} onChange={handleFile} />
                         {attachment.name != undefined &&
-                            <div className="flex w-72 bg-slate-200 p-1 rounded-md mt-2">
+                            <div className="flex w-72 bg-slate-200 px-2 rounded-sm mt-2">
                                 <div className="overflow-auto ContainerScrollHidden w-full">
-                                    <span>
+                                    <span className="text-sm">
+                                    {attachment.name}
                                     </span>
                                 </div>
                                 <div className="flex">
@@ -79,7 +81,7 @@ export function FormTax({ trt, tda, gris, adVal, despacho, pedagio, cam, }: ITax
                         }
                     </div>
                     <div>
-                        <button className="bg-black text-white rounded-md text-sm px-3 hover:scale-95 transition-all duration-200 py-2" onClick={postForm}>
+                        <button className="bg-black text-white rounded-sm text-sm px-3 hover:scale-95 transition-all duration-200 py-2" onClick={postForm}>
                             Salvar tudo {routerParams.transportadora}
                         </button>
                     </div>
