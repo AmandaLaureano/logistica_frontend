@@ -60,31 +60,31 @@ export function FormTax({ trt, tda, gris, adVal, despacho, pedagio, cam, }: ITax
                 <Line field={"PED 100KG"} valueField={pedagioValue ? pedagioValue : 0} minValueField={0} onChangeValue={(e: any) => setPedagioValue(e.target.value)} />
                 <Line field={"CAM"} valueField={camValue ? camValue : 0} minValueField={0} onChangeValue={(e: any) => setCamValue(e.target.value)} />
             </div>
-            <hr className="mt-10 border border-gray-line" />
             <div>
                 <div className="mt-8 flex justify-between pb-12">
                     <div>
                         <InputFile placeholder={"Anexar arquivo"} text={"Anexar arquivo"} onChange={handleFile} />
                         {attachment.name != undefined &&
-                            <div className="flex w-72 bg-slate-200 px-2 rounded-sm mt-2">
+                            <div className="flex w-72 bg-slate-300 px-2 rounded-sm mt-2">
                                 <div className="overflow-auto ContainerScrollHidden w-full">
                                     <span className="text-sm">
                                     {attachment.name}
                                     </span>
                                 </div>
                                 <div className="flex">
-                                    <button onClick={() => setAttachment({} as File)}>
-                                        <AiFillCloseCircle className="mx-1 my-auto" size={20} />
+                                    <button className="" onClick={() => setAttachment({} as File)}>
+                                        <AiFillCloseCircle className="hover:scale-95 transition-all duration-200 my-auto fill-red" size={20} />
                                     </button>
                                 </div>
                             </div>
                         }
                     </div>
                     <div>
-                        <button className="bg-black text-white rounded-sm text-sm px-3 hover:scale-95 transition-all duration-200 py-2" onClick={postForm}>
+                        <button className="bg-black shadow-md shadow-black-light text-white rounded-sm text-xs xl:text-sm px-5 hover:scale-95 transition-all duration-200 py-2" onClick={postForm}>
                             Salvar tudo {routerParams.transportadora}
                         </button>
                     </div>
+                    
                 </div>
             </div>
         </div>

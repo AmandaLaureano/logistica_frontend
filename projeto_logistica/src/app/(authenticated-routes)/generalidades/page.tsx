@@ -1,6 +1,5 @@
-import { BsArrowLeft } from "react-icons/bs";
 import { FormTax } from "./form"
-import { AiFillEdit } from "react-icons/ai";
+import { BsCurrencyDollar } from "react-icons/bs";
 import { api } from "@/src/services/api";
 import { ITaxForms } from "@/src/interfaces/app/generalidades";
 import Link from "next/link"
@@ -20,31 +19,31 @@ export default async function Generalidades() {
     const TaxForms: ITaxForms = responseForms
 
     return (
-        <div className="bg-white-simple rounded-sm shadow-md shadow-black-gray-border">
-            <div className="w-11/12 m-auto mt-20">
+        <div className="bg-white-simple rounded-sm shadow-md shadow-black-gray-border px-3">
+            <div className="w-11/12 m-auto">
                 <div className="w-full">
                     <div className="mb-12">
                         <div className="w-full flex justify-center py-16">
-                            <p className="font-medium text-3xl my-auto">Generalidades</p>
+                            <p className="font-medium text-xl md:text-2xl xl:text-3xl my-auto">Generalidades</p>
                         </div>
                         <div className="w-full h-12">
                             <div className="flex w-full h-full text-xl my-auto">
                                 <div className=" w-6/12 flex justify-start my-auto">
-                                    <p className="flex justify-start text-2xl">
+                                    <p className="flex justify-start text-base md:text-lg xl:text-2xl font-medium">
                                         Componentes
                                     </p>
                                 </div>
                                 <div className="flex justify-evenly w-6/12 my-auto">
-                                    <p className="flex text-xl h-full items-center">
-                                        <AiFillEdit className="mr-2 fill-green-simple" />Valor
+                                    <p className="flex mr-8 text-base md:text-lg xl:text-xl font-medium h-full items-center">
+                                        <BsCurrencyDollar className="fill-green-simple w-6 h-5"/>Valor
                                     </p>
-                                    <p className="flex text-xl h-full items-center">
-                                        <AiFillEdit className="mr-2 fill-green-simple" /> Minímo
+                                    <p className="flex mr-2 text-base md:text-lg xl:text-xl font-medium h-full items-center">
+                                        <BsCurrencyDollar className="fill-green-simple"/>Minímo
                                     </p>
                                 </div>
                             </div>
                         </div>
-                        <div>
+                        <div className="">
                             <FormTax
                                 adVal={TaxForms.adVal}
                                 cam={TaxForms.cam}

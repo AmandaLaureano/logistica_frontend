@@ -6,22 +6,19 @@ body{
     background-color: #EDEDED;
 }
 
-.containerChildren::-webkit-scrollbar {
-    width: 5px;
+.__className_d45be2::-webkit-scrollbar {
+    width: 3px;
     height: 5px;
 }
 
-.containerChildren::-webkit-scrollbar-corner {
-    display: none;
+.__className_d45be2::-webkit-scrollbar-track {
+    border-radius: 10px;
+    background-color: #000000;
 }
 
-.containerChildren::-webkit-scrollbar-track {
-    background: #000000;
-}
-
-.containerChildren::-webkit-scrollbar-thumb {
-    background-color: #D9D9D9;
-    border-radius: 20px;
+.__className_d45be2::-webkit-scrollbar-thumb {
+    background-color: #509D45;
+    border-radius: 10px;
 }
 
 .ContainerScrollHidden::-webkit-scrollbar {
