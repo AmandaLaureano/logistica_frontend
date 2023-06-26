@@ -4,6 +4,7 @@ import { AiOutlineLock, AiOutlineMail } from 'react-icons/ai'
 import { IoLogInOutline } from 'react-icons/io5'
 import { useState } from 'react';
 import { version } from '../../../../package.json';
+import Link from "next/link"
 
 export default function Login  () {
     const [showPassword, setshowPassword] = useState(false)
@@ -53,7 +54,9 @@ export default function Login  () {
                         </button>
                     </div>
                     <div className='containerSupport flex justify-center items-end w-full pb-5 h-32'>
-                        <button className='buttonGreenHover text-lg text-green-simple tracking-widest'>Suporte</button>
+                        <Link href="/suporte">
+                            <button className='buttonGreenHover text-lg text-green-simple tracking-widest'>Suporte</button>
+                        </Link>
                     </div>
                     <div className='containerVersion flex justify-center w-full'>
                         <span className='text-sm text-green-simple tracking-widest'>Version {version}</span>

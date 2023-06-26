@@ -1,61 +1,9 @@
 "use client"
-
-import { BsChevronCompactDown } from "react-icons/bs";
-import { VscAccount, VscSignOut } from 'react-icons/vsc';
-import Link from 'next/link';
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { BsChevronCompactRight } from "react-icons/bs";
 import { useRouter } from "next/navigation";
 
-export function DropdownPerfil() {
-
-    function onSelect({ key }: { key: string }) {
-        console.log(`${key} selected`);
-    }
-
-    function onVisibleChange(visible: boolean) {
-        console.log(visible);
-    }
-
-    const DropdownPerfil = (
-        <div className="flex flex-col w-[160px] h-[100px]"
-        // onSelect={onSelect}
-        >
-            <div className='divBotaoPerfil flex px-3 py-3'>
-                <VscAccount className='w-6 h-6 mr-2' />
-                <Link href='/perfil'>
-                    <button className=''>
-                        <div className="text-lg tracking-wider" key="1">Seu perfil </div>
-                    </button>
-                </Link>
-            </div>
-            <div className='divBotaoSair flex px-3'>
-                <VscSignOut className='w-6 h-6 mr-2' />
-                <Link href=''>
-                    <button className=''>
-                        <div className="text-lg tracking-wider" key="2">Sair</div>
-                    </button>
-                </Link>
-            </div>
-        </div>
-    )
-    return (
-        <div className='containerDropdownPerfil flex items-end'>
-            <div
-            // trigger={['click']}
-            // visible={undefined}
-            // overlay={DropdownPerfil}
-            // animation="slide-up"
-            // onVisibleChange={undefined}
-            >
-                <button>
-                    <BsChevronCompactDown className='flex self-end w-8 h-7 fill-white stroke-white' />
-                </button>
-            </div>
-        </div>
-    )
-}
 
 export function SelectTransportadoras({ ArrayTransportadoras }: any) {
     const [list, setList] = useState<boolean>(false)

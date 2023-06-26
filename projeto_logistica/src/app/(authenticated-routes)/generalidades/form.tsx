@@ -1,7 +1,7 @@
 'use client'
 
 import { InputFile } from "@/src/components/inputs"
-import Line from "./lineForm"
+import Line from "./line-form"
 import { useState } from "react"
 import { AiFillCloseCircle } from "react-icons/ai"
 import { api } from "@/src/services/api"

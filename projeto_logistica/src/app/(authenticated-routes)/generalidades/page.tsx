@@ -2,7 +2,6 @@ import { FormTax } from "./form"
 import { BsCurrencyDollar } from "react-icons/bs";
 import { api } from "@/src/services/api";
 import { ITaxForms } from "@/src/interfaces/app/generalidades";
-import Link from "next/link"
 
 export default async function Generalidades() {
 
@@ -20,7 +19,7 @@ export default async function Generalidades() {
 
     return (
         <div className="bg-white-simple rounded-sm shadow-md shadow-black-gray-border px-3">
-            <div className="w-11/12 m-auto">
+            <div className="m-7">
                 <div className="w-full">
                     <div className="mb-12">
                         <div className="w-full flex justify-center py-16">

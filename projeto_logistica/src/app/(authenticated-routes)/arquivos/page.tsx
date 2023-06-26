@@ -1,8 +1,8 @@
 import { api } from "@/src/services/api";
-import { ArrayArquivos } from "./arrayArquivos";
+import { ArrayArquivos } from "../arquivos/array-arquivos";
 
 export default async function Arquivos() {
-    const getArquivos = await api.get('/arq')
+    const getArquivos = await api.get('/arq') 
         .then(resp => {
             return resp.data
         })

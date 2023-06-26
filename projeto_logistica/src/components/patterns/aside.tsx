@@ -50,7 +50,7 @@ export default function Aside(){
     }
 
     return(
-        <div className={` ${asideOpened ? 'w-44 xl:w-56':'w-24'}  duration-500 h-screen border-r-[6px] rounded-r-md border-green-simple bg-black shadow-lg shadow-black fixed`}>
+        <div className={` ${asideOpened ? 'w-44 xl:w-56':'w-24'}  duration-500 h-screen border-r-[6px] rounded-r-md border-green-simple bg-black-light shadow-lg shadow-black fixed`}>
             <div className="grid grid-cols-2 pb-10 mx-6 mt-5 w-full">
                 {changeIconArrow ? (
                     <div className="flex justify-items-end w-full">
@@ -93,11 +93,11 @@ export default function Aside(){
                 </div>
                 <div className="flex items-stretch pb-8">
                     <div className="">
-                        <Link href='/suporte'>
+                        <Link href='/suporte-user'>
                             <TfiHeadphoneAlt onClick={handleClickIconHeadphone} className={`hover:scale-95 w-5 h-5 xl:w-7 xl:h-6 ${isHeadphoneActive ? 'fill-green-simple':'fill-white'}`}/>
                         </Link>
                     </div>
-                    <Link href='/suporte'>
+                    <Link href='/suporte-user'>
                         <button className="px-2" onClick={handleClickIconHeadphone}>
                             <p className={`${isHeadphoneActive ? 'text-green-simple':'text-white'} buttonGreenHover whitespace-pre duration-500 ${!asideOpened && 'opacity-0 translate-x-28 overflow-hidden'} font-medium h-full pt-1 text-sm xl:text-base`}>Suporte</p>
                         </button>
