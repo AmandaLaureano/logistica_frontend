@@ -2,6 +2,7 @@
 import { ButtonDefault } from "@/src/components/button"
 import { useState } from "react"
 import { ImDownload } from "react-icons/im"
+import { VscFileSubmodule } from "react-icons/vsc"
 
 interface IArrayArquivos {
     arquivo: Array<IArquivos>
@@ -22,9 +23,10 @@ export function ArrayArquivos({ arquivo }: IArrayArquivos) {
     }
 
     return (
-        <div className="ContainerScrollHidden first-letter:w-11/12 p-8 lg:w-8/12 m-auto mt-24 bg-white-simple pb-10 rounded-md shadow-md shadow-black-gray-border max-h-[700px] overflow-auto">
+        <div className="ContainerScrollHidden w-full mt-24 bg-white-simple px-20 pb-20 pt-12 rounded-md shadow-md shadow-black-gray-border overflow-auto">
             <div className="flex justify-center">
-                <p className="tracking-widest text-xl lg:text-2xl xl:text-3xl font-medium text-center p-4 ">
+                <VscFileSubmodule className="fill-green-simple w-9 h-9 mr-2"/>
+                <p className="text-xl lg:text-2xl xl:text-3xl font-medium text-center pb-5">
                     Arquivos
                 </p>
             </div> 

@@ -14,7 +14,7 @@ export default async function Arquivos() {
     const arquivos = getArquivos
 
     return (
-        <div className="m-auto mt-24">
+        <div className="2xl:px-12 mt-24">
             <div className="pb-8">
                 <ArrayArquivos arquivo={arquivos} />
             </div>

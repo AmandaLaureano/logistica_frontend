@@ -22,7 +22,7 @@ export default function RootLayout({children}: {children: React.ReactNode}){
         <div className='containerAside'>
           <Aside />
         </div>
-        <div className="containerChildren my-12 mr-20 ml-36 h-fit xl:my-12 xl:mr-36 xl:ml-72 ">
+        <div className="containerChildren my-12 mr-28 ml-64">
           {children}
         </div>
       </body>                        

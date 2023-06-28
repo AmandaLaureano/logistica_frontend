@@ -18,21 +18,21 @@ export function SupportCard({ ArraySuporte }: any) {
                     <div key={index} className="bg-green-simple/10 rounded-xl py-4 px-4 shadow-lg shadow-black/50" >
                         <div className="grid grid-cols-2 grid-rows-1">
                             <div>
-                                <p className="text-2xl font-medium">{supportInfo.nome}</p>
+                                <p className="text-xl lg:text-2xl font-medium mt-5">{supportInfo.nome}</p>
                             </div>
                         </div>
                         <div className="mt-4">
-                            <div className="flex items-stratch mb-2">
-                                <h1 className="font-medium text-base mr-2"><b className="buttonGreenHover">Telefone:</b> {supportInfo.telefone}</h1>
-                                <BsWhatsapp className="fill-green-simple w-5 h-5"/>
+                            <div className="flex items-stretch mb-2 xl:mb-5">
+                                <BsWhatsapp className="fill-green-simple w-4 h-4 xl:w-7 xl:h-7 mr-1"/>
+                                <p className="font-regular text-sm xl:text-lg"><b className="buttonGreenHover">Telefone:</b> {supportInfo.telefone}</p>
                             </div>
-                            <div className="flex items-stratch mb-2">
-                                <h1 className="font-medium text-base mr-2"><b className="buttonGreenHover">Ramal:</b> {supportInfo.ramal}</h1>
-                                <FiPhoneCall className="stroke-green-simple w-5 h-5"/>
+                            <div className="flex items-stretch mb-2 xl:mb-5">
+                                <FiPhoneCall className="stroke-green-simple w-4 h-4 xl:w-7 xl:h-7 mr-1"/>
+                                <p className="font-regular text-sm xl:text-lg"><b className="buttonGreenHover">Ramal:</b> {supportInfo.ramal}</p>
                             </div>
-                            <div className="flex items-stretch mb-2">
-                                <h1 className="font-medium text-base mr-2"><b className="buttonGreenHover">E-mail:</b> {supportInfo.email}</h1>
-                                <HiOutlineMail className="stroke-green-simple w-6 h-6"/>
+                            <div className="flex items-stretch mb-2 xl:mb-5">
+                                <HiOutlineMail className="stroke-green-simple w-5 h-5 xl:w-7 xl:h-7 mr-1"/>
+                                <p className="font-regular text-sm xl:text-lg"><b className="buttonGreenHover">E-mail:</b> {supportInfo.email}</p>
                             </div>
                         </div>
                     </div>

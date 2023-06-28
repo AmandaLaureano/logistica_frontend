@@ -39,10 +39,10 @@ export function SelectTransportadoras({ ArrayTransportadoras }: any) {
 
     return (
         <div className="bg-black-light rounded-[4px] shadow-md shadow-black-light">
-            <button className="text-white px-6 py-2" onClick={() => setList(!list)}>
+            <button className="text-white mx-6 py-2" onClick={() => setList(!list)}>
                 <strong className="xl:text-2xl">
                     <div className="flex justify-between items-center font-normal">
-                        <span className="px-3 py-1 font-medium">
+                        <span className=" py-1 font-medium">
                             Transportadoras
                         </span>
                         <hr className="bg-light-gray w-8 rotate-90" />
@@ -66,7 +66,7 @@ export function SelectTransportadoras({ ArrayTransportadoras }: any) {
                 {ArrayTransportadoras.map((item: any, index: number) => {
                     return (
                         <div key={index} className="pb-2">
-                            <button className="cursor-pointer text-xl ml-6" onClick={()=>{router.push(`generalidades/${item.nome}`)}}>
+                            <button className="cursor-pointer text-sm xl:text-xl ml-6" onClick={()=>{router.push(`generalidades/${item.nome}`)}}>
                                 <span className="buttonGreenHover text-white">{item.nome}</span>
                             </button>
                         </div>
