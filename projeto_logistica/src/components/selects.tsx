@@ -45,13 +45,12 @@ export function SelectTransportadoras({ ArrayTransportadoras }: any) {
                         <span className=" py-1 font-medium">
                             Transportadoras
                         </span>
-                        <hr className="bg-light-gray w-8 rotate-90" />
-                        <div className="text-white">
+                        <div className="text-white ml-3">
                             <motion.div
                                 variants={menuVariants}
                                 animate={list ? "open" : "closed"}
                             >
-                                <BsChevronCompactRight className="w-6 fill-white"/>
+                                <BsChevronCompactRight className="w-5 fill-white"/>
                             </motion.div>
                         </div>
                     </div>

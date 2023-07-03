@@ -16,7 +16,7 @@ export default function RootLayout({children}: {children: React.ReactNode}){
   return (
     <html lang="pt-BR">
       <body className={montserrat.className}>
-        <div className="containerNavbar h-[60px]">
+        <div className="containerNavbar h-[80px]">
           <Navbar />
         </div>
         <div className='containerAside'>

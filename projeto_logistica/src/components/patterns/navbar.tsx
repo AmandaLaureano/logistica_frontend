@@ -1,22 +1,16 @@
 import Image from 'next/image'
-import folha from "@assets/folha.png"
-import { BsFillPersonFill } from "react-icons/bs"
-import Link from 'next/link'
+import logo from "@assets/logo-pormade.png"
+import { DropdownMenuNavbar } from '../select-navbar'
 
 export default function Navbar() {
     return (
-        <nav className="grid grid-cols-2 w-full shadow-sm shadow-black-light bg-black h-[60px] border-b-2 border-black-gray-border fixed">
-            <div className="flex items-center pl-7">
-                
+        <nav className="grid grid-cols-2 w-full shadow-sm shadow-black-light bg-black h-[80px] border-b-2 border-black-gray-border fixed">
+            <div className="flex items-center pl-4 max-h-[70px]">
+               <Image className='w-[160px] h-[50px]' src={logo} alt="logo folha" quality={100} />
             </div>
-            <div className="flex flex-row-reverse justify-items-end items-center pr-8">
-                <Link className='flex items-stretch' href="/perfil">
-                    <p className='buttonGreenHover text-white mx-2 text-[16px]'>Amanda</p>
-                    <BsFillPersonFill className='fill-green-simple w-5 h-5'/>
-                </Link>
-                <div className="">
-                    <Image className='w-[30px] h-[25px]' src={folha} alt="logo folha" quality={100} />
-                </div>
+            <div className="flex flex-row-reverse max-h-[70px] justify-items-end items-center pr-8">
+                <DropdownMenuNavbar/>
+                <p className='buttonGreenHover text-white mx-3 mt-2 text-[17px] font-medium'>Amanda</p>
             </div>
         </nav> 
     )

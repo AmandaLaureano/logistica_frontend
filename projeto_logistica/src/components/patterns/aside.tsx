@@ -3,8 +3,7 @@ import { TfiHeadphoneAlt } from "react-icons/tfi"
 import Link from "next/link";
 import { IoHome } from "react-icons/io5"
 import { VscFileSubmodule} from "react-icons/vsc"
-import { BiMenuAltRight, BiMenuAltLeft } from "react-icons/bi"
-import { ImExit } from "react-icons/im"
+import { BsChevronDoubleRight, BsChevronDoubleLeft } from "react-icons/bs"
 import { useState } from "react";
 
 export default function Aside(){
@@ -13,60 +12,47 @@ export default function Aside(){
     const [isHomeActive, setIsHomeActive] = useState(false)
     const [isFilesActive, setIsFilesActive] = useState(false)
     const [isHeadphoneActive, setIsHeadphoneActive] = useState(false)
-    const [isExitActive, setIsExitActive] = useState(false)
    
     const handleClickIconHome = () => {
         setIsHomeActive(true);
         setIsFilesActive(false);
         setIsHeadphoneActive(false);
-        setIsExitActive(false);
     }
     const handleClickIconFiles = () => {
         setIsFilesActive(true);
         setIsHomeActive(false);
         setIsHeadphoneActive(false);
-        setIsExitActive(false);
     }
     const handleClickIconHeadphone = () => {
         setIsHeadphoneActive(true);
         setIsHomeActive(false);
         setIsFilesActive(false);
-        setIsExitActive(false);
-    }
-
-    const handleClickIconExit = () => {
-        setIsExitActive(true);
-        setIsHomeActive(false);
-        setIsFilesActive(false);
-        setIsHeadphoneActive(false);
     }
 
     const controlAside = () => {
         setAsideOpened(!asideOpened)
-    }
-
-    const changeIconAside = () => {
         setChangeIconArrow(!changeIconArrow)
     }
 
     return(
-        <div className={` ${asideOpened ? 'w-44 xl:w-56':'w-24'}  duration-500 h-screen border-r-[6px] rounded-r-md border-green-simple bg-black-light shadow-lg shadow-black fixed`}>
+        <div className={` ${asideOpened ? 'w-44 xl:w-48':'w-24'} duration-500 h-screen border-r-4 border-green-simple bg-black-light shadow-lg shadow-black fixed`}>
             <div className="grid grid-cols-2 pb-10 mx-6 mt-5 w-full">
                 {changeIconArrow ? (
                     <div className="flex justify-items-end w-full">
-                        <button onClick={changeIconAside} className="buttonCollapseAside ">
-                            <BiMenuAltRight className="hover:scale-95 w-8 h-8 fill-green-simple cursor-pointer transition duration-150" onClick={controlAside}></BiMenuAltRight>
+                        <button className="buttonCollapseAside hover:scale-95 w-8 h-8 absolute -right-4 rounded-full bg-black-light border-2 border-green-simple">
+                            <BsChevronDoubleRight className="hover:scale-95 w-5 h-5 ml-1 fill-green-simple cursor-pointer transition duration-150" onClick={controlAside}/>
                         </button>
                     </div>
                 ):(
                     <div className="flex justify-items-end w-full">
-                        <button onClick={changeIconAside} className="buttonCollapseAside">
-                            <BiMenuAltLeft className="hover:scale-95 w-8 h-8 fill-green-simple cursor-pointer transition duration-150" onClick={controlAside}></BiMenuAltLeft>
+                        <button className="buttonCollapseAside hover:scale-95 w-8 h-8 absolute -right-4 rounded-full bg-black-light border-2 border-green-simple">
+                            <BsChevronDoubleLeft className="hover:scale-95 w-5 h-5 ml-1 fill-green-simple cursor-pointer transition duration-150" onClick={controlAside}/>
                         </button>
                     </div>
                 )}
             </div>
             <div className="flex flex-col px-7 mt-5">
+                
                 <div className="flex items-stretch pb-8 h-full">
                     <div className="">
                         <Link className="" href='/'>
@@ -103,18 +89,7 @@ export default function Aside(){
                         </button>
                     </Link>
                 </div>
-                <div className="flex items-stretch pb-8">
-                    <div className="">
-                        <Link href='#'>
-                            <ImExit onClick={handleClickIconExit} className={`hover:scale-95 mr-1 xl:mx-1 w-5 h-5 xl:w-6 xl:h-6 ${isExitActive ? 'fill-green-simple':'fill-white'}`}/>
-                        </Link>
-                    </div>
-                    <Link href='#'>
-                        <button className="px-1" onClick={handleClickIconExit}>
-                            <p className={`${isExitActive ? 'text-green-simple':'text-white'} buttonGreenHover  whitespace-pre duration-500 ${!asideOpened && 'opacity-0 translate-x-28 overflow-hidden'} font-medium h-full pt-1 text-sm xl:text-base`}>Sair</p>
-                        </button>
-                    </Link>
-                </div>
+                
             </div>
         </div>
     )

@@ -65,15 +65,15 @@ export function FormTax({ trt, tda, gris, adVal, despacho, pedagio, cam, }: ITax
                     <div>
                         <InputFile placeholder={"Anexar arquivo"} text={"Anexar arquivo"} onChange={handleFile} />
                         {attachment.name != undefined &&
-                            <div className="flex w-72 bg-slate-300 px-2 rounded-sm mt-2">
-                                <div className="overflow-auto ContainerScrollHidden w-full">
-                                    <span className="text-sm">
+                            <div className="flex w-full bg-slate-300 px-2 rounded-sm mt-2">
+                                <div className="ContainerScrollHidden w-full">
+                                    <p className="text-sm">
                                     {attachment.name}
-                                    </span>
+                                    </p>
                                 </div>
-                                <div className="flex">
+                                <div className="">
                                     <button className="" onClick={() => setAttachment({} as File)}>
-                                        <AiFillCloseCircle className="hover:scale-95 transition-all duration-200 my-auto fill-red" size={20} />
+                                        <AiFillCloseCircle className="hover:scale-95 duration-200 ml-2 fill-red" size={20} />
                                     </button>
                                 </div>
                             </div>
@@ -81,7 +81,7 @@ export function FormTax({ trt, tda, gris, adVal, despacho, pedagio, cam, }: ITax
                     </div>
                     <div>
                         <button className="bg-black shadow-md shadow-black-light text-white rounded-sm text-xs xl:text-sm px-5 hover:scale-95 transition-all duration-200 py-2" onClick={postForm}>
-                            Salvar tudo {routerParams.transportadora}
+                            Enviar tudo {routerParams.transportadora}
                         </button>
                     </div>
                     
