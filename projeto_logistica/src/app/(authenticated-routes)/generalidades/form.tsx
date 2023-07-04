@@ -7,6 +7,7 @@ import { AiFillCloseCircle } from "react-icons/ai"
 import { api } from "@/src/services/api"
 import { ITaxForms } from "../../../interfaces/app/generalidades"
 import { useParams } from "next/navigation";
+import Swal from 'sweetalert2';
 
 export function FormTax({ trt, tda, gris, adVal, despacho, pedagio, cam, }: ITaxForms,{params} : {params: {slug : string}}) {
 
@@ -32,11 +33,29 @@ export function FormTax({ trt, tda, gris, adVal, despacho, pedagio, cam, }: ITax
             cam: camValue,
             attachment: attachment
         })
-            .then(res => {
-                console.log(res);
-            }).catch(err => {
-                console.log('Erro:', err);
-            });
+        .then(res => {
+            console.log(res);
+        }).catch(err => {
+            console.log('Erro:', err);
+        });
+        
+        Swal.fire({
+            customClass: {
+                title:"text-xl",
+                popup:"shadow-md shadow-black-light rounded-lg",
+                cancelButton: "shadow-sm shadow-black-light",
+                confirmButton: "shadow-sm shadow-black-light",
+            },
+            icon: "success",
+            title: "Dados salvos! Deseja gerar este arquivo ou cadastrar nova generalidade?",
+            cancelButtonText: '<a href="/">Nova generalidade</a>',
+            cancelButtonColor: "#D52C2C",
+            confirmButtonText: "Gerar arquivo",
+            confirmButtonColor: "#509D45",
+            showConfirmButton: true,
+            showCancelButton: true,
+            reverseButtons: true,
+        })
     }
 
     function handleFile(e: React.ChangeEvent<HTMLInputElement>) {
@@ -50,7 +69,7 @@ export function FormTax({ trt, tda, gris, adVal, despacho, pedagio, cam, }: ITax
 
     return (
         <div>
-            <hr className="border border-gray-line" />
+            <hr className="border border-gray-line"/>
             <div>
                 <Line field={"TRT"} valueField={trtValue ? trtValue : 0} minValueField={0} onChangeValue={(e: any) => setTrtValue(e.target.value)} />
                 <Line field={"TDA"} valueField={tdaValue ? tdaValue : 0} minValueField={0} onChangeValue={(e: any) => setTdaValue(e.target.value)} />
@@ -84,7 +103,6 @@ export function FormTax({ trt, tda, gris, adVal, despacho, pedagio, cam, }: ITax
                             Enviar tudo {routerParams.transportadora}
                         </button>
                     </div>
-                    
                 </div>
             </div>
         </div>

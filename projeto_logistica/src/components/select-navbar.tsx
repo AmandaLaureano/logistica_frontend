@@ -25,7 +25,7 @@ export function DropdownMenuNavbar(){
                 )}
             </DropdownMenu.Trigger>
             <DropdownMenu.Portal className=''>
-                <DropdownMenu.Content className="mr-7 w-28 bg-white rounded-sm shadow-sm shadow-gray" sideOffset={5}>
+                <DropdownMenu.Content className="mr-7 w-28 bg-white-gray rounded-sm shadow-sm shadow-gray" sideOffset={5}>
                     <button className='w-full'>
                         <DropdownMenu.Item className='flex items-stretch px-2 py-1 outline-none hover:bg-green-simple/20'>
                             <BsPersonGear className='w-5 h-5 mx-1 mt-1'/>

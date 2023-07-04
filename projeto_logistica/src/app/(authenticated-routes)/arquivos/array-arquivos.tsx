@@ -3,6 +3,7 @@ import { ButtonDefault } from "@/src/components/button"
 import { useState } from "react"
 import { ImDownload } from "react-icons/im"
 import { VscFileSubmodule } from "react-icons/vsc"
+import Swal from "sweetalert2"
 
 interface IArrayArquivos {
     arquivo: Array<IArquivos>
@@ -20,6 +21,25 @@ export function ArrayArquivos({ arquivo }: IArrayArquivos) {
     function handleViewMore() {
         setArchives(arquivo)
         setSeeAll(true)
+
+        Swal.fire({
+            customClass: {
+                title:"text-xl",
+                popup:"shadow-md shadow-black-light rounded-lg",
+                cancelButton: "shadow-sm shadow-black-light",
+                confirmButton: "shadow-sm shadow-black-light",
+            },
+            icon: "warning",
+            title: "Atenção! Os arquivos a seguir estão desatualizados. Deseja continuar?",
+            cancelButtonText: 'Cancelar',
+            cancelButtonColor: "#D52C2C",
+            confirmButtonText: "Continuar",
+            confirmButtonColor: "#509D45",
+            showConfirmButton: true,
+            showCancelButton: true,
+            focusCancel: true,
+            reverseButtons: true,
+        })
     }
 
     return (
@@ -27,7 +47,7 @@ export function ArrayArquivos({ arquivo }: IArrayArquivos) {
             <div className="flex justify-center">
                 <VscFileSubmodule className="fill-green-simple w-9 h-9 mr-2"/>
                 <p className="text-xl lg:text-2xl xl:text-3xl font-medium text-center pb-5">
-                    Arquivos
+                    Últimos arquivos
                 </p>
             </div> 
             {archives.map((item, index) => {
