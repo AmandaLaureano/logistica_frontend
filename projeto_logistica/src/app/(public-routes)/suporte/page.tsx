@@ -19,7 +19,7 @@ export default async function Suporte(){
     return(
         <div className="flex h-screen w-screen bg-black-light justify-center place-content-center">
             <NavbarSuporte/>
-            <div className="w-7/12 bg-black m-auto pb-16 rounded-md">
+            <div className="w-7/12 bg-black m-auto pb-16 rounded-md shadow-md shadow-green-simple">
                 <div className="flex items-stretch justify-center pt-12">
                     <TfiHeadphoneAlt className="fill-green-simple w-9 h-9 mx-3"/>
                     <p className="tracking-widest text-white text-xl lg:text-2xl xl:text-3xl font-medium text-center">Suporte</p>

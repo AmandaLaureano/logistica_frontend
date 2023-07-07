@@ -22,17 +22,17 @@ export function SupportCard({ ArraySuporte }: any) {
                             </div>
                         </div>
                         <div className="mt-4">
-                            <div className="flex items-stretch mb-2 xl:mb-5">
-                                <BsWhatsapp className="fill-green-simple w-4 h-4 xl:w-7 xl:h-7 mr-1"/>
-                                <p className="font-regular text-sm xl:text-lg"><b className="buttonGreenHover">Telefone:</b> {supportInfo.telefone}</p>
+                            <div className="flex items-stretch mb-2">
+                                <BsWhatsapp className="fill-green-simple w-5 h-5 mr-1"/>
+                                <p className="font-regular text-base"><b className="buttonGreenHover">Telefone:</b> {supportInfo.telefone}</p>
                             </div>
-                            <div className="flex items-stretch mb-2 xl:mb-5">
-                                <FiPhoneCall className="stroke-green-simple w-4 h-4 xl:w-7 xl:h-7 mr-1"/>
-                                <p className="font-regular text-sm xl:text-lg"><b className="buttonGreenHover">Ramal:</b> {supportInfo.ramal}</p>
+                            <div className="flex items-stretch mb-2">
+                                <FiPhoneCall className="stroke-green-simple w-5 h-5 mr-1"/>
+                                <p className="font-regular text-base"><b className="buttonGreenHover">Ramal:</b> {supportInfo.ramal}</p>
                             </div>
-                            <div className="flex items-stretch mb-2 xl:mb-5">
-                                <HiOutlineMail className="stroke-green-simple w-5 h-5 xl:w-7 xl:h-7 mr-1"/>
-                                <p className="font-regular text-sm xl:text-lg"><b className="buttonGreenHover">E-mail:</b> {supportInfo.email}</p>
+                            <div className="flex items-stretch mb-2">
+                                <HiOutlineMail className="stroke-green-simple w-6 h-6 mr-1"/>
+                                <p className="font-regular text-base"><b className="buttonGreenHover">E-mail:</b> {supportInfo.email}</p>
                             </div>
                         </div>
                     </div>
