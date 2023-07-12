@@ -1,7 +1,7 @@
 'use client'
 import Image from 'next/image'
-import logo from "@assets/logo-pormade.png"
 import folha from "@assets/folha.png"
+import logo from "@assets/logo-pormade.png"
 import { ImExit } from "react-icons/im"
 import { IoIosPeople } from "react-icons/io"
 import { VscFileSubmodule } from "react-icons/vsc"
@@ -61,7 +61,7 @@ export default function Sidebar(){
 
     return(
         <>
-            <nav className="grid grid-cols-2 w-full shadow-sm shadow-black-light bg-black h-[80px] border-b-2 border-black-gray-border">
+            <nav className="grid grid-cols-2 w-screen shadow-sm shadow-black-light bg-black h-[80px] border-b-2 border-black-gray-border">
                 <div className="flex items-center pl-4 max-h-[80px]">
                     <div className="cursor-pointer bg-black-light hover:scale-95 transition-all duration-200 rounded-full shadow-md shadow-green-simple" onClick={showSidebar}>
                         <BiMenu className='w-6 h-6 fill-white m-2'/>
