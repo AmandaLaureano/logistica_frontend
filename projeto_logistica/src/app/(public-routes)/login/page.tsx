@@ -18,9 +18,9 @@ export default function Login  () {
     }
 
     return (
-        <main className="containerLogin flex flex-col h-screen w-screen bg-black justify-center place-content-center">
-            <section className="loginSection place-self-center bg-black-light shadow-md shadow-light-gray/25 w-9/12 rounded-lg mt-12">
-                <div className="containerWrapper grid grid-cols-1 xl:grid-cols-2 h-full pt-12 pb-12 p-5 md:p-16 xl:p-0">
+        <main className="containerLogin flex flex-col h-screen bg-black justify-center place-content-center">
+            <section className="loginSection place-self-center bg-black-light shadow-md shadow-light-gray/25 w-9/12 h-9/12 rounded-lg my-12">
+                <div className="containerWrapper grid grid-cols-1 xl:grid-cols-2 p-5 md:p-16 xl:p-0">
                     <div className='containerLogo hidden items-center xl:flex'>
                         <div className='containerWrapperLogo'>
                             <Image className='pb-20 xl:px-10 2xl:px-10' src={logo} alt="logo da Pormade" quality={100} />
@@ -77,10 +77,10 @@ export default function Login  () {
                         </div>
                     </div>
                 </div>
+                <div className='containerVersion flex justify-center w-full my-5'>
+                    <span className='text-sm font-medium text-green-simple/50 tracking-widest'>Version {version}</span>
+                </div>
             </section>
-             <div className='containerVersion flex bg-black justify-center w-full mt-5'>
-                <span className='text-sm font-medium bg-black text-green-simple tracking-widest'>Version {version}</span>
-            </div>
         </main>  
     );
 }

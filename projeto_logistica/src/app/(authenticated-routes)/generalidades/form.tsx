@@ -84,11 +84,11 @@ export function FormTax({ trt, tda, gris, adVal, despacho, pedagio, cam, }: ITax
                     <div>
                         <InputFile placeholder={"Anexar arquivo"} text={"Anexar arquivo"} onChange={handleFile} />
                         {attachment.name != undefined &&
-                            <div className="flex w-full bg-slate-300 px-2 rounded-sm mt-2">
+                            <div className="flex w-full bg-green-simple/10 px-2 rounded-md mt-2">
                                 <div className="ContainerScrollHidden w-full">
-                                    <p className="text-sm">
+                                    <span className="text-sm font-medium">
                                     {attachment.name}
-                                    </p>
+                                    </span>
                                 </div>
                                 <div className="">
                                     <button className="" onClick={() => setAttachment({} as File)}>

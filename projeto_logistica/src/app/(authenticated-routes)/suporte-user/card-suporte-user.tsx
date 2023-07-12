@@ -15,7 +15,7 @@ export function SupportCard({ ArraySuporte }: any) {
         <>
             {ArraySuporte.map((supportInfo: any, index: number) => {
                 return(
-                    <div key={index} className="bg-green-simple/10 rounded-xl py-4 px-4 shadow-lg shadow-black/50" >
+                    <div key={index} className="bg-green-simple/10 rounded-xl py-4 px-4 shadow-lg shadow-black/20" >
                         <div className="grid grid-cols-2 grid-rows-1">
                             <div>
                                 <p className="text-xl lg:text-2xl font-medium mt-5">{supportInfo.nome}</p>
@@ -23,11 +23,11 @@ export function SupportCard({ ArraySuporte }: any) {
                         </div>
                         <div className="mt-4">
                             <div className="flex items-stretch mb-2">
-                                <BsWhatsapp className="fill-green-simple w-5 h-5 mr-1"/>
+                                <BsWhatsapp className="fill-green-simple w-5 h-5 mr-2"/>
                                 <p className="font-regular text-base"><b className="buttonGreenHover">Telefone:</b> {supportInfo.telefone}</p>
                             </div>
                             <div className="flex items-stretch mb-2">
-                                <FiPhoneCall className="stroke-green-simple w-5 h-5 mr-1"/>
+                                <FiPhoneCall className="stroke-green-simple w-5 h-5 mr-2"/>
                                 <p className="font-regular text-base"><b className="buttonGreenHover">Ramal:</b> {supportInfo.ramal}</p>
                             </div>
                             <div className="flex items-stretch mb-2">

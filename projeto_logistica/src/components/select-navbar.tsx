@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
 import { BsChevronCompactDown, BsChevronCompactUp, BsPersonGear} from 'react-icons/bs';
 import { TbLogout } from 'react-icons/tb'
+import Link from 'next/link';
 
 export function DropdownMenuNavbar(){
     const [changeIconArrow, setChangeIconArrow] = useState(false)
@@ -27,10 +28,12 @@ export function DropdownMenuNavbar(){
             <DropdownMenu.Portal className=''>
                 <DropdownMenu.Content className="mr-7 w-28 bg-white-gray rounded-md shadow-sm shadow-gray" sideOffset={5}>
                     <button className='w-full'>
-                        <DropdownMenu.Item className='flex items-stretch px-2 py-1 outline-none hover:rounded-md hover:bg-green-simple/20'>
-                            <BsPersonGear className='w-5 h-5 mx-1 mt-1'/>
-                            <span className='text-[16px] font-medium mt-1'>Perfil</span>
-                        </DropdownMenu.Item>
+                        <Link href="/perfil">
+                            <DropdownMenu.Item className='flex items-stretch px-2 py-1 outline-none hover:rounded-md hover:bg-green-simple/20'>
+                                <BsPersonGear className='w-5 h-5 mx-1 mt-1'/>
+                                <span className='text-[16px] font-medium mt-1'>Perfil</span>
+                            </DropdownMenu.Item>
+                        </Link>
                     </button>
                     <button className='w-full'>
                         <DropdownMenu.Item className='flex items-stretch px-2 py-1 outline-none hover:rounded-md hover:bg-green-simple/20'>
