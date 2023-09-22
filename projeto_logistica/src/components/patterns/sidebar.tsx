@@ -12,7 +12,7 @@ import Link from 'next/link'
 import {version} from '../../../package.json'
 
 export default function Sidebar(){
-    const [sidebar, setsidebar] = useState(true)
+    const [sidebar, setsidebar] = useState(false)
     const [isHomeActive, setIsHomeActive] = useState(false)
     const [isFilesActive, setIsFilesActive] = useState(false)
     const [isHeadphoneActive, setIsHeadphoneActive] = useState(false)

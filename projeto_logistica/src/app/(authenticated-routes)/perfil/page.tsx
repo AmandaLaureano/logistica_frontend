@@ -19,7 +19,7 @@ export default function Perfil(){
                         <div className="relative rounded-t-lg -top-2 flex-col w-full px-3 sm:px-5 md:px-12 pb-8 bg-white-simple">
                             <div className='flex justify-center sm:justify-start relative -top-9'>
                                 <div className="flex justify-center items-center rounded-full w-[150px] h-[150px] md:w-[200px] md:h-[200px] bg-black shadow-md shadow-black/50">
-                                    <Image className='w-20 h-16 md:w-28 md:h-24' src={folha} alt="logo folha" quality={100} />
+                                    <Image className='sm:w-18 sm:h-14 md:w-28 md:h-24' src={folha} alt="logo folha" quality={100} />
                                 </div>
                             </div>
                             <div className="flex items-center justify-center sm:justify-start mb-5">

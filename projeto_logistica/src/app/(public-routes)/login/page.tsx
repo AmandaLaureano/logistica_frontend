@@ -3,7 +3,7 @@ import Image from 'next/image'
 import logo from "@assets/logo-pormade.png"
 import Folha from "@assets/folha.png"
 import { ImEye, ImEyeBlocked } from 'react-icons/im'
-import { AiOutlineMail } from 'react-icons/ai'
+import { RiUserLine } from 'react-icons/ri'
 import { BsKey } from "react-icons/bs"
 import { useState } from 'react';
 import { version } from '../../../../package.json';
@@ -38,10 +38,10 @@ export default function Login  () {
                         </div>
                         <div className='containerWrapperInputs lg:px-10 2xl:px-12 pb-5'>
                             <div className='left-3 relative -bottom-3 border border-transparent w-fit pt-5'>
-                                <p className='font-medium px-2 text-sm text-white-simple rounded-md bg-green-simple tracking-widest'>E-mail</p>
+                                <p className='font-medium px-2 text-sm text-white-simple rounded-md bg-green-simple tracking-widest'>Usuário</p>
                             </div>
                             <div className="containerEmail flex h-14 border-2 bg-black border-green-simple rounded-md w-full">
-                                <AiOutlineMail className='flex self-center mx-2 w-5 h-5 fill-green-simple stroke-white'></AiOutlineMail>
+                                <RiUserLine className='flex self-center mx-2 w-5 h-5 fill-green-simple stroke-white'></RiUserLine>
                                 <input className="loginEmail cursor-pointer flex self-center h-fit outline-0 bg-transparent text-white w-full text-sm" type="text"/>
                             </div>
                             <div className='left-3 relative -bottom-3 border border-transparent w-fit pt-5'>
