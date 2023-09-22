@@ -5,7 +5,8 @@ import logo from "@assets/logo-pormade.png"
 import { ImExit } from "react-icons/im"
 import { IoIosPeople } from "react-icons/io"
 import { VscFileSubmodule } from "react-icons/vsc"
-import { BiMenuAltRight, BiMenu } from "react-icons/bi"
+import { BiMenu } from "react-icons/bi"
+import { RiMenuFill } from "react-icons/ri"
 import { RiHome4Fill, RiCustomerService2Fill} from "react-icons/ri"
 import { useState } from 'react'
 import Link from 'next/link'
@@ -63,8 +64,8 @@ export default function Sidebar(){
         <>
             <nav className="grid grid-cols-2 w-screen shadow-sm shadow-black-light bg-black h-[80px] border-b-2 border-black-gray-border">
                 <div className="flex items-center pl-4 max-h-[80px]">
-                    <div className="cursor-pointer bg-black-light hover:scale-95 transition-all duration-200 rounded-full shadow-md shadow-green-simple" onClick={showSidebar}>
-                        <BiMenu className='w-6 h-6 fill-white m-2'/>
+                    <div className="cursor-pointer hover:scale-95 transition-all duration-200 " onClick={showSidebar}>
+                        <RiMenuFill className='w-8 h-8 fill-white m-2'/>
                     </div>
                     <Image className='min-h-[10px] min-w-[150px] max-h-[50px] max-w-[170px]' src={logo} alt="logo Pormade" quality={100} />
                 </div>
@@ -72,11 +73,8 @@ export default function Sidebar(){
             <div className={`SidebarNav ${sidebar? 'left-0':'left-[-100%]'} top-0 z-10 w-56 duration-500 h-screen border-r-[2px] border-green-simple bg-black shadow-lg shadow-black fixed`}>
                 <div className="SidebarWrap flex flex-col px-2 mt-5 h-full">
                     <div className='flex justify-between mb-7'>
-                        <div>
-                            <Image className='w-[50px] h-[40px] mx-2' src={folha} alt="logo folha" quality={100} />  
-                        </div>
-                        <div className='flex relative -right-7 self-center items-center justify-center h-10 w-10 cursor-pointer border-green-simple border-2 bg-black-light hover:scale-95 transition-all duration-200 rounded-full'>
-                            <BiMenuAltRight onClick={showSidebar} className='w-6 h-6 fill-white'/>
+                        <div className='mx-1 hover:scale-95 cursor-pointer'>
+                             <RiMenuFill onClick={showSidebar} className='w-8 h-8 fill-white '/>
                         </div>
                     </div>
                     <Link className="" href='/'>

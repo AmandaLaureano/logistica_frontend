@@ -49,6 +49,7 @@ module.exports = {
       'light-gray': '#D9D9D9',
       'red': '#D52C2C',
       'green-simple': '#509d45',
+
       },
     } 
   },
