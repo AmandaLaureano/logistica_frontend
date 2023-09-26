@@ -64,10 +64,12 @@ export default function Sidebar(){
         <>
             <nav className="grid grid-cols-2 w-screen shadow-sm shadow-black-light bg-black h-[80px] border-b-2 border-black-gray-border">
                 <div className="flex items-center pl-4 max-h-[80px]">
-                    <div className="cursor-pointer hover:scale-95 transition-all duration-200 " onClick={showSidebar}>
+                    <div className="cursor-pointer hover:scale-95 transition-all duration-200" onClick={showSidebar}>
                         <RiMenuFill className='w-8 h-8 fill-white m-2'/>
                     </div>
-                    <Image className='min-h-[10px] min-w-[150px] max-h-[50px] max-w-[170px]' src={logo} alt="logo Pormade" quality={100} />
+                    <Link href='/'>
+                        <Image className='min-h-[10px] min-w-[150px] max-h-[50px] max-w-[170px] hover:scale-95' src={logo} alt="logo Pormade" quality={100} />
+                    </Link>
                 </div>
             </nav>
             <div className={`SidebarNav ${sidebar? 'left-0':'left-[-100%]'} top-0 z-10 w-56 duration-500 h-screen border-r-[2px] border-green-simple bg-black shadow-lg shadow-black fixed`}>

@@ -1,7 +1,7 @@
 import { SelectTransportadoras } from "../../components/selects";
 import { api } from "../../services/api";
 import { IArrayTransportadoras } from "../../interfaces/app/dashboard"
-import { TbTruckDelivery } from "react-icons/tb"
+import { PiTruck } from "react-icons/pi"
 
 export default async function Dashboard() {
     const getTransportadoras = await api.get(`/transportadoras`)
@@ -19,12 +19,12 @@ export default async function Dashboard() {
         <div className="2xl:px-12 mt-24 h-full">
             <div className="w-full pb-12 bg-white-simple shadow-md shadow-black-gray-border rounded-md">
                 <div className="flex items-stretch justify-center pt-5">
-                    <TbTruckDelivery className="flex self-center stroke-green-simple w-11 h-11 mt-1"/>
-                    <p className="text-xl lg:text-2xl xl:text-3xl font-medium text-center p-4 pt-6">
+                    <PiTruck className="hidden md:flex self-center fill-green-simple md:w-9 md:h-9 lg:w-11 lg:h-11"/>
+                    <p className="font-medium text-xl sm:text-2xl lg:text-3xl text-center p-2 xmd:p-3 sm:p-4 pt-6">
                         Selecione uma transportadora
                     </p>
                 </div>    
-                <div className="flex justify-center pt-12">
+                <div className="flex justify-center pt-8">
                     <SelectTransportadoras ArrayTransportadoras={transportadoras} />
                 </div>
             </div>

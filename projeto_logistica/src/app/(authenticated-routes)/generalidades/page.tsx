@@ -24,7 +24,7 @@ export default async function Generalidades() {
                 <div className="w-full">
                     <div className="mb-12">
                         <div className="w-full flex justify-center py-16">
-                            <LiaFileInvoiceDollarSolid className="fill-green-simple w-9 h-9 mx-2"/>
+                            <LiaFileInvoiceDollarSolid className="hidden sm:flex fill-green-simple w-9 h-9 mx-2"/>
                             <p className="font-medium text-xl md:text-2xl xl:text-3xl my-auto">Generalidades</p>
                         </div>
                         <div className="w-full h-12">
@@ -39,7 +39,7 @@ export default async function Generalidades() {
                                         <BsCurrencyDollar className="fill-green-simple w-6 h-5"/>Valor
                                     </p>
                                     <p className="flex mr-2 text-base md:text-lg xl:text-xl font-medium h-full items-center">
-                                        <BsCurrencyDollar className="fill-green-simple"/>Minímo
+                                        <BsCurrencyDollar className="fill-green-simple w-6 h-5"/>Minímo
                                     </p>
                                 </div>
                             </div>

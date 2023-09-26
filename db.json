@@ -68,26 +68,26 @@
     ],
     "contatosSuporte": [
         {
-            "nome": "Fulano 1",
-            "telefone": "(42) 988776655",
+            "nome": "Fulano de Tal de Tal de Tal de Tal",
+            "telefone": "42988741643",
             "ramal": "9988",
             "email": "fulano1@pormade.com.br"
         },
         {
             "nome": "Fulano 2",
-            "telefone": "(42) 988776655",
+            "telefone": "42988776655",
             "ramal": "8877",
             "email": "fulano2@pormade.com.br"
         },
         {
             "nome": "Fulano 3",
-            "telefone": "(42) 988776655",
+            "telefone": "42988776655",
             "ramal": "7766",
-            "email": "fulano3@pormade.com.br"
+            "email": "fulanodetalde@pormade.com.br"
         },
         {
             "nome": "Fulano 4",
-            "telefone": "(42) 988776655",
+            "telefone": "42988776655",
             "ramal": "6655",
             "email": "fulano4@pormade.com.br"
         }

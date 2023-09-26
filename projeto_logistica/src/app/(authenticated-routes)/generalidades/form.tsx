@@ -80,8 +80,8 @@ export function FormTax({ trt, tda, gris, adVal, despacho, pedagio, cam, }: ITax
                 <Line field={"CAM"} valueField={camValue ? camValue : 0} minValueField={0} onChangeValue={(e: any) => setCamValue(e.target.value)} />
             </div>
             <div>
-                <div className="mt-8 flex justify-between pb-12">
-                    <div>
+                <div className="flex flex-col sm:flex-row sm:justify-between">
+                    <div className="py-5">
                         <InputFile placeholder={"Anexar arquivo"} text={"Anexar arquivo"} onChange={handleFile} />
                         {attachment.name != undefined &&
                             <div className="flex w-full bg-green-simple/10 px-2 rounded-md mt-2">
@@ -98,7 +98,7 @@ export function FormTax({ trt, tda, gris, adVal, despacho, pedagio, cam, }: ITax
                             </div>
                         }
                     </div>
-                    <div>
+                    <div className="py-5">
                         <button className="bg-black shadow-md shadow-black-light text-white rounded-sm text-xs xl:text-sm px-5 hover:scale-95 transition-all duration-200 py-2" onClick={postForm}>
                             Enviar tudo {routerParams.transportadora}
                         </button>
