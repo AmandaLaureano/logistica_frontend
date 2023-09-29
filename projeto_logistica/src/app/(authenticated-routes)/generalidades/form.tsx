@@ -3,7 +3,7 @@
 import { InputFile } from "@/src/components/inputs"
 import Line from "./line-form"
 import { useState } from "react"
-import { AiFillCloseCircle } from "react-icons/ai"
+import { MdClose } from "react-icons/md"
 import { api } from "@/src/services/api"
 import { ITaxForms } from "../../../interfaces/app/generalidades"
 import { useParams } from "next/navigation";
@@ -80,26 +80,26 @@ export function FormTax({ trt, tda, gris, adVal, despacho, pedagio, cam, }: ITax
                 <Line field={"CAM"} valueField={camValue ? camValue : 0} minValueField={0} onChangeValue={(e: any) => setCamValue(e.target.value)} />
             </div>
             <div>
-                <div className="flex flex-col sm:flex-row sm:justify-between">
-                    <div className="py-5">
+                <div className="flex flex-col justify-center sm:flex-row sm:justify-between py-5">
+                    <div className="pt-8">
                         <InputFile placeholder={"Anexar arquivo"} text={"Anexar arquivo"} onChange={handleFile} />
                         {attachment.name != undefined &&
-                            <div className="flex w-full bg-green-simple/10 px-2 rounded-md mt-2">
-                                <div className="ContainerScrollHidden w-full">
-                                    <span className="text-sm font-medium">
-                                    {attachment.name}
+                            <div className="flex justify-between bg-green-simple/20 px-2 rounded-md mt-2">
+                                <div className="">
+                                    <span className="text-xs">
+                                        {attachment.name}
                                     </span>
                                 </div>
-                                <div className="">
+                                <div className="flex items-center my-1">
                                     <button className="" onClick={() => setAttachment({} as File)}>
-                                        <AiFillCloseCircle className="hover:scale-95 duration-200 ml-2 fill-red" size={20} />
+                                        <MdClose className="hover:scale-95 duration-200 ml-3 fill-red" size={20} />
                                     </button>
                                 </div>
                             </div>
                         }
                     </div>
-                    <div className="py-5">
-                        <button className="bg-black shadow-md shadow-black-light text-white rounded-sm text-xs xl:text-sm px-5 hover:scale-95 transition-all duration-200 py-2" onClick={postForm}>
+                    <div className="py-8">
+                        <button className="w-full h-full bg-black shadow-md shadow-black-light text-white rounded-sm lg:text-lg px-5 hover:scale-95 transition-all duration-200 py-1" onClick={postForm}>
                             Enviar tudo {routerParams.transportadora}
                         </button>
                     </div>

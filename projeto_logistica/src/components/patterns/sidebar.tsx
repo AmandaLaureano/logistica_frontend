@@ -1,27 +1,28 @@
 'use client'
 import Image from 'next/image'
-import folha from "@assets/folha.png"
 import logo from "@assets/logo-pormade.png"
 import { ImExit } from "react-icons/im"
 import { IoIosPeople } from "react-icons/io"
 import { VscFileSubmodule } from "react-icons/vsc"
-import { BiMenu } from "react-icons/bi"
+import { TfiHeadphoneAlt } from "react-icons/tfi"
 import { RiMenuFill } from "react-icons/ri"
-import { RiHome4Fill, RiCustomerService2Fill} from "react-icons/ri"
-import { useState } from 'react'
+import { RiHome4Fill} from "react-icons/ri"
+import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import {version} from '../../../package.json'
 
 export default function Sidebar(){
-    const [sidebar, setsidebar] = useState(false)
+    const [sidebarIsOpen, setSidebarIsOpen] = useState(false)
+    const sidebarRef = useRef<HTMLDivElement | null>(null)
+
     const [isHomeActive, setIsHomeActive] = useState(false)
     const [isFilesActive, setIsFilesActive] = useState(false)
     const [isHeadphoneActive, setIsHeadphoneActive] = useState(false)
     const [isPeopleActive, setIsPeopleActive] = useState(false)
     const [isDoorActive, setIsDoorActive] = useState(false)
 
-    const showSidebar = () => setsidebar(!sidebar)
-   
+    const showSidebar = () => setSidebarIsOpen(!sidebarIsOpen)
+    
     const handleClickIconHome = () => {
         setIsHomeActive(true);
         setIsFilesActive(false);
@@ -60,6 +61,22 @@ export default function Sidebar(){
         setIsPeopleActive(false);
     }
 
+    useEffect(() => {
+        function handleClickOutside(event: MouseEvent){
+            if(sidebarRef.current && !sidebarRef.current.contains(event.target as Node)){
+                setSidebarIsOpen(false)
+            }
+        }
+
+        document.addEventListener('mousedown', handleClickOutside)
+
+        return() => {
+            document.removeEventListener('mousedown', handleClickOutside)
+        }
+    }, [])
+
+    
+
     return(
         <>
             <nav className="grid grid-cols-2 w-screen shadow-sm shadow-black-light bg-black h-[80px] border-b-2 border-black-gray-border">
@@ -68,15 +85,15 @@ export default function Sidebar(){
                         <RiMenuFill className='w-8 h-8 fill-white m-2'/>
                     </div>
                     <Link href='/'>
-                        <Image className='min-h-[10px] min-w-[150px] max-h-[50px] max-w-[170px] hover:scale-95' src={logo} alt="logo Pormade" quality={100} />
+                        <Image className='min-h-[10px] min-w-[150px] max-h-[50px] max-w-[170px]' src={logo} alt="logo Pormade" quality={100} />
                     </Link>
                 </div>
             </nav>
-            <div className={`SidebarNav ${sidebar? 'left-0':'left-[-100%]'} top-0 z-10 w-56 duration-500 h-screen border-r-[2px] border-green-simple bg-black shadow-lg shadow-black fixed`}>
+            <div ref={sidebarRef} className={`SidebarNav ${sidebarIsOpen? 'left-0':'left-[-100%]'} top-0 z-10 w-56 duration-500 h-screen border-r-[2px] border-green-simple bg-black shadow-lg shadow-black fixed`}>
                 <div className="SidebarWrap flex flex-col px-2 mt-5 h-full">
                     <div className='flex justify-between mb-7'>
                         <div className='mx-1 hover:scale-95 cursor-pointer'>
-                             <RiMenuFill onClick={showSidebar} className='w-8 h-8 fill-white '/>
+                             <RiMenuFill onClick={showSidebar} className='w-8 h-8 fill-white'/>
                         </div>
                     </div>
                     <Link className="" href='/'>
@@ -102,7 +119,7 @@ export default function Sidebar(){
                     <Link href='/suporte-user'>
                         <div onClick={handleClickIconHeadphone} className={`flex cursor-pointer items-stretch py-1 mb-5 h-fit w-full hover:bg-black-light hover:rounded-lg ${isHeadphoneActive ? 'rounded-lg shadow-sm shadow-green-simple bg-black-light scale-100':''}`}>
                             <div className="mr-1">
-                                <RiCustomerService2Fill className={`hover:scale-95 w-6 h-6 mx-2 ${isHeadphoneActive ? 'fill-green-simple':'fill-white'}`}/>
+                                <TfiHeadphoneAlt className={`hover:scale-95 w-6 h-6 mx-2 ${isHeadphoneActive ? 'fill-green-simple':'fill-white'}`}/>
                             </div>
                             <button className="" onClick={handleClickIconHeadphone}>
                                 <p className={`${isHeadphoneActive ? 'text-green-simple':'text-white'} whitespace-pre duration-500 font-medium h-full text-sm py-1`}>Suporte</p>

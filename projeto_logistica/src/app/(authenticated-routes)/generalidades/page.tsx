@@ -19,27 +19,27 @@ export default async function Generalidades() {
     const TaxForms: ITaxForms = responseForms
 
     return (
-        <div className="bg-white-simple rounded-sm shadow-md shadow-black-gray-border px-3">
-            <div className="m-7">
+        <div className="bg-white-simple rounded-sm shadow-md shadow-black-gray-border mt-12">
+            <div className="m-3 xmd:m-5 sm:m-7">
                 <div className="w-full">
-                    <div className="mb-12">
-                        <div className="w-full flex justify-center py-16">
+                    <div className="mb-12 w-full">
+                        <div className="w-full flex justify-center py-10">
                             <LiaFileInvoiceDollarSolid className="hidden sm:flex fill-green-simple w-9 h-9 mx-2"/>
-                            <p className="font-medium text-xl md:text-2xl xl:text-3xl my-auto">Generalidades</p>
+                            <p className="font-medium text-xl md:text-2xl">Generalidades</p>
                         </div>
                         <div className="w-full h-12">
                             <div className="flex w-full h-full text-xl my-auto">
                                 <div className=" w-6/12 flex justify-start my-auto">
-                                    <p className="flex justify-start text-base md:text-lg xl:text-2xl font-medium">
+                                    <p className="flex justify-start text-sm xmd:text-base md:text-lg xl:text-xl font-medium">
                                         Componentes
                                     </p>
                                 </div>
                                 <div className="flex justify-evenly w-6/12 my-auto">
-                                    <p className="flex mr-8 text-base md:text-lg xl:text-xl font-medium h-full items-center">
-                                        <BsCurrencyDollar className="fill-green-simple w-6 h-5"/>Valor
+                                    <p className="flex sm:mr-8 text-sm xmd:text-base md:text-lg xl:text-xl font-medium h-full items-center">
+                                        <BsCurrencyDollar className="hidden xmd:flex fill-green-simple w-6 h-5"/>Valor
                                     </p>
-                                    <p className="flex mr-2 text-base md:text-lg xl:text-xl font-medium h-full items-center">
-                                        <BsCurrencyDollar className="fill-green-simple w-6 h-5"/>Minímo
+                                    <p className="flex sm:mr-2 text-sm xmd:text-base md:text-lg xl:text-xl font-medium h-full items-center">
+                                        <BsCurrencyDollar className="hidden xmd:flex fill-green-simple w-6 h-5"/>Mínimo
                                     </p>
                                 </div>
                             </div>

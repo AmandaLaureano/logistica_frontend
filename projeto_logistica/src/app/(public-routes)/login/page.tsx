@@ -28,7 +28,7 @@ export default function Login  () {
                     </div>
                     <div className='containerDados xl:p-5 2xl:p-16'>
                         <div className='containerLogoFolha flex justify-center'>
-                            <Image className='px-8 xsm:px-10 sm:px-16 pb-5 md:pb-10' src={Folha} alt="logo folha" quality={100} />
+                            <Image className='h-[50px] w-[60px] m-5' src={Folha} alt="logo folha" quality={100} />
                         </div>
                         <div className="containerAppTitle text-center">
                             <h1 className="inputLoginTitle text-white text-xl sm:text-2xl 2xl:text-4xl font-medium tracking-wider">Conversor Logístico</h1>
@@ -40,16 +40,14 @@ export default function Login  () {
                             <div className='left-3 relative -bottom-3 border border-transparent w-fit pt-5'>
                                 <p className='font-medium px-2 text-sm text-white-simple rounded-md bg-green-simple tracking-widest'>Usuário</p>
                             </div>
-                            <div className="containerEmail flex h-14 border-2 bg-black border-green-simple rounded-md w-full">
-                                <RiUserLine className='flex self-center mx-2 w-5 h-5 fill-green-simple stroke-white'></RiUserLine>
+                            <div className="containerEmail flex h-12 border-2 bg-black border-green-simple rounded-md w-full">
                                 <input className="loginEmail cursor-pointer flex self-center h-fit outline-0 bg-transparent text-white w-full text-sm" type="text"/>
                             </div>
                             <div className='left-3 relative -bottom-3 border border-transparent w-fit pt-5'>
                                 <p className='font-medium px-2 text-sm text-white-simple rounded-md bg-green-simple tracking-widest'>Senha</p>
                             </div>
-                            <div className="containerPassword flex h-14 justify-end border-2 bg-black border-green-simple rounded-md w-full">
-                                <BsKey className='flex self-center mx-2 w-6 h-6 fill-green-simple stroke-white'/>
-                                <input id='password' value={password} className="LoginPassword flex cursor-pointer self-center h-fit outline-0 bg-transparent text-white w-full text-sm" type={showPassword ? 'text' : 'password'} onChange={(e) => setPassword(e.target.value)} />
+                            <div className="containerPassword flex h-12 justify-end border-2 bg-black border-green-simple rounded-md w-full">
+                                <input id='password' value={password} className="LoginPassword flex cursor-pointer px-3 self-center h-fit outline-0 bg-transparent text-white w-full text-sm" type={showPassword ? 'text' : 'password'} onChange={(e) => setPassword(e.target.value)} />
                                 <button className='' onClick={switchIconEye}>
                                     {showPassword ? (
                                         <ImEye className='iconEye cursor-pointer flex self-end w-5 h-5 mx-2 fill-green-simple stroke-white hover:scale-[110%] transition duration-150'/>
@@ -63,7 +61,7 @@ export default function Login  () {
                                 <label id='checkbox' className='text-white-simple font-medium text-sm tracking-wider'>Manter-me conectado</label>
                             </div>
                             <div className='containerLoginButton flex justify-center pt-10'>
-                                <button className='loginButton flex items-stretch justify-center shadow-sm shadow-green-simple bg-black h-12 w-full rounded-md hover:scale-95 transition-all duration-200'>
+                                <button className='loginButton flex items-stretch justify-center shadow-sm shadow-green-simple bg-black h-10 w-full rounded-md hover:scale-95 transition-all duration-200'>
                                     <div className='flex items-center mx-1'>
                                         <span className='text-md text-white-simple font-medium tracking-widest'>LOGIN</span>
                                     </div>

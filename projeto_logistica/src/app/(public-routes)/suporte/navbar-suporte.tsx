@@ -1,6 +1,5 @@
 import Image from 'next/image'
 import logo from "@assets/logo-pormade.png"
-import { BiSolidLogInCircle } from 'react-icons/bi'
 import Link from "next/link"
 
 export default function NavbarSuporte() {
