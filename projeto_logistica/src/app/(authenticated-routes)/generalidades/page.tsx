@@ -1,12 +1,12 @@
-import { FormTax } from "./form"
+import { FormularioImpostos } from "./formulario-impostos"
 import { BsCurrencyDollar } from "react-icons/bs";
 import { LiaFileInvoiceDollarSolid } from "react-icons/lia"
 import { api } from "@/src/services/api";
-import { ITaxForms } from "@/src/interfaces/app/generalidades";
+import { IFormularioImpostos } from "@/src/interfaces/app/generalidades";
 
 export default async function Generalidades() {
 
-    const responseForms = await api.get("/impostos/1")
+    const responseFormulario = await api.get("/impostos/1")
         .then(resp => {
             console.log(resp.data)
             return resp.data
@@ -16,7 +16,7 @@ export default async function Generalidades() {
             return 0
         })
 
-    const TaxForms: ITaxForms = responseForms
+    const Impostos: IFormularioImpostos = responseFormulario
 
     return (
         <div className="bg-white-simple rounded-sm shadow-md shadow-black-gray-border mt-12">
@@ -34,25 +34,22 @@ export default async function Generalidades() {
                                         Componentes
                                     </p>
                                 </div>
-                                <div className="flex justify-evenly w-6/12 my-auto">
-                                    <p className="flex sm:mr-8 text-sm xmd:text-base md:text-lg xl:text-xl font-medium h-full items-center">
+                                <div className="flex justify-start w-6/12 my-auto">
+                                    <p className="flex text-sm xmd:text-base md:text-lg xl:text-xl font-medium h-full items-center">
                                         <BsCurrencyDollar className="hidden xmd:flex fill-green-simple w-6 h-5"/>Valor
-                                    </p>
-                                    <p className="flex sm:mr-2 text-sm xmd:text-base md:text-lg xl:text-xl font-medium h-full items-center">
-                                        <BsCurrencyDollar className="hidden xmd:flex fill-green-simple w-6 h-5"/>Mínimo
                                     </p>
                                 </div>
                             </div>
                         </div>
                         <div className="">
-                            <FormTax
-                                adVal={TaxForms.adVal}
-                                cam={TaxForms.cam}
-                                despacho={TaxForms.despacho}
-                                gris={TaxForms.gris}
-                                pedagio={TaxForms.pedagio}
-                                tda={TaxForms.tda}
-                                trt={TaxForms.trt}
+                            <FormularioImpostos
+                                trt={Impostos.trt}
+                                tda={Impostos.tda}
+                                despacho={Impostos.despacho}
+                                pegadio={Impostos.pegadio}
+                                gris={Impostos.gris}
+                                adVal={Impostos.adVal}
+                                cam={Impostos.cam}
                             />
                         </div>
                     </div>

@@ -6,7 +6,7 @@ import { IoIosPeople } from "react-icons/io"
 import { VscFileSubmodule } from "react-icons/vsc"
 import { TfiHeadphoneAlt } from "react-icons/tfi"
 import { RiMenuFill } from "react-icons/ri"
-import { RiHome4Fill} from "react-icons/ri"
+import { AiOutlineHome } from "react-icons/ai"
 import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import {version} from '../../../package.json'
@@ -75,7 +75,6 @@ export default function Sidebar(){
         }
     }, [])
 
-    
 
     return(
         <>
@@ -99,7 +98,7 @@ export default function Sidebar(){
                     <Link className="" href='/'>
                         <div onClick={handleClickIconHome} className={`flex cursor-pointer items-stretch py-1 mb-5 h-fit w-full hover:bg-black-light hover:rounded-lg ${isHomeActive ? 'rounded-lg shadow-sm shadow-green-simple bg-black-light scale-100':''}`}>
                             <div className="mr-1">
-                                <RiHome4Fill className={`${isHomeActive ? 'fill-green-simple':'fill-white'} mx-2 hover:scale-95 w-6 h-6`}/>
+                                <AiOutlineHome className={`${isHomeActive ? 'fill-green-simple':'fill-white'} mx-2 hover:scale-95 w-7 h-7`}/>
                             </div>
                             <button className="" onClick={handleClickIconHome}>
                                 <p className={`${isHomeActive ? 'text-green-simple':'text-white'} whitespace-pre duration-500 font-medium h-full text-sm py-1`}>Tela inicial</p>

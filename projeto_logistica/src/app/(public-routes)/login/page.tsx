@@ -41,7 +41,7 @@ export default function Login  () {
                                 <p className='font-medium px-2 text-sm text-white-simple rounded-md bg-green-simple tracking-widest'>Usuário</p>
                             </div>
                             <div className="containerEmail flex h-12 border-2 bg-black border-green-simple rounded-md w-full">
-                                <input className="loginEmail cursor-pointer flex self-center h-fit outline-0 bg-transparent text-white w-full text-sm" type="text"/>
+                                <input className="loginEmail cursor-pointer flex self-center h-fit outline-0 bg-transparent text-white w-full text-sm mx-3" type="text"/>
                             </div>
                             <div className='left-3 relative -bottom-3 border border-transparent w-fit pt-5'>
                                 <p className='font-medium px-2 text-sm text-white-simple rounded-md bg-green-simple tracking-widest'>Senha</p>

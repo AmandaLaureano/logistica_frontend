@@ -16,7 +16,7 @@ export function SupportCard({ ArraySuporte }: any) {
             {ArraySuporte.map((supportInfo: any, index: number) => {
                 return(
                     <div key={index} className="bg-white-simple rounded-md py-4 px-5 shadow-sm shadow-gray" >
-                        <div className="grid grid-cols-2 grid-rows-1">
+                        <div className="">
                             <div>
                                 <p className="text-2xl font-medium">{supportInfo.nome}</p>
                             </div>

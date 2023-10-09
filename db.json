@@ -2,31 +2,7 @@
     "transportadoras": [
         {
             "id": 1,
-            "nome": "Godor"
-        },
-        {
-            "id": 2,
-            "nome": "Agex"
-        },
-        {
-            "id": 3,
-            "nome": "Logdi"
-        },
-        {
-            "id": 4,
-            "nome": "Braspress"
-        },
-        {
-            "id": 4,
-            "nome": "Rodonaves"
-        },
-        {
-            "id": 4,
-            "nome": "Translovato"
-        },
-        {
-            "id": 4,
-            "nome": "TNT Mercúrio"
+            "nome": "Gobor"
         }
     ],
     "arquivos": [
@@ -39,15 +15,7 @@
             "nome": "Arquivos Fretefy"
         }
     ],
-    "taxs": {
-        "adVal": 123,
-        "cam": 2141,
-        "despacho": 23,
-        "gris": 53,
-        "pegadio": 152,
-        "tda": 213,
-        "trt": 86
-    },
+    
     "arq": [
         {
             "nome": "So deus sabe",

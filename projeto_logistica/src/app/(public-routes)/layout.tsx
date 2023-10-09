@@ -7,7 +7,7 @@ const montserrat = Montserrat({
 })
 
 export const metadata = {
-  title: 'Logística',
+  title: 'Conversor Logístico',
 }
 
 export default function RootLayout({
@@ -18,7 +18,7 @@ export default function RootLayout({
   return (
     <html lang="pt-BR">
       <body className={montserrat.className}>
-        <div className=''>
+        <div className='bg-black'>
           {children}
         </div>
       </body>

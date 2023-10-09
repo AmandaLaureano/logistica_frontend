@@ -47,7 +47,7 @@ export function ArrayArquivos({ arquivo }: IArrayArquivos) {
             <div className="flex justify-center">
                 <VscFileSubmodule className="hidden md:flex self-center fill-green-simple md:w-9 md:h-9 lg:w-11 lg:h-11"/>
                 <p className="font-medium text-xl xmd:text-2xl sm:text-2xl lg:text-3xl text-center p-2 xmd:p-3 sm:p-4 pt-6">
-                    Últimos arquivos
+                    Arquivos
                 </p>
             </div> 
             {archives.map((item, index) => {

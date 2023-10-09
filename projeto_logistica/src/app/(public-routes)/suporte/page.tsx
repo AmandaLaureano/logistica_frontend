@@ -17,17 +17,15 @@ export default async function Suporte(){
     const support: Array<ISupportCard> = getInfoSupport
      
     return(
-        <div className="flex h-screen w-screen bg-black-light">
-            <NavbarSuporte/>
-            <div className="bg-black m-auto pb-16 rounded-md shadow-md shadow-green-simple">
-                <div className="flex items-stretch justify-center pt-12">
-                    <TfiHeadphoneAlt className="fill-green-simple w-9 h-9 mx-3"/>
-                    <p className="tracking-widest text-white text-xl lg:text-2xl xl:text-3xl font-medium text-center">Suporte</p>
-                </div>
-                <div className="grid grid-cols-2 grid-rows-2 gap-4 mx-16 mt-10">
+        <main className="flex flex-col h-screen bg-black-light justify-center place-content-center">
+            {/*<div className="absolute inset-x-0 top-0 ">
+                <NavbarSuporte/>
+            </div>*/}
+            <section className="loginSection place-self-center bg-black shadow-md shadow-light-gray/25 w-9/12 h-9/12 rounded-lg my-12">
+                <div className="grid grid-rows-1 md:grid-cols-2 md:grid-rows-2 gap-4 mt-10">
                     <SupportCard ArraySuporte={support}/>
                 </div> 
-            </div>
-        </div>
+            </section>    
+        </main>
     )
 }

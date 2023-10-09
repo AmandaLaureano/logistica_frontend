@@ -4,21 +4,19 @@ import { motion } from "framer-motion";
 import { BsChevronCompactRight } from "react-icons/bs";
 import { useRouter } from "next/navigation";
 
-
-export function SelectTransportadoras({ ArrayTransportadoras }: any) {
+export function SelectTransportadoras({ Transportadoras }: any) {
     const [list, setList] = useState<boolean>(false)
     const router = useRouter()
     const sidebar = {
-        open: (height = 200) => ({
-            height: '150px',
-            clipPath: `circle(${height * 2 + 200}px at 40px 40px)`,
+        open:{
+            height: '100px',
             transition: {
                 type: "spring",
                 stiffness: 60,
                 restDelta: 2,
                 
             }
-        }),
+        },
         closed: {
             height: '0px',
             opacity: list ? 0 : 1,
@@ -62,7 +60,7 @@ export function SelectTransportadoras({ ArrayTransportadoras }: any) {
                 variants={sidebar}
                 className="listItensDropdown overflow-auto list-none"
             >
-                {ArrayTransportadoras.map((item: any, index: number) => {
+                {Transportadoras.map((item: any, index: number) => {
                     return (
                         <div key={index} className="pb-2">
                             <button className="cursor-pointer text-sm sm:text-lg xl:text-xl ml-6" onClick={()=>{router.push(`generalidades/${item.nome}`)}}>

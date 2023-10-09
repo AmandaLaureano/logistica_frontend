@@ -1,6 +1,6 @@
 import { SelectTransportadoras } from "../../components/selects";
 import { api } from "../../services/api";
-import { IArrayTransportadoras } from "../../interfaces/app/dashboard"
+import { ITransportadoras } from "../../interfaces/app/dashboard"
 import { PiTruck } from "react-icons/pi"
 
 export default async function Dashboard() {
@@ -13,7 +13,7 @@ export default async function Dashboard() {
         })
         console.log(getTransportadoras)
 
-    const transportadoras: Array<IArrayTransportadoras> = getTransportadoras
+    const transportadoras: Array<ITransportadoras> = getTransportadoras
 
     return (
         <div className="2xl:px-12 mt-24 h-full">
@@ -25,7 +25,7 @@ export default async function Dashboard() {
                     </p>
                 </div>    
                 <div className="flex justify-center pt-8">
-                    <SelectTransportadoras ArrayTransportadoras={transportadoras} />
+                    <SelectTransportadoras Transportadoras={transportadoras} />
                 </div>
             </div>
         </div>
