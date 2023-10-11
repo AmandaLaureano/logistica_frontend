@@ -4,17 +4,16 @@ import { ITransportadoras } from "../../interfaces/app/dashboard"
 import { PiTruck } from "react-icons/pi"
 
 export default async function Dashboard() {
-    const getTransportadoras = await api.get(`/transportadoras`)
+    const getTransportadoras = await api.get(`http://192.168.155.22:3000/transportadora`)
         .then(resp => {
             return resp.data
         }).catch(err => {
             console.log(err)
             return []
         })
-        console.log(getTransportadoras)
 
     const transportadoras: Array<ITransportadoras> = getTransportadoras
-
+    
     return (
         <div className="2xl:px-12 mt-24 h-full">
             <div className="w-full pb-12 bg-white-simple shadow-md shadow-black-gray-border rounded-md">

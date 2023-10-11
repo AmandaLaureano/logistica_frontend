@@ -1,4 +1,3 @@
-import { MdOutlineDriveFolderUpload } from "react-icons/md";
 
 interface IInputArquivo {
     placeholder?: string
@@ -10,15 +9,14 @@ interface IInputArquivo {
 
 export function InputArquivo({ placeholder, onClick, onChange, accept, texto }: IInputArquivo) {
     return (
-        <div className="grid justify-items-center bg-green-simple w-full shadow-md shadow-black-light rounded-sm text-md xl:text-xl text-white px-3 text-center hover:scale-95 transition-all duration-20">
+        <div className="w-full h-fit bg-black/50 shadow-inner shadow-black-light/30 text-white rounded-sm lg:text-lg px-5 py-1 hover:scale-95 transition-all duration-200">
             <div>
                 <input type='file' placeholder={placeholder} onClick={onClick} onChange={onChange} multiple={false} readOnly
                 className='hidden placeholder:z-50' id='InputArquivo' required={true} accept={`${accept ?? 'image/*'}`} />
             </div>
-            <div>
-                <label className='text-placeholder lg:text-lg w-full h-full overflow-hidden cursor-pointer sm:pl-2 py-1 flex 0' htmlFor='InputFile'>
+            <div className="flex justify-center">
+                <label className=' text-placeholder lg:text-lg cursor-pointer ' htmlFor='InputArquivo'>
                 {texto} 
-                <MdOutlineDriveFolderUpload className="hidden xmd:flex ml-2 my-auto w-5 h-5 sm:w-6 sm:h-6"/>
                 </label>
             </div>
         </div>

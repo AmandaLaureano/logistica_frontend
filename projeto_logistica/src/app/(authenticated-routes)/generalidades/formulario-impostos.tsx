@@ -1,7 +1,7 @@
 'use client'
 
 import { InputArquivo } from "@/src/components/input-arquivo"
-import Line from "./linha-formulario"
+import Linha from "./linha-formulario"
 import { useEffect, useState } from "react"
 import { MdClose } from "react-icons/md"
 import { api } from "@/src/services/api"
@@ -98,45 +98,45 @@ export function FormularioImpostos({ trt, tda, despacho, pegadio, gris, adVal, c
 
     return (
         <div>
-            <hr className="border border-gray-line"/>
-                {impostos && (
-                    <>
-                        <Line nomeImposto={"TRT"} valorImposto={trtValue ? trtValue : 0} valorMinimo={0} onChangeValor={(e: any) => setTrtValue(e.target.value)} />
-                        <Line nomeImposto={"TDA"} valorImposto={tdaValue ? tdaValue : 0} valorMinimo={0} onChangeValor={(e: any) => setTdaValue(e.target.value)} />
-                        <Line nomeImposto={"GRIS"} valorImposto={grisValue ? grisValue : 0} valorMinimo={0} onChangeValor={(e: any) => setGrisValue(e.target.value)} />
-                        <Line nomeImposto={"AD_VAL"} valorImposto={adValValue ? adValValue : 0} valorMinimo={0} onChangeValor={(e: any) => setAdValValue(e.target.value)} />
-                        <Line nomeImposto={"DESPACHO"} valorImposto={despachoValue ? despachoValue : 0} valorMinimo={0} onChangeValor={(e: any) => setDespachoValue(e.target.value)} />
-                        <Line nomeImposto={"PED"} valorImposto={pedagioValue ? pedagioValue : 0} valorMinimo={0} onChangeValor={(e: any) => setPedagioValue(e.target.value)} />
-                        <Line nomeImposto={"CAM"} valorImposto={camValue ? camValue : 0} valorMinimo={0} onChangeValor={(e: any) => setCamValue(e.target.value)} />
-                        <Line nomeImposto={"PRAZO"} valorImposto={prazoValue ? prazoValue : 0} valorMinimo={0} onChangeValor={(e: any) => setPrazoValue(e.target.value)} />
-                        <Line nomeImposto={"ADV"} valorImposto={advValue ? advValue : 0} valorMinimo={0} onChangeValor={(e: any) => setAdvValue(e.target.value)} />
-                        <Line nomeImposto={"KG"} valorImposto={kgValue ? kgValue : 0} valorMinimo={0} onChangeValor={(e: any) => setKgValue(e.target.value)} />
-                    </>
-                )}
-            <div>
-                <div className="flex flex-col justify-center sm:flex-row sm:justify-between py-5">
-                    <div className="pt-8">
-                        <InputArquivo placeholder={"Anexar arquivo"} texto={"Anexar arquivo"} onChange={upaArquivo} />
-                        {arquivo.name != undefined &&
-                            <div className="flex justify-between bg-green-simple/20 px-2 rounded-md mt-2">
-                                <div className="">
-                                    <span className="text-xs">
-                                        {arquivo.name}
-                                    </span>
-                                </div>
-                                <div className="flex items-center my-1">
-                                    <button className="" onClick={() => setArquivo({} as File)}>
-                                        <MdClose className="hover:scale-95 duration-200 ml-3 fill-red" size={20} />
-                                    </button>
-                                </div>
+            {impostos && (
+                <>
+                    <Linha nomeImposto={"TRT"} valorImposto={trtValue ? trtValue : 0} onChangeValor={(e: any) => setTrtValue(e.target.value)} />
+                    <Linha nomeImposto={"TDA"} valorImposto={tdaValue ? tdaValue : 0} onChangeValor={(e: any) => setTdaValue(e.target.value)} />
+                    <Linha nomeImposto={"DESPACHO"} valorImposto={despachoValue ? despachoValue : 0} onChangeValor={(e: any) => setDespachoValue(e.target.value)} />
+                    <Linha nomeImposto={"PEDÁGIO"} valorImposto={pedagioValue ? pedagioValue : 0} onChangeValor={(e: any) => setPedagioValue(e.target.value)} />
+                    <Linha nomeImposto={"GRIS"} valorImposto={grisValue ? grisValue : 0} onChangeValor={(e: any) => setGrisValue(e.target.value)} />
+                    <Linha nomeImposto={"ADVAL"} valorImposto={adValValue ? adValValue : 0} onChangeValor={(e: any) => setAdValValue(e.target.value)} />
+                    <Linha nomeImposto={"CAM"} valorImposto={camValue ? camValue : 0} onChangeValor={(e: any) => setCamValue(e.target.value)} />
+                    <Linha nomeImposto={"PRAZO"} valorImposto={prazoValue ? prazoValue : 0} onChangeValor={(e: any) => setPrazoValue(e.target.value)} />
+                    <Linha nomeImposto={"ADV"} valorImposto={advValue ? advValue : 0} onChangeValor={(e: any) => setAdvValue(e.target.value)} />
+                    <Linha nomeImposto={"KG"} valorImposto={kgValue ? kgValue : 0} onChangeValor={(e: any) => setKgValue(e.target.value)} />
+                </>
+            )}
+            <div className="flex flex-col md:flex-row py-10 gap-5">
+                <div className="w-full">
+                    <InputArquivo placeholder={"Anexar Arquivo"} texto={"Anexar Arquivo"} onChange={upaArquivo} />
+                    {arquivo.name != undefined &&
+                        <div className="flex justify-between rounded-sm shadow-inner shadow-black-light/30 my-3 bg-white">
+                            <div className="">
+                                <span className="text-xs font-medium mx-2">
+                                    {arquivo.name}
+                                </span>
                             </div>
-                        }
-                    </div>
-                    <div className="py-8">
-                        <button className="w-full h-full bg-black shadow-md shadow-black-light text-white rounded-sm lg:text-lg px-5 hover:scale-95 transition-all duration-200 py-1" onClick={postImpostos}>
-                            Enviar tudo {routerParams.transportadora}
-                        </button>
-                    </div>
+                            <div className="flex justify-end my-1">
+                                <button className="" onClick={() => setArquivo({} as File)}>
+                                    <MdClose className=" hover:scale-95 duration-200 mx-2 fill-red" size={20} />
+                                </button>
+                            </div>
+                        </div>
+                    }
+                </div>
+                <div className="w-full">
+                    <button className="w-full py-1 h-fit shadow-inner bg-green-simple shadow-black-light/30 text-white rounded-sm lg:text-lg px-5 hover:scale-95 transition-all duration-200" onClick={postImpostos}>
+                        <label className='h-full text-placeholder lg:text-lg overflow-hidden cursor-pointer'>
+                            Enviar Alterações
+                            {routerParams.transportadora}
+                        </label>
+                    </button>
                 </div>
             </div>
         </div>
