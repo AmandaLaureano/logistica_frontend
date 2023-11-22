@@ -41,6 +41,7 @@ module.exports = {
       'black': '#000000',
       'black-light': '#0A0A0A',
       'black-gray-border': 'rgba(0, 0, 0, 0.3)',
+      'gray-sidebar': '#292929',
       'gray': '#525252',
       'white': '#ffffff',
       'white-normal': '#F1F1F1',

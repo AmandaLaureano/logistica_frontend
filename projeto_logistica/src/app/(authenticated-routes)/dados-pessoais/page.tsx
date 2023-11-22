@@ -2,7 +2,7 @@
 import { BsToggleOff, BsToggleOn } from "react-icons/bs"
 import { useState } from 'react'
 
-export default function Perfil(){
+export default function DadosPessoais(){
     const [toggleChange, setToggleChange] = useState(false)
 
     const switchIconToggle = () => {

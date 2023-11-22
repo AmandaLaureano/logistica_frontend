@@ -3,10 +3,11 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { BsChevronCompactRight } from "react-icons/bs";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 export function SelectTransportadoras({ Transportadoras }: any) {
     const [list, setList] = useState<boolean>(false)
-    const router = useRouter()
+    
     const sidebar = {
         open:{
             height: '100px',
@@ -58,16 +59,17 @@ export function SelectTransportadoras({ Transportadoras }: any) {
                 initial={false}
                 animate={list ? "open" : "closed"}
                 variants={sidebar}
-                className="listItensDropdown overflow-auto list-none"
+                className="listItensDropdown list-none"
             >
                 {Transportadoras.map((item: any, index: number) => {
                     return (
                         <div key={index} className="pb-2">
-                            <button className="cursor-pointer text-sm sm:text-lg xl:text-xl ml-6" onClick={()=>{router.push(`generalidades/${item.nome}`)}}>
-                                <span className="buttonGreenHover text-white">{item.nome}</span>
-                            </button>
+                            <Link href={(`/generalidades/${item.id}`)}>
+                                <button className="cursor-pointer text-sm sm:text-lg xl:text-xl ml-6">
+                                    <span className="buttonGreenHover text-white">{item.nome}</span>
+                                </button>
+                            </Link>
                         </div>
-                        
                     )
                 })}
             </motion.li>

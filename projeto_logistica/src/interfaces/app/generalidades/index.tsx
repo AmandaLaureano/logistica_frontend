@@ -15,6 +15,7 @@ export interface IFormularioImpostos {
 
 export interface ILinhaFormulario {
     nomeImposto: string,
+    infoImposto: string,
     valorImposto: number
-    onChangeValor?: any
+    onChangeValue?: any
 }

@@ -1,12 +1,17 @@
+'use client'
 import { FormularioImpostos } from "./formulario-impostos"
 import { BsCurrencyDollar } from "react-icons/bs";
 import { LiaFileInvoiceDollarSolid } from "react-icons/lia"
 import { api } from "@/src/services/api";
 import { IFormularioImpostos } from "@/src/interfaces/app/generalidades";
+import { useEffect } from "react";
+import { useParams } from "next/navigation";
 
 export default async function Generalidades() {
 
-    const responseFormulario = await api.get("/impostos/1")
+    const { id } = useParams();
+
+    const responseFormulario = await api.get(`http://192.168.155.22:3000/impostos/${id}`)
         .then(resp => {
             console.log(resp.data)
             return resp.data

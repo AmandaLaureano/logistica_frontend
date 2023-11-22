@@ -32,7 +32,7 @@ export function FormularioImpostos({ trt, tda, despacho, pegadio, gris, adVal, c
             setImpostos(data)
         })
         .catch((error) => { 
-            setImpostos(null)
+            setImpostos(error.message)
         })
         
         api.get(`http://192.168.155.22:3000/sba/1`)
@@ -40,16 +40,16 @@ export function FormularioImpostos({ trt, tda, despacho, pegadio, gris, adVal, c
             setSbaImpostos(data)
         })
         .catch((error) => { 
-            setSbaImpostos(null)
+            setSbaImpostos(error.message)
         })
-        
+
     }, [])
 
     console.log(impostos)
     console.log(sbaImpostos)
     
     function postImpostos() {
-        api.post("/impostos", {
+        api.post(`/impostos/${id}`, {
             id: 1,
             transportadoraId: 1,
             trt: trtValue,
@@ -100,16 +100,16 @@ export function FormularioImpostos({ trt, tda, despacho, pegadio, gris, adVal, c
         <div>
             {impostos && (
                 <>
-                    <Linha nomeImposto={"TRT"} valorImposto={trtValue ? trtValue : 0} onChangeValor={(e: any) => setTrtValue(e.target.value)} />
-                    <Linha nomeImposto={"TDA"} valorImposto={tdaValue ? tdaValue : 0} onChangeValor={(e: any) => setTdaValue(e.target.value)} />
-                    <Linha nomeImposto={"DESPACHO"} valorImposto={despachoValue ? despachoValue : 0} onChangeValor={(e: any) => setDespachoValue(e.target.value)} />
-                    <Linha nomeImposto={"PEDÁGIO"} valorImposto={pedagioValue ? pedagioValue : 0} onChangeValor={(e: any) => setPedagioValue(e.target.value)} />
-                    <Linha nomeImposto={"GRIS"} valorImposto={grisValue ? grisValue : 0} onChangeValor={(e: any) => setGrisValue(e.target.value)} />
-                    <Linha nomeImposto={"ADVAL"} valorImposto={adValValue ? adValValue : 0} onChangeValor={(e: any) => setAdValValue(e.target.value)} />
-                    <Linha nomeImposto={"CAM"} valorImposto={camValue ? camValue : 0} onChangeValor={(e: any) => setCamValue(e.target.value)} />
-                    <Linha nomeImposto={"PRAZO"} valorImposto={prazoValue ? prazoValue : 0} onChangeValor={(e: any) => setPrazoValue(e.target.value)} />
-                    <Linha nomeImposto={"ADV"} valorImposto={advValue ? advValue : 0} onChangeValor={(e: any) => setAdvValue(e.target.value)} />
-                    <Linha nomeImposto={"KG"} valorImposto={kgValue ? kgValue : 0} onChangeValor={(e: any) => setKgValue(e.target.value)} />
+                    <Linha nomeImposto={"TRT"} infoImposto={"Taxa de Restrição de Trânsito"} valorImposto={trtValue ? trtValue : 0} onChangeValor={(e: any) => setTrtValue(e.target.value)} />
+                    <Linha nomeImposto={"TDA"} infoImposto={"Taxa de Difícil Acesso"} valorImposto={tdaValue ? tdaValue : 0} onChangeValor={(e: any) => setTdaValue(e.target.value)} />
+                    <Linha nomeImposto={"TAXA DE DESPACHO"} infoImposto={""} valorImposto={despachoValue ? despachoValue : 0} onChangeValor={(e: any) => setDespachoValue(e.target.value)} />
+                    <Linha nomeImposto={"PEDÁGIO"} infoImposto={""} valorImposto={pedagioValue ? pedagioValue : 0} onChangeValor={(e: any) => setPedagioValue(e.target.value)} />
+                    <Linha nomeImposto={"GRIS"} infoImposto={"Gerenciamento de Riscos"} valorImposto={grisValue ? grisValue : 0} onChangeValor={(e: any) => setGrisValue(e.target.value)} />
+                    <Linha nomeImposto={"ADVAL"} infoImposto={""} valorImposto={adValValue ? adValValue : 0} onChangeValor={(e: any) => setAdValValue(e.target.value)} />
+                    <Linha nomeImposto={"CAM"} infoImposto={"Custo Adicional de Manuseio e Separação"} valorImposto={camValue ? camValue : 0} onChangeValor={(e: any) => setCamValue(e.target.value)} />
+                    <Linha nomeImposto={"PRAZO"} infoImposto={"SBA"} valorImposto={prazoValue ? prazoValue : 0} onChangeValor={(e: any) => setPrazoValue(e.target.value)} />
+                    <Linha nomeImposto={"ADV"} infoImposto={"SBA"} valorImposto={advValue ? advValue : 0} onChangeValor={(e: any) => setAdvValue(e.target.value)} />
+                    <Linha nomeImposto={"KG"} infoImposto={"SBA"} valorImposto={kgValue ? kgValue : 0} onChangeValor={(e: any) => setKgValue(e.target.value)} />
                 </>
             )}
             <div className="flex flex-col md:flex-row py-10 gap-5">
@@ -117,8 +117,8 @@ export function FormularioImpostos({ trt, tda, despacho, pegadio, gris, adVal, c
                     <InputArquivo placeholder={"Anexar Arquivo"} texto={"Anexar Arquivo"} onChange={upaArquivo} />
                     {arquivo.name != undefined &&
                         <div className="flex justify-between rounded-sm shadow-inner shadow-black-light/30 my-3 bg-white">
-                            <div className="">
-                                <span className="text-xs font-medium mx-2">
+                            <div className="truncate py-1">
+                                <span className="text-sm font-medium  mx-2">
                                     {arquivo.name}
                                 </span>
                             </div>
