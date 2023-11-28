@@ -2,7 +2,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { BsChevronCompactRight } from "react-icons/bs";
-import { useRouter } from "next/navigation";
 import Link from "next/link";
 
 export function SelectTransportadoras({ Transportadoras }: any) {

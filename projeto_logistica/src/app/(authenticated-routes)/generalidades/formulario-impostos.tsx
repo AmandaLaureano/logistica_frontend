@@ -22,96 +22,67 @@ export function FormularioImpostos({ trt, tda, despacho, pegadio, gris, adVal, c
     const [advValue, setAdvValue] = useState(adv)
     const [kgValue, setKgValue] = useState(kg)
     const [arquivo, setArquivo] = useState<File>({} as File)
-    const { id } = useParams();
+
     const [impostos, setImpostos] = useState<number | null>()
     const [sbaImpostos, setSbaImpostos] = useState<number | null>()
+    const { id } = useParams();   
 
-    useEffect(() => {
-        api.get(`http://192.168.155.22:3000/impostos/1`)
-        .then(({data}) => {
-            setImpostos(data)
-        })
-        .catch((error) => { 
-            setImpostos(error.message)
-        })
-        
-        api.get(`http://192.168.155.22:3000/sba/1`)
-        .then(({data}) => {
-            setSbaImpostos(data)
-        })
-        .catch((error) => { 
-            setSbaImpostos(error.message)
-        })
-
-    }, [])
-
-    console.log(impostos)
-    console.log(sbaImpostos)
-    
-    function postImpostos() {
-        api.post(`/impostos/${id}`, {
-            id: 1,
-            transportadoraId: 1,
+    function patchImpostos() {
+        api.patch(`/impostos/${id}`, {
+            id: id,
+            transportadoraId: id,
             trt: trtValue,
-            tda: trtValue,
+            tda: tdaValue,
+            despacho: despachoValue,
+            pegagio: pedagioValue,
             gris: grisValue,
             adVal: adValValue,
-            despacho: despachoValue,
-            pedagio: pedagioValue,
             cam: camValue,
-            arquivoExcel: arquivo
+        })
+        api.patch(`/sba/${id}`, {
+            prazo: prazoValue,
+            adv: advValue,
+            kg: kgValue
         })
         .then(res => {
             console.log(res);
         }).catch(err => {
             console.log('Erro:', err);
         });
-        
-        Swal.fire({
-            customClass: {
-                title:"text-xl",
-                popup:"shadow-md shadow-black-light rounded-lg",
-                cancelButton: "shadow-sm shadow-black-light",
-                confirmButton: "shadow-sm shadow-black-light",
-            },
-            icon: "success",
-            title: "Arquivo em espera... Deseja cadastrar nova generalidade?",
-            cancelButtonText: '<a href="/">Sim</a>',
-            cancelButtonColor: "#D52C2C",
-            confirmButtonText: '<a href="/arquivos">Não</a>',
-            confirmButtonColor: "#509D45",
-            showConfirmButton: true,
-            showCancelButton: true,
-            reverseButtons: true,
-            
+
+    }
+
+    function patchArquivo(){
+        api.patch(`/gobor/upload`, {
+            anexo: arquivo
         })
+        .then(res => {
+            console.log(res);
+        }).catch(err => {
+            console.log('Erro:', err);
+        });
     }
 
     function upaArquivo(e: React.ChangeEvent<HTMLInputElement>) {
         if (e.target.files) {
             const value = e.target.files[0];
             setArquivo(value)
+            
         }
     }
 
-    const routerParams = useParams()
-
     return (
         <div>
-            {impostos && (
-                <>
-                    <Linha nomeImposto={"TRT"} infoImposto={"Taxa de Restrição de Trânsito"} valorImposto={trtValue ? trtValue : 0} onChangeValor={(e: any) => setTrtValue(e.target.value)} />
-                    <Linha nomeImposto={"TDA"} infoImposto={"Taxa de Difícil Acesso"} valorImposto={tdaValue ? tdaValue : 0} onChangeValor={(e: any) => setTdaValue(e.target.value)} />
-                    <Linha nomeImposto={"TAXA DE DESPACHO"} infoImposto={""} valorImposto={despachoValue ? despachoValue : 0} onChangeValor={(e: any) => setDespachoValue(e.target.value)} />
-                    <Linha nomeImposto={"PEDÁGIO"} infoImposto={""} valorImposto={pedagioValue ? pedagioValue : 0} onChangeValor={(e: any) => setPedagioValue(e.target.value)} />
-                    <Linha nomeImposto={"GRIS"} infoImposto={"Gerenciamento de Riscos"} valorImposto={grisValue ? grisValue : 0} onChangeValor={(e: any) => setGrisValue(e.target.value)} />
-                    <Linha nomeImposto={"ADVAL"} infoImposto={""} valorImposto={adValValue ? adValValue : 0} onChangeValor={(e: any) => setAdValValue(e.target.value)} />
-                    <Linha nomeImposto={"CAM"} infoImposto={"Custo Adicional de Manuseio e Separação"} valorImposto={camValue ? camValue : 0} onChangeValor={(e: any) => setCamValue(e.target.value)} />
-                    <Linha nomeImposto={"PRAZO"} infoImposto={"SBA"} valorImposto={prazoValue ? prazoValue : 0} onChangeValor={(e: any) => setPrazoValue(e.target.value)} />
-                    <Linha nomeImposto={"ADV"} infoImposto={"SBA"} valorImposto={advValue ? advValue : 0} onChangeValor={(e: any) => setAdvValue(e.target.value)} />
-                    <Linha nomeImposto={"KG"} infoImposto={"SBA"} valorImposto={kgValue ? kgValue : 0} onChangeValor={(e: any) => setKgValue(e.target.value)} />
-                </>
-            )}
+            <Linha nomeImposto={"TRT"} infoImposto={"Taxa de Restrição de Trânsito"} valorImposto={trtValue ? trtValue: 0} onChangeValue={(e: any) => setTrtValue(e.target.value)} />
+            <Linha nomeImposto={"TDA"} infoImposto={"Taxa de Difícil Acesso"} valorImposto={tdaValue ? tdaValue: 0} onChangeValue={(e: any) => setTdaValue(e.target.value)} />
+            <Linha nomeImposto={"TAXA DE DESPACHO"} infoImposto={""} valorImposto={despachoValue ? despachoValue: 0} onChangeValue={(e: any) => setDespachoValue(e.target.value)} />
+            <Linha nomeImposto={"PEDÁGIO"} infoImposto={""} valorImposto={pedagioValue ? pedagioValue: 0} onChangeValue={(e: any) => setPedagioValue(e.target.value)} />
+            <Linha nomeImposto={"GRIS"} infoImposto={"Gerenciamento de Riscos"} valorImposto={grisValue ? grisValue : 0} onChangeValue={(e: any) => setGrisValue(e.target.value)} />
+            <Linha nomeImposto={"ADVAL"} infoImposto={""} valorImposto={adValValue ? adValValue: 0} onChangeValue={(e: any) => setAdValValue(e.target.value)} />
+            <Linha nomeImposto={"CAM"} infoImposto={"Custo Adicional de Manuseio e Separação"} valorImposto={camValue ? camValue : 0} onChangeValue={(e: any) => setCamValue(e.target.value)} />
+            <Linha nomeImposto={"PRAZO"} infoImposto={"SBA"} valorImposto={prazoValue ? prazoValue: 0} onChangeValue={(e: any) => setPrazoValue(e.target.value)} />
+            <Linha nomeImposto={"ADV"} infoImposto={"SBA"} valorImposto={advValue ? advValue: 0} onChangeValue={(e: any) => setAdvValue(e.target.value)} />
+            <Linha nomeImposto={"KG"} infoImposto={"SBA"} valorImposto={kgValue ? kgValue: 0} onChangeValue={(e: any) => setKgValue(e.target.value)} />
             <div className="flex flex-col md:flex-row py-10 gap-5">
                 <div className="w-full">
                     <InputArquivo placeholder={"Anexar Arquivo"} texto={"Anexar Arquivo"} onChange={upaArquivo} />
@@ -131,10 +102,9 @@ export function FormularioImpostos({ trt, tda, despacho, pegadio, gris, adVal, c
                     }
                 </div>
                 <div className="w-full">
-                    <button className="w-full py-1 h-fit shadow-inner bg-green-simple shadow-black-light/30 text-white rounded-sm lg:text-lg px-5 hover:scale-95 transition-all duration-200" onClick={postImpostos}>
+                    <button className="w-full py-1 h-fit shadow-inner bg-green-simple shadow-black-light/30 text-white rounded-sm lg:text-lg px-5 hover:scale-95 transition-all duration-200" onClick={() => {patchImpostos(); patchArquivo()}}>
                         <label className='h-full text-placeholder lg:text-lg overflow-hidden cursor-pointer'>
                             Enviar Alterações
-                            {routerParams.transportadora}
                         </label>
                     </button>
                 </div>
