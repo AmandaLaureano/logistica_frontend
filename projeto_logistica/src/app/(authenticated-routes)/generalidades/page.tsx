@@ -4,36 +4,30 @@ import { BsCurrencyDollar } from "react-icons/bs";
 import { LiaFileInvoiceDollarSolid } from "react-icons/lia"
 import { api } from "@/src/services/api";
 import { IFormularioImpostos } from "@/src/interfaces/app/generalidades";
-import { useParams } from "next/navigation";
 
 export default async function Generalidades() {
 
-    const { id } = useParams();
-
-    const getImpostos = await api.get(`/impostos/${id}`)
+    const getImpostos = await api.get(`/impostos/1`)
         .then(resp => {
             console.log(resp.data)
             return resp.data
         })
         .catch(err => {
             console.log(err.message)
-            return 0
+            return("sem valor")
         })
-    const getImpostosSBA = await api.get(`/sba/${id}`)
+    const getImpostosSBA = await api.get(`/sba/1`)
         .then(resp => {
             console.log(resp.data)
             return resp.data
         })
         .catch(err => {
             console.log(err.message)
-            return 0
+            return("sem valor")
         })
 
     const Impostos: IFormularioImpostos = getImpostos
     const ImpostosSBA: IFormularioImpostos = getImpostosSBA
-
-    console.log(Impostos)
-    console.log(ImpostosSBA)
 
     return (
         <div className="bg-white-simple rounded-sm shadow-md shadow-black-gray-border mt-12 md:mx-24">

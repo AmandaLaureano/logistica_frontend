@@ -2,21 +2,24 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { BsChevronCompactRight } from "react-icons/bs";
-import Link from "next/link";
+import { useRouter } from "next/navigation";
 
-export function SelectTransportadoras({ Transportadoras }: any) {
+export function SelectTransportadoras({ transportadoras }: any) {
     const [list, setList] = useState<boolean>(false)
+
+    const router = useRouter();
     
-    const sidebar = {
-        open:{
+    const dropdown = {
+        open: (height = 200) => ({
             height: '100px',
+            clipPath: `circle(${height * 2 + 200}px at 40px 40px)`,
             transition: {
                 type: "spring",
                 stiffness: 60,
                 restDelta: 2,
                 
             }
-        },
+        }),
         closed: {
             height: '0px',
             opacity: list ? 0 : 1,
@@ -33,7 +36,6 @@ export function SelectTransportadoras({ Transportadoras }: any) {
         open: { rotate: 90, transition: { duration: 0.2 } },
         closed: { rotate: 0, transition: { duration: 0.2 } },
     };
-
 
     return (
         <div className="bg-black-light rounded-[4px] shadow-md shadow-black-light">
@@ -57,17 +59,15 @@ export function SelectTransportadoras({ Transportadoras }: any) {
             <motion.li
                 initial={false}
                 animate={list ? "open" : "closed"}
-                variants={sidebar}
-                className="listItensDropdown list-none"
+                variants={dropdown}
+                className="listItensDropdown list-none" 
             >
-                {Transportadoras.map((item: any, index: number) => {
+                {transportadoras.map((transportadora: any, index: number) => {
                     return (
-                        <div key={index} className="pb-2">
-                            <Link href={(`/generalidades/${item.id}`)}>
-                                <button className="cursor-pointer text-sm sm:text-lg xl:text-xl ml-6">
-                                    <span className="buttonGreenHover text-white">{item.nome}</span>
-                                </button>
-                            </Link>
+                        <div key={transportadora.id} className="pb-2">
+                            <button className="cursor-pointer text-sm sm:text-lg xl:text-xl ml-6" onClick={()=>{router.push(`generalidades/${transportadora.id}`)}}>
+                                <span className="buttonGreenHover text-white capitalize">{transportadora.nome}</span>
+                            </button>
                         </div>
                     )
                 })}

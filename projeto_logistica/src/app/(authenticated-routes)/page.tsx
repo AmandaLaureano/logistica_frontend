@@ -12,7 +12,7 @@ export default async function Dashboard() {
             return []
         })
         
-        const transportadoras: Array<ITransportadoras> = getTransportadoras
+        const listaTransportadoras: Array<ITransportadoras> = getTransportadoras
     
     return (
         <div className="2xl:px-12 mt-24 h-full">
@@ -24,7 +24,7 @@ export default async function Dashboard() {
                     </p>
                 </div>    
                 <div className="flex justify-center pt-8">
-                    <SelectTransportadoras Transportadoras={transportadoras} />
+                    <SelectTransportadoras transportadoras={listaTransportadoras} />
                 </div>
             </div>
         </div>

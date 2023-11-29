@@ -6,8 +6,7 @@ import { useEffect, useState } from "react"
 import { MdClose } from "react-icons/md"
 import { api } from "@/src/services/api"
 import { IFormularioImpostos } from "../../../interfaces/app/generalidades"
-import { useParams } from "next/navigation";
-import Swal from 'sweetalert2';
+import { useRouter } from "next/router"
 
 export function FormularioImpostos({ trt, tda, despacho, pegadio, gris, adVal, cam, prazo, adv, kg }: IFormularioImpostos, {params} : {params: {slug : string}}) {
 
@@ -22,10 +21,9 @@ export function FormularioImpostos({ trt, tda, despacho, pegadio, gris, adVal, c
     const [advValue, setAdvValue] = useState(adv)
     const [kgValue, setKgValue] = useState(kg)
     const [arquivo, setArquivo] = useState<File>({} as File)
-
-    const [impostos, setImpostos] = useState<number | null>()
-    const [sbaImpostos, setSbaImpostos] = useState<number | null>()
-    const { id } = useParams();   
+    
+    const router = useRouter();
+    const { id } = router.query; 
 
     function patchImpostos() {
         api.patch(`/impostos/${id}`, {
@@ -47,13 +45,12 @@ export function FormularioImpostos({ trt, tda, despacho, pegadio, gris, adVal, c
         .then(res => {
             console.log(res);
         }).catch(err => {
-            console.log('Erro:', err);
+            console.log('Erro: Não foi possível enviar os dados!', err);
         });
-
     }
 
     function patchArquivo(){
-        api.patch(`/gobor/upload`, {
+        api.post(`/gobor/upload`, {
             anexo: arquivo
         })
         .then(res => {
