@@ -70,7 +70,7 @@ export default function Sidebar(){
                     </Link>
                 </div>
             </nav>
-            <div ref={sidebarRef} className={`SidebarNav ${sidebarIsOpen? 'left-0':'left-[-100%] md:left-[-120%]'} top-0 z-15 w-[250px] duration-500 h-screen border-r-2 bg-gray-sidebar border-green-simple shadow fixed`}>
+            <div ref={sidebarRef} className={`SidebarNav ${sidebarIsOpen? 'left-0':'left-[-100%] md:left-[-120%]'} top-0 z-15 w-[250px] duration-500 h-screen border-r-2 bg-black border-green-simple shadow fixed`}>
                 <div className="SidebarWrap flex flex-col gap-3 px-3 mt-5 h-full">
                     <div className='flex justify-between mb-7'>
                         <div className='mx-1 hover:scale-95 cursor-pointer'>

@@ -10,24 +10,23 @@ export function SelectTransportadoras({ transportadoras }: any) {
     const router = useRouter();
     
     const dropdown = {
-        open: (height = 200) => ({
+        open:{
             height: '100px',
-            clipPath: `circle(${height * 2 + 200}px at 40px 40px)`,
+            clipPath: `circle(300px at 40px 40px)`,
             transition: {
                 type: "spring",
                 stiffness: 60,
                 restDelta: 2,
                 
             }
-        }),
+        },
         closed: {
             height: '0px',
-            opacity: list ? 0 : 1,
+            clipPath: `circle(0px at 40px 40px)`,
             transition: {
                 type: "spring",
                 stiffness: 400,
-                damping: 40,
-                heigth: 0
+                damping: 20
             }
         }
     }
@@ -60,12 +59,13 @@ export function SelectTransportadoras({ transportadoras }: any) {
                 initial={false}
                 animate={list ? "open" : "closed"}
                 variants={dropdown}
-                className="listItensDropdown list-none" 
+                className="listItensDropdown list-none"
+                style={{ opacity: list ? 1 : 0, overflow: 'hidden' }} 
             >
                 {transportadoras.map((transportadora: any, index: number) => {
                     return (
                         <div key={transportadora.id} className="pb-2">
-                            <button className="cursor-pointer text-sm sm:text-lg xl:text-xl ml-6" onClick={()=>{router.push(`generalidades/${transportadora.id}`)}}>
+                            <button className="cursor-pointer text-sm sm:text-lg ml-6" onClick={()=>{router.push(`/generalidades/${transportadora.id}`)}}>
                                 <span className="buttonGreenHover text-white capitalize">{transportadora.nome}</span>
                             </button>
                         </div>
