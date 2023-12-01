@@ -1,17 +1,12 @@
 'use client'
 import { InputArquivo } from "@/src/components/input-arquivo"
 import Linha from "./linha-formulario"
-import { useEffect, useState } from "react"
 import { MdClose } from "react-icons/md"
 import { api } from "@/src/services/api"
 import { IFormularioImpostos } from "../../../interfaces/app/generalidades"
-import { useParams } from "next/navigation"
-import Skeleton from 'react-loading-skeleton'
-import 'react-loading-skeleton/dist/skeleton.css'
-
+import { useState } from "react"
 
 export function FormularioImpostos({ trt, tda, despacho, pegadio, gris, adVal, cam, prazo, adv, kg }: IFormularioImpostos, {params}: any) {
-    console.log(params)
 
     const [values, setValues] = useState({
         trt,
@@ -26,8 +21,6 @@ export function FormularioImpostos({ trt, tda, despacho, pegadio, gris, adVal, c
         kg,
         arquivo: {} as File,
     })
-    
-    const id = useParams()
 
     const handleChange = (key: string, value: any) => {
         setValues(prevState => ({
@@ -43,6 +36,8 @@ export function FormularioImpostos({ trt, tda, despacho, pegadio, gris, adVal, c
                 ...prevState,
                 arquivo: file,
             }));
+
+            filterFilesFormats()
         }
     };
 
@@ -50,8 +45,8 @@ export function FormularioImpostos({ trt, tda, despacho, pegadio, gris, adVal, c
     const patchImpostos = () => {
         const { arquivo, ...impostosData } = values;
         
-        api.patch(`/impostos/${id}`, {
-            transportadoraId: id,
+        api.patch(`/impostos/${params}`, {
+            transportadoraId: params,
             ...impostosData,
         })
         .then(res => {
@@ -66,7 +61,7 @@ export function FormularioImpostos({ trt, tda, despacho, pegadio, gris, adVal, c
     const patchSba = () => {
         const { arquivo, ...sbaData } = values;
 
-        api.patch(`/sba/${id}`, {
+        api.patch(`/sba/${params}`, {
             ...sbaData,
         })
         .then(res => {
@@ -92,24 +87,89 @@ export function FormularioImpostos({ trt, tda, despacho, pegadio, gris, adVal, c
         });
     };
 
+    const filterFilesFormats = () => {
+        if (values.arquivo) {
+            const parts = values.arquivo.name.split('.');
+            const extension = parts[parts.length - 1];
+            const supportedFileType = 'application/vnd.ms-excel';
+            
+            if (values.arquivo.type === supportedFileType && extension === 'xls') {
+                console.log('Arquivo .xls encontrado:', values.arquivo);
+            } else {
+                alert('Formato não suportado ou tipo de arquivo inválido');
+            }
+        }
+      };
+
+    console.log(values.despacho)
     return (
         <div>
-            <Linha nomeImposto={"TRT"} infoImposto={"Taxa de Restrição de Trânsito"} valorImposto={values.trt ? values.trt: 0} onChangeValue={(e: any) => handleChange('trt', e.target.value)} />
-            <Linha nomeImposto={"TDA"} infoImposto={"Taxa de Difícil Acesso"} valorImposto={values.tda ? values.tda: 0} onChangeValue={(e: any) => handleChange('tda', e.target.value)} />
-            <Linha nomeImposto={"TAXA DE DESPACHO"} infoImposto={""} valorImposto={values.despacho ? values.despacho: 0} onChangeValue={(e: any) => handleChange('despacho', e.target.value)} />
-            <Linha nomeImposto={"PEDÁGIO"} infoImposto={""} valorImposto={values.pegadio ? values.pegadio: 0} onChangeValue={(e: any) => handleChange('pegadio', e.target.value)} />
-            <Linha nomeImposto={"GRIS"} infoImposto={"Gerenciamento de Riscos"} valorImposto={values.gris ? values.gris: 0} onChangeValue={(e: any) => handleChange('gris', e.target.value)} />
-            <Linha nomeImposto={"ADVAL"} infoImposto={""} valorImposto={values.adVal ? values.adVal: 0} onChangeValue={(e: any) => handleChange('adVal', e.target.value)} />
-            <Linha nomeImposto={"CAM"} infoImposto={"Custo Adicional de Manuseio e Separação"} valorImposto={values.cam ? values.cam: 0} onChangeValue={(e: any) => handleChange('cam', e.target.value)} />
-            <Linha nomeImposto={"PRAZO"} infoImposto={"SBA"} valorImposto={values.prazo ? values.prazo: 0} onChangeValue={(e: any) => handleChange('prazo', e.target.value)} />
-            <Linha nomeImposto={"ADV"} infoImposto={"SBA"} valorImposto={values.adv ? values.adv: 0} onChangeValue={(e: any) => handleChange('adv', e.target.value)} />
-            <Linha nomeImposto={"KG"} infoImposto={"SBA"} valorImposto={values.kg? values.kg: 0} onChangeValue={(e: any) => handleChange('kg', e.target.value)} />
+            <Linha 
+            nomeImposto={"TRT"} 
+            infoImposto={"Taxa de Restrição de Trânsito"} 
+            valorImposto={values.trt ? values.trt: 0}
+            onChangeValue={(e: any) => handleChange('trt', e.target.value)} 
+            />
+            <Linha 
+            nomeImposto={"TDA"} 
+            infoImposto={"Taxa de Difícil Acesso"} 
+            valorImposto={values.tda ? values.tda: 0}
+            onChangeValue={(e: any) => handleChange('tda', e.target.value)} 
+            />
+            <Linha 
+            nomeImposto={"TAXA DE DESPACHO"} 
+            infoImposto={""} 
+            valorImposto={values.despacho ? values.despacho: 0}
+            onChangeValue={(e: any) => handleChange('despacho', e.target.value)} 
+            />
+            <Linha 
+            nomeImposto={"PEDÁGIO"} 
+            infoImposto={""} 
+            valorImposto={values.pegadio ? values.pegadio: 0}
+            onChangeValue={(e: any) => handleChange('pegadio', e.target.value)} 
+            />
+            <Linha 
+            nomeImposto={"GRIS"} 
+            infoImposto={"Gerenciamento de Riscos"} 
+            valorImposto={values.gris ? values.gris: 0}
+            onChangeValue={(e: any) => handleChange('gris', e.target.value)} 
+            />
+            <Linha 
+            nomeImposto={"ADVAL"} 
+            infoImposto={""} 
+            valorImposto={values.adVal ? values.adVal: 0}
+            onChangeValue={(e: any) => handleChange('adVal', e.target.value)} 
+            />
+            <Linha 
+            nomeImposto={"CAM"} 
+            infoImposto={"Custo Adicional de Manuseio e Separação"} 
+            valorImposto={values.cam ? values.cam: 0} 
+            onChangeValue={(e: any) => handleChange('cam', e.target.value)} 
+            />
+            <Linha 
+            nomeImposto={"PRAZO"} 
+            infoImposto={"SBA"} 
+            valorImposto={values.prazo ? values.prazo: 0}
+            onChangeValue={(e: any) => handleChange('prazo', e.target.value)} 
+            />
+            <Linha 
+            nomeImposto={"ADV"} 
+            infoImposto={"SBA"} 
+            valorImposto={values.adv ? values.adv: 0}
+            onChangeValue={(e: any) => handleChange('adv', e.target.value)} 
+            />
+            <Linha 
+            nomeImposto={"KG"} 
+            infoImposto={"SBA"} 
+            valorImposto={values.kg? values.kg: 0} 
+            onChangeValue={(e: any) => handleChange('kg', e.target.value)} 
+            />
             
             <div className="flex flex-col md:flex-row py-10 gap-5">
                 <div className="w-full">
-                    <InputArquivo placeholder={"Anexar Arquivo"} texto={"Anexar Arquivo"} onChange={handleFileChange} />
+                    <InputArquivo placeholder={"Anexar Arquivo"} texto={"Anexar Arquivo"} onChange={handleFileChange}/>
                     {values.arquivo.name != undefined &&
-                        <div className="flex justify-between rounded-sm shadow-inner shadow-black-light/30 my-3 bg-white">
+                        <div className="flex justify-between rounded-sm shadow-inner shadow-black-light/30 my-2 bg-white">
                             <div className="truncate py-1">
                                 <span className="text-sm font-medium  mx-2">
                                     {values.arquivo.name}

@@ -25,15 +25,15 @@ export function SelectTransportadoras({ transportadoras }: any) {
             clipPath: `circle(0px at 40px 40px)`,
             transition: {
                 type: "spring",
-                stiffness: 400,
+                stiffness: 100,
                 damping: 20
             }
         }
     }
 
     const menuVariants = {
-        open: { rotate: 90, transition: { duration: 0.2 } },
-        closed: { rotate: 0, transition: { duration: 0.2 } },
+        open: { rotate: 90, transition: { duration: 0.3 } },
+        closed: { rotate: 0, transition: { duration: 0.3 } },
     };
 
     return (

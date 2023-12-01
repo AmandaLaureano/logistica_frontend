@@ -60,13 +60,13 @@ export default function Sidebar(){
 
     return(
         <>
-            <nav className="grid grid-cols-2 w-screen shadow-sm shadow-black-light bg-black h-[60px] border-b-2 border-black-gray-border">
+            <nav className="grid grid-cols-2 w-screen shadow-sm shadow-black-light bg-black h-[50px] border-b-2 border-black-gray-border">
                 <div className="flex items-center" onClick={showSidebar}>
-                    <VscMenu className='hover:scale-95 cursor-pointer transition-all duration-200 w-10 h-10 fill-white mx-5'/>
+                    <VscMenu className='hover:scale-95 cursor-pointer transition-all duration-200 w-8 h-8 fill-white mx-5'/>
                 </div>
                 <div className='flex items-center'>
                     <Link className='' href='/'>
-                        <Image className='hover:scale-95 cursor-pointer transition-all duration-200 h-9 w-11' src={folha} alt="Logo Folha Pormade" quality={100} />
+                        <Image className='hover:scale-95 cursor-pointer transition-all duration-200 h-8 w-9' src={folha} alt="Logo Folha Pormade" quality={100} />
                     </Link>
                 </div>
             </nav>
@@ -74,7 +74,7 @@ export default function Sidebar(){
                 <div className="SidebarWrap flex flex-col gap-3 px-3 mt-5 h-full">
                     <div className='flex justify-between mb-7'>
                         <div className='mx-1 hover:scale-95 cursor-pointer'>
-                            <VscMenu onClick={showSidebar} className='w-8 h-9 fill-white'/>
+                            <VscMenu onClick={showSidebar} className='w-7 h-7 fill-white'/>
                         </div>
                     </div>
                     {titulosSidebar.map((item, index) =>{
