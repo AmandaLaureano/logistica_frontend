@@ -15,7 +15,7 @@ export default function Linha({ nomeImposto, infoImposto, valorImposto, onChange
                 <div className="flex justify-end w-6/12 my-auto space-x-2 sm:space-x-10 mx-2">
                     <input
                     type="number"
-                    className="hover shadow-inner text-center shadow-black-light/30 text-sm md:text-lg bg-slate-100 w-10 xmd:w-16 lg:w-20 p-1 rounded-md outline-none" 
+                    className="hover shadow-inner text-center shadow-black-light/30 text-sm md:text-lg bg-slate-100 w-10 xmd:w-16  p-1 rounded-md outline-none" 
                     onChange={onChangeValue}
                     value={valorImposto}
                     inputMode="numeric"

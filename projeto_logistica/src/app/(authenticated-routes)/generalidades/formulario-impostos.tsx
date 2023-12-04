@@ -5,6 +5,8 @@ import { MdClose } from "react-icons/md"
 import { api } from "@/src/services/api"
 import { IFormularioImpostos } from "../../../interfaces/app/generalidades"
 import { useState } from "react"
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export function FormularioImpostos({ trt, tda, despacho, pegadio, gris, adVal, cam, prazo, adv, kg }: IFormularioImpostos, {params}: any) {
 
@@ -28,16 +30,30 @@ export function FormularioImpostos({ trt, tda, despacho, pegadio, gris, adVal, c
             [key]: value,
         }));
     };
+    console.log(params)
 
     const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         if (e.target.files) {
             const file = e.target.files[0];
+            const extension = file.name.split('.').pop()
+
+            if (extension !== 'xlsx' && file.type !== 'application/vnd.ms-excel') {
+                toast.error('Por favor, selecione um arquivo .xlsx válido!', {
+                    position: "top-right",
+                    autoClose: 3000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                    })
+                return
+            }
             setValues(prevState => ({
                 ...prevState,
                 arquivo: file,
             }));
-
-            filterFilesFormats()
         }
     };
 
@@ -86,24 +102,21 @@ export function FormularioImpostos({ trt, tda, despacho, pegadio, gris, adVal, c
             console.log('Erro:', err);
         });
     };
-
-    const filterFilesFormats = () => {
-        if (values.arquivo) {
-            const parts = values.arquivo.name.split('.');
-            const extension = parts[parts.length - 1];
-            const supportedFileType = 'application/vnd.ms-excel';
-            
-            if (values.arquivo.type === supportedFileType && extension === 'xls') {
-                console.log('Arquivo .xls encontrado:', values.arquivo);
-            } else {
-                alert('Formato não suportado ou tipo de arquivo inválido');
-            }
-        }
-      };
-
-    console.log(values.despacho)
+    
     return (
         <div>
+            <ToastContainer
+                position="top-right"
+                autoClose={3000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="light"
+            />
             <Linha 
             nomeImposto={"TRT"} 
             infoImposto={"Taxa de Restrição de Trânsito"} 
@@ -165,13 +178,13 @@ export function FormularioImpostos({ trt, tda, despacho, pegadio, gris, adVal, c
             onChangeValue={(e: any) => handleChange('kg', e.target.value)} 
             />
             
-            <div className="flex flex-col md:flex-row py-10 gap-5">
+            <div className="flex flex-col lg:flex-row py-10 gap-5">
                 <div className="w-full">
                     <InputArquivo placeholder={"Anexar Arquivo"} texto={"Anexar Arquivo"} onChange={handleFileChange}/>
                     {values.arquivo.name != undefined &&
                         <div className="flex justify-between rounded-sm shadow-inner shadow-black-light/30 my-2 bg-white">
                             <div className="truncate py-1">
-                                <span className="text-sm font-medium  mx-2">
+                                <span className="text-sm font-medium mx-2">
                                     {values.arquivo.name}
                                 </span>
                             </div>

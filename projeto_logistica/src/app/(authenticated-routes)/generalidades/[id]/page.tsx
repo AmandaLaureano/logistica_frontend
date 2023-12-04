@@ -1,6 +1,5 @@
 'use client'
 import { FormularioImpostos } from "../formulario-impostos"
-import { BsCurrencyDollar } from "react-icons/bs";
 import { LiaFileInvoiceDollarSolid } from "react-icons/lia"
 import { api } from "@/src/services/api";
 import { IFormularioImpostos, ITransportadora } from "@/src/interfaces/app/generalidades";
@@ -36,10 +35,6 @@ export default function Generalidades({params}: any) {
 
         fetchImpostos();
     }, [params.id]);
-
-    // console.log(impostos)
-    // console.log(impostosSBA)
-    // console.log(transportadora)
 
     return (
         <div className="bg-white-simple rounded-sm shadow-md shadow-black-gray-border mt-12 md:mx-24">
