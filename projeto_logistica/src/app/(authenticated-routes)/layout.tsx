@@ -8,7 +8,7 @@ const montserrat = Montserrat({
 })
 
 export const metadata = {
-  title: 'Conversor Logístico',
+  title: 'STP',
 }
 
 export default function RootLayout({children}: {children: React.ReactNode}){

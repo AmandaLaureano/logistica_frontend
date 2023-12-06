@@ -3,8 +3,6 @@ import Image from 'next/image'
 import logo from "@assets/logo-pormade.png"
 import Folha from "@assets/folha.png"
 import { ImEye, ImEyeBlocked } from 'react-icons/im'
-import { RiUserLine } from 'react-icons/ri'
-import { BsKey } from "react-icons/bs"
 import { useState } from 'react';
 import { version } from '../../../../package.json';
 import Link from "next/link"
@@ -31,7 +29,7 @@ export default function Login  () {
                             <Image className='h-[50px] w-[60px] m-5' src={Folha} alt="logo folha" quality={100} />
                         </div>
                         <div className="containerAppTitle text-center">
-                            <h1 className="inputLoginTitle text-white text-xl sm:text-2xl 2xl:text-4xl font-medium tracking-wider">Conversor Logístico</h1>
+                            <h1 className="inputLoginTitle text-white text-xl sm:text-2xl 2xl:text-4xl font-medium tracking-wider">Sistema de Sincronização de Transportadoras Pormade</h1>
                         </div>
                         <div className="containerAppSubtitle text-center pt-4">
                             <h2 className="text-white text-sm xl:text-lg font-medium tracking-widest">Faça seu login na plataforma</h2>

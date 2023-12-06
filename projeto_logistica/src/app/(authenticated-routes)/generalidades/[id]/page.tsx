@@ -70,13 +70,14 @@ export default function Generalidades({params}: any) {
                                     trt={impostos.trt}
                                     tda={impostos.tda}
                                     despacho={impostos.despacho}
-                                    pegadio={impostos.pegadio}
+                                    pedagio={impostos.pedagio}
                                     gris={impostos.gris}
                                     adVal={impostos.adVal}
                                     cam={impostos.cam}
                                     prazo={impostosSBA.prazo}
                                     adv={impostosSBA.adv}
                                     kg={impostosSBA.kg}
+                                    params={params.id}
                                 />
                             </div>
                         ): (

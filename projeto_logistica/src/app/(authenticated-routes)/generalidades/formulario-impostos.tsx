@@ -7,14 +7,15 @@ import { IFormularioImpostos } from "../../../interfaces/app/generalidades"
 import { useState } from "react"
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Swal from "sweetalert2"
 
-export function FormularioImpostos({ trt, tda, despacho, pegadio, gris, adVal, cam, prazo, adv, kg }: IFormularioImpostos, {params}: any) {
+export function FormularioImpostos({ trt, tda, despacho, pedagio, gris, adVal, cam, prazo, adv, kg, params }: IFormularioImpostos) {
 
     const [values, setValues] = useState({
         trt,
         tda,
         despacho,
-        pegadio,
+        pedagio,
         gris,
         adVal,
         cam,
@@ -25,16 +26,18 @@ export function FormularioImpostos({ trt, tda, despacho, pegadio, gris, adVal, c
     })
 
     const handleChange = (key: string, value: any) => {
+        if(value < 0){
+            value = 0
+        }
         setValues(prevState => ({
             ...prevState,
             [key]: value,
-        }));
-    };
-    console.log(params)
+        }))
+    }
 
     const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         if (e.target.files) {
-            const file = e.target.files[0];
+            const file = e.target.files[0]
             const extension = file.name.split('.').pop()
 
             if (extension !== 'xlsx' && file.type !== 'application/vnd.ms-excel') {
@@ -53,56 +56,110 @@ export function FormularioImpostos({ trt, tda, despacho, pegadio, gris, adVal, c
             setValues(prevState => ({
                 ...prevState,
                 arquivo: file,
-            }));
+            }))
         }
-    };
+    }
 
     // Envio da requisição para impostos
-    const patchImpostos = () => {
-        const { arquivo, ...impostosData } = values;
-        
-        api.patch(`/impostos/${params}`, {
-            transportadoraId: params,
-            ...impostosData,
-        })
-        .then(res => {
-            console.log(res);
-        })
-        .catch(err => {
-            console.log('Erro: Não foi possível enviar os dados dos impostos!', err);
-        });
-    };
+    const patchImpostos = async () => {
+        try{
+            const { ...impostosData } = {
+            trt: values.trt,
+            tda: values.tda,
+            despacho: values.despacho,
+            pedagio: values.pedagio,
+            gris: values.gris,
+            adVal: values.adVal,
+            cam: values.cam
+            }
+
+            const res = await api.patch(`http://192.168.155.22:3000/impostos/${params}`, {
+                transportadoraId: params,
+                ...impostosData,
+            })
+            
+            console.log(res)
+        }
+        catch(err) {
+            console.log('Erro: Não foi possível enviar os dados dos impostos!', err)
+        }
+    }
 
     // Envio da requisição para SBA
-    const patchSba = () => {
-        const { arquivo, ...sbaData } = values;
+    const patchSba = async () => {
 
-        api.patch(`/sba/${params}`, {
-            ...sbaData,
-        })
-        .then(res => {
-            console.log(res);
-        })
-        .catch(err => {
-            console.log('Erro: Não foi possível enviar os dados do SBA!', err);
-        });
-    };
-
-    // Envio da requisição para upload do arquivo
-    const patchArquivo = () => {
-        const { arquivo } = values;
-
-        api.post(`/gobor/upload`, {
-            anexo: arquivo,
-        })
-        .then(res => {
-            console.log(res);
-        })
-        .catch(err => {
-            console.log('Erro:', err);
-        });
-    };
+        try{
+            const { ...sbaData } = {
+            prazo: values.prazo,
+            adv: values.adv,
+            kg: values.kg 
+            }
+            const res = await api.patch(`http://192.168.155.22:3000/sba/${params}`, {
+                transportadoraId: params,
+                ...sbaData,
+            })
+            console.log(res)
+        }
+        catch(err) {
+            console.log('Erro: Não foi possível enviar os dados do SBA!', err)
+        }
+    }
     
+    // Envio da requisição para upload do arquivo
+    const patchArquivo = async () => {
+        try{
+            const formData = new FormData()
+            formData.append('file', values.arquivo)
+            const res = await api.post(`http://192.168.155.22:3000/gobor/upload`, formData, {
+                headers:{
+                    "Content-Type": 'multipart/form-data'
+                }
+            })
+            console.log(res.data)
+        }
+        catch(err){
+            console.log('Erro ao fazer o upload do arquivo', err)
+        }
+    }
+
+    const sendRequests = async () =>{
+        try{
+            await Promise.all([
+                patchArquivo(),
+                patchImpostos(),
+                patchSba()
+            ])
+
+            Swal.fire({
+                icon: 'success',
+                title: 'Alterações enviadas com sucesso!',
+                text: 'deseja cadastrar uma nova generalidade?'
+            })
+        } catch(err){
+            Swal.fire({
+                icon: 'error',
+                title: 'Erro ao enviar os dados!',
+                text: 'Verifique sua conexão com a internet ou entre em contato com o suporte.'
+            })
+        }
+    }
+    
+    const handleSendData = () => {
+        if(!values.arquivo || !values.arquivo.name){
+            toast.error('Por favor, anexe um arquivo antes de enviar as alterações!', {
+                position: "top-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            })
+        }else{
+            sendRequests()
+        }
+    }
     return (
         <div>
             <ToastContainer
@@ -138,8 +195,8 @@ export function FormularioImpostos({ trt, tda, despacho, pegadio, gris, adVal, c
             <Linha 
             nomeImposto={"PEDÁGIO"} 
             infoImposto={""} 
-            valorImposto={values.pegadio ? values.pegadio: 0}
-            onChangeValue={(e: any) => handleChange('pegadio', e.target.value)} 
+            valorImposto={values.pedagio ? values.pedagio: 0}
+            onChangeValue={(e: any) => handleChange('pedagio', e.target.value)} 
             />
             <Linha 
             nomeImposto={"GRIS"} 
@@ -197,10 +254,13 @@ export function FormularioImpostos({ trt, tda, despacho, pegadio, gris, adVal, c
                     }
                 </div>
                 <div className="w-full">
-                    <button className="w-full py-1 h-fit shadow-inner bg-green-simple shadow-black-light/30 text-white rounded-sm lg:text-lg px-5 hover:scale-95 transition-all duration-200" onClick={() => {patchImpostos(); patchArquivo(); patchSba();}}>
-                        <label className='h-full text-placeholder lg:text-lg overflow-hidden cursor-pointer'>
-                            Enviar Alterações
-                        </label>
+                    <button 
+                    className="w-full py-1 h-fit shadow-inner bg-green-simple shadow-black-light/30 outline-none text-white rounded-sm lg:text-lg px-5 hover:scale-95 transition-all duration-200" 
+                    onClick={() => {handleSendData();}}
+                    >
+                    <label className='h-full text-placeholder lg:text-lg overflow-hidden cursor-pointer'>
+                        Enviar Alterações
+                    </label>
                     </button>
                 </div>
             </div>
