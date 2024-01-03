@@ -1,24 +1,25 @@
 export interface IFormularioImpostos {
     id?: number
     transportadoraId?: number
-    trt?: number | null
-    tda?: number | null
-    despacho?: number |null
-    pedagio?: number | null
-    gris?: number | null
-    adVal?: number | null
-    cam?: number | null
-    prazo?: number | null
-    adv?: number | null
-    kg?: number | null
-    params:  number | null
+    trt?: number | undefined
+    tda?: number | undefined
+    despacho?: number |undefined
+    pedagio?: number | undefined
+    gris?: number | undefined
+    adVal?: number | undefined
+    cam?: number | undefined
+    prazo?: number | undefined
+    adv?: number | undefined
+    kg?: number | undefined
+    params:  number | undefined
 }
 
 export interface ILinhaFormulario {
     nomeImposto: string,
     infoImposto: string,
-    valorImposto: number,
+    valorImposto: number | undefined,
     onChangeValue?: any
+    onValueChange?: any
 }
 
 export interface ITransportadora {

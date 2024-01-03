@@ -28,6 +28,7 @@
     "rc-dropdown": "^4.1.0",
     "rc-menu": "^9.9.2",
     "react": "^18.2.0",
+    "react-currency-input-field": "^3.6.12",
     "react-dom": "^18.2.0",
     "react-dropdown": "^1.11.0",
     "react-icons": "^4.10.1",

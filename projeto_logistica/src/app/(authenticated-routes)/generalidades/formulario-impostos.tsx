@@ -25,10 +25,23 @@ export function FormularioImpostos({ trt, tda, despacho, pedagio, gris, adVal, c
         arquivo: {} as File,
     })
 
+    const handleInputChange = (key: string, event: React.ChangeEvent<HTMLInputElement>) =>{
+        let inputValue = event.target.value;
+
+        const maxLength = 6
+        if (inputValue.length > maxLength) {
+            inputValue = inputValue.slice(0, maxLength)
+        }
+
+        event.target.value = inputValue;
+        handleChange(key, inputValue);
+    }
+
     const handleChange = (key: string, value: any) => {
-        if(value < 0){
+        if(value <0){
             value = 0
         }
+
         setValues(prevState => ({
             ...prevState,
             [key]: value,
@@ -174,65 +187,65 @@ export function FormularioImpostos({ trt, tda, despacho, pedagio, gris, adVal, c
                 pauseOnHover
                 theme="light"
             />
-            <Linha 
+            <Linha
             nomeImposto={"TRT"} 
             infoImposto={"Taxa de Restrição de Trânsito"} 
             valorImposto={values.trt ? values.trt: 0}
-            onChangeValue={(e: any) => handleChange('trt', e.target.value)} 
+            onChangeValue={(newValue: any) => handleChange('trt', newValue)} 
             />
             <Linha 
             nomeImposto={"TDA"} 
             infoImposto={"Taxa de Difícil Acesso"} 
             valorImposto={values.tda ? values.tda: 0}
-            onChangeValue={(e: any) => handleChange('tda', e.target.value)} 
+            onChangeValue={(newValue: any) => handleInputChange('tda', newValue)} 
             />
-            <Linha 
+            <Linha
             nomeImposto={"TAXA DE DESPACHO"} 
             infoImposto={""} 
             valorImposto={values.despacho ? values.despacho: 0}
-            onChangeValue={(e: any) => handleChange('despacho', e.target.value)} 
+            onChangeValue={(newValue: any) => handleChange('despacho', newValue)} 
             />
-            <Linha 
+            <Linha
             nomeImposto={"PEDÁGIO"} 
             infoImposto={""} 
             valorImposto={values.pedagio ? values.pedagio: 0}
-            onChangeValue={(e: any) => handleChange('pedagio', e.target.value)} 
+            onChangeValue={(newValue: any) => handleChange('pedagio', newValue)} 
             />
-            <Linha 
+            <Linha
             nomeImposto={"GRIS"} 
             infoImposto={"Gerenciamento de Riscos"} 
             valorImposto={values.gris ? values.gris: 0}
-            onChangeValue={(e: any) => handleChange('gris', e.target.value)} 
+            onChangeValue={(newValue: any) => handleChange('gris', newValue)} 
             />
-            <Linha 
+            <Linha
             nomeImposto={"ADVAL"} 
             infoImposto={""} 
             valorImposto={values.adVal ? values.adVal: 0}
-            onChangeValue={(e: any) => handleChange('adVal', e.target.value)} 
+            onChangeValue={(newValue: any) => handleChange('adVal', newValue)} 
             />
-            <Linha 
+            <Linha
             nomeImposto={"CAM"} 
             infoImposto={"Custo Adicional de Manuseio e Separação"} 
             valorImposto={values.cam ? values.cam: 0} 
-            onChangeValue={(e: any) => handleChange('cam', e.target.value)} 
+            onChangeValue={(newValue: any) => handleChange('cam', newValue)} 
             />
-            <Linha 
+            <Linha
             nomeImposto={"PRAZO"} 
             infoImposto={"SBA"} 
             valorImposto={values.prazo ? values.prazo: 0}
-            onChangeValue={(e: any) => handleChange('prazo', e.target.value)} 
+            onChangeValue={(newValue: any) => handleChange('prazo', newValue)} 
             />
-            <Linha 
+            <Linha
             nomeImposto={"ADV"} 
             infoImposto={"SBA"} 
             valorImposto={values.adv ? values.adv: 0}
-            onChangeValue={(e: any) => handleChange('adv', e.target.value)} 
+            onChangeValue={(newValue: any) => handleChange('adv', newValue)} 
             />
-            <Linha 
+            <Linha
             nomeImposto={"KG"} 
             infoImposto={"SBA"} 
             valorImposto={values.kg? values.kg: 0} 
-            onChangeValue={(e: any) => handleChange('kg', e.target.value)} 
+            onChangeValue={(newValue: any) => handleChange('kg', newValue)} 
             />
             
             <div className="flex flex-col lg:flex-row py-10 gap-5">
