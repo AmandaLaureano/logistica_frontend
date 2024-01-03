@@ -25,18 +25,6 @@ export function FormularioImpostos({ trt, tda, despacho, pedagio, gris, adVal, c
         arquivo: {} as File,
     })
 
-    const handleInputChange = (key: string, event: React.ChangeEvent<HTMLInputElement>) =>{
-        let inputValue = event.target.value;
-
-        const maxLength = 6
-        if (inputValue.length > maxLength) {
-            inputValue = inputValue.slice(0, maxLength)
-        }
-
-        event.target.value = inputValue;
-        handleChange(key, inputValue);
-    }
-
     const handleChange = (key: string, value: any) => {
         if(value <0){
             value = 0
@@ -91,7 +79,7 @@ export function FormularioImpostos({ trt, tda, despacho, pedagio, gris, adVal, c
                 ...impostosData,
             })
             
-            console.log(res)
+            
         }
         catch(err) {
             console.log('Erro: Não foi possível enviar os dados dos impostos!', err)
@@ -111,7 +99,7 @@ export function FormularioImpostos({ trt, tda, despacho, pedagio, gris, adVal, c
                 transportadoraId: params,
                 ...sbaData,
             })
-            console.log(res)
+            
         }
         catch(err) {
             console.log('Erro: Não foi possível enviar os dados do SBA!', err)
@@ -146,8 +134,22 @@ export function FormularioImpostos({ trt, tda, despacho, pedagio, gris, adVal, c
             Swal.fire({
                 icon: 'success',
                 title: 'Alterações enviadas com sucesso!',
-                text: 'deseja cadastrar uma nova generalidade?'
+                text: 'deseja cadastrar uma nova generalidade?',
+                showCancelButton: true,
+                confirmButtonText: 'Sim',
+                cancelButtonText: 'Não',
+                cancelButtonColor: '#D52C2C',
+                confirmButtonColor: '#509D45'
+
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    return window.location.href = '/';
+                }
+                else if(result.isDismissed) {
+                    return window.location.href = '/arquivos';
+                }
             })
+
         } catch(err){
             Swal.fire({
                 icon: 'error',
@@ -197,7 +199,7 @@ export function FormularioImpostos({ trt, tda, despacho, pedagio, gris, adVal, c
             nomeImposto={"TDA"} 
             infoImposto={"Taxa de Difícil Acesso"} 
             valorImposto={values.tda ? values.tda: 0}
-            onChangeValue={(newValue: any) => handleInputChange('tda', newValue)} 
+            onChangeValue={(newValue: any) => handleChange('tda', newValue)} 
             />
             <Linha
             nomeImposto={"TAXA DE DESPACHO"} 
