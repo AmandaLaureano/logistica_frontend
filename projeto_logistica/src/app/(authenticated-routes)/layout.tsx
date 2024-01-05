@@ -18,7 +18,7 @@ export default function RootLayout({children}: {children: React.ReactNode}){
         <div className='containerAside'>
          <Sidebar/>
         </div>
-        <div className="containerChildren mx-5">
+        <div className="containerChildren">
           {children}
         </div>
       </body>                        

@@ -60,7 +60,7 @@ export default function Sidebar(){
 
     return(
         <>
-            <nav className="grid grid-cols-2 w-screen shadow-sm shadow-black-light bg-black h-[50px] border-b-2 border-black-gray-border">
+            <nav className="grid grid-cols-2 w-screen shadow-sm shadow-black-light bg-black h-[60px] border-b-2 border-black-gray-border">
                 <div className="flex items-center" onClick={showSidebar}>
                     <VscMenu className='hover:scale-95 cursor-pointer transition-all duration-200 w-8 h-8 fill-white mx-5'/>
                 </div>

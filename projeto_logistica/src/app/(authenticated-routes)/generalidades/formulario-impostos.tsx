@@ -29,38 +29,54 @@ export function FormularioImpostos({ trt, tda, despacho, pedagio, gris, adVal, c
         if(value <0){
             value = 0
         }
-
         setValues(prevState => ({
             ...prevState,
             [key]: value,
         }))
     }
 
-    const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        if (e.target.files) {
-            const file = e.target.files[0]
-            const extension = file.name.split('.').pop()
+    const handleRemoveFile = () => {
+        setValues(prevState => ({
+            ...prevState,
+            arquivo: {} as File,
+        }))
 
-            if (extension !== 'xlsx' && file.type !== 'application/vnd.ms-excel') {
-                toast.error('Por favor, selecione um arquivo .xlsx válido!', {
-                    position: "top-right",
-                    autoClose: 3000,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true,
-                    progress: undefined,
-                    theme: "light",
-                    })
-                return
-            }
-            setValues(prevState => ({
-                ...prevState,
-                arquivo: file,
-            }))
+        const fileInput = document.getElementById('InputArquivo') as HTMLInputElement
+        if(fileInput){
+            fileInput.value = ''
         }
     }
 
+    const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        if (e.target.files) {
+            const file = e.target.files[0]
+
+            if(file){
+                const extension = file.name.split('.').pop()
+
+                if (extension !== 'xlsx' && file.type !== 'application/vnd.ms-excel') {
+                    toast.error('Por favor, selecione um arquivo .xlsx válido!', {
+                        position: "top-right",
+                        autoClose: 3000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "light",
+                        })
+                    return
+                }
+                setValues(prevState => ({
+                    ...prevState,
+                    arquivo: file,
+                }))
+                
+            }
+            
+        }
+    }
+    
     // Envio da requisição para impostos
     const patchImpostos = async () => {
         try{
@@ -78,7 +94,7 @@ export function FormularioImpostos({ trt, tda, despacho, pedagio, gris, adVal, c
                 transportadoraId: params,
                 ...impostosData,
             })
-            
+            console.log(res)
             
         }
         catch(err) {
@@ -87,7 +103,7 @@ export function FormularioImpostos({ trt, tda, despacho, pedagio, gris, adVal, c
     }
 
     // Envio da requisição para SBA
-    const patchSba = async () => {
+    const patchSba = async () => { 
 
         try{
             const { ...sbaData } = {
@@ -99,7 +115,7 @@ export function FormularioImpostos({ trt, tda, despacho, pedagio, gris, adVal, c
                 transportadoraId: params,
                 ...sbaData,
             })
-            
+            console.log(res)
         }
         catch(err) {
             console.log('Erro: Não foi possível enviar os dados do SBA!', err)
@@ -117,40 +133,50 @@ export function FormularioImpostos({ trt, tda, despacho, pedagio, gris, adVal, c
                 }
             })
             console.log(res.data)
+            
+            window.sessionStorage.setItem("fretefy", res.data.fretefy)
+            window.sessionStorage.setItem("vtex", res.data.vtex)
+
+            setTimeout(() =>{
+                window.location.href='/downloads'
+                Swal.close()
+            }, 1000)
+
+            
         }
         catch(err){
-            console.log('Erro ao fazer o upload do arquivo', err)
+            console.log('Erro ao processar arquivo', err)
+            Swal.fire({
+                icon: 'error',
+                title: 'Erro ao processar o arquivo',
+                text: 'Somente arquivos de transportadoras devem ser anexados',
+                confirmButtonText: "OK",
+                confirmButtonColor: "#509D45"
+            })
+            handleRemoveFile()
         }
     }
 
-    const sendRequests = async () =>{
+    const sendAllRequests = async () =>{
         try{
+            Swal.fire({
+                title: 'Convertendo arquivos...',
+                allowOutsideClick: false,
+                allowEscapeKey: false,
+                showConfirmButton: false,
+                willOpen: () => {
+                    Swal.showLoading();
+                },
+            })
+
             await Promise.all([
                 patchArquivo(),
                 patchImpostos(),
                 patchSba()
             ])
-
-            Swal.fire({
-                icon: 'success',
-                title: 'Alterações enviadas com sucesso!',
-                text: 'deseja cadastrar uma nova generalidade?',
-                showCancelButton: true,
-                confirmButtonText: 'Sim',
-                cancelButtonText: 'Não',
-                cancelButtonColor: '#D52C2C',
-                confirmButtonColor: '#509D45'
-
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    return window.location.href = '/';
-                }
-                else if(result.isDismissed) {
-                    return window.location.href = '/arquivos';
-                }
-            })
-
-        } catch(err){
+            
+            
+        }catch(err){
             Swal.fire({
                 icon: 'error',
                 title: 'Erro ao enviar os dados!',
@@ -159,7 +185,7 @@ export function FormularioImpostos({ trt, tda, despacho, pedagio, gris, adVal, c
         }
     }
     
-    const handleSendData = () => {
+    const handleSendFile = () => {
         if(!values.arquivo || !values.arquivo.name){
             toast.error('Por favor, anexe um arquivo antes de enviar as alterações!', {
                 position: "top-right",
@@ -172,7 +198,7 @@ export function FormularioImpostos({ trt, tda, despacho, pedagio, gris, adVal, c
                 theme: "light",
             })
         }else{
-            sendRequests()
+            sendAllRequests()
         }
     }
     return (
@@ -261,7 +287,7 @@ export function FormularioImpostos({ trt, tda, despacho, pedagio, gris, adVal, c
                                 </span>
                             </div>
                             <div className="flex justify-end my-1">
-                                <button className="" onClick={() => handleChange('arquivo', {} as File)}>
+                                <button className="" onClick={() =>  handleRemoveFile()}>
                                     <MdClose className=" hover:scale-95 duration-200 mx-2 fill-red" size={20} />
                                 </button>
                             </div>
@@ -271,9 +297,9 @@ export function FormularioImpostos({ trt, tda, despacho, pedagio, gris, adVal, c
                 <div className="w-full">
                     <button 
                     className="w-full py-1 h-fit shadow-inner bg-green-simple shadow-black-light/30 outline-none text-white rounded-sm lg:text-lg px-5 hover:scale-95 transition-all duration-200" 
-                    onClick={() => {handleSendData();}}
+                    onClick={() => {handleSendFile();}}
                     >
-                    <label className='h-full text-placeholder lg:text-lg overflow-hidden cursor-pointer'>
+                    <label className='h-full text-placeholder lg:text-lg overflow-hidden cursor-pointer font-medium'>
                         Enviar Alterações
                     </label>
                     </button>

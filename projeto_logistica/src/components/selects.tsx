@@ -65,7 +65,7 @@ export function SelectTransportadoras({ transportadoras }: any) {
                 {transportadoras.map((transportadora: any, index: number) => {
                     return (
                         <div key={transportadora.id} className="pb-2">
-                            <button className="cursor-pointer text-sm sm:text-lg ml-6" onClick={()=>{router.push(`/generalidades/${transportadora.id}`)}}>
+                            <button className="cursor-pointer text-sm sm:text-lg lg:text-xl ml-6" onClick={()=>{router.push(`/generalidades/${transportadora.id}`)}}>
                                 <span className="buttonGreenHover text-white capitalize">{transportadora.nome}</span>
                             </button>
                         </div>

@@ -6,8 +6,6 @@ import { IFormularioImpostos, ITransportadora } from "@/src/interfaces/app/gener
 import { useEffect, useState } from "react";
 import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
-import { Tooltip } from '@procore/core-react'
-import { BsFillQuestionCircleFill } from "react-icons/bs";
 
 export default function Generalidades({params}: any) {
 
@@ -32,7 +30,7 @@ export default function Generalidades({params}: any) {
                 setTransportadora(null)
             }
         };
-
+        
         fetchImpostos();
     }, [params.id]);
 
@@ -41,26 +39,23 @@ export default function Generalidades({params}: any) {
             <div className="m-3 xmd:m-5 sm:m-7">
                 <div className="w-full">
                     <div className="mb-12 w-full">
-                        <div className="w-full flex justify-center text-center  pt-10 pb-5">
-                            <LiaFileInvoiceDollarSolid className="hidden sm:flex fill-green-simple sm:h-6 sm:w-6 md:h-8 md:w-8 2xl:w-9 2xl:h-9 mx-2"/>
-                            <p className="font-medium text-xl md:text-2xl 2xl:text-3xl capitalize">Generalidades {transportadora && transportadora.nome}</p>
+                        <div className="w-full flex flex-col justify-center text-center pb-10 pt-5">
+                            <p className="font-medium text-xl md:text-2xl 2xl:text-3xl py-4 sm:py-6 capitalize">Generalidades {transportadora && transportadora.nome}</p>
+                            <h1 className="px-2 xmd:px-3 sm:px-4 text-center font-medium text-sm md:text-base lg:text-lg">
+                                Faça a alteração dos valores desejados e anexe um arquivo para o processamento
+                            </h1>
                         </div>
                         <div className="w-full h-12 border-b-2 border-gray-line">
                             <div className="flex w-full h-full text-xl my-auto">
                                 <div className="mr-3 w-6/12 flex justify-start my-auto">
-                                    <p className="flex justify-start text-sm xmd:text-base md:text-lg xl:text-xl font-medium">
+                                    <p className="flex mx-3 justify-start text-sm xmd:text-base md:text-lg xl:text-xl font-medium">
                                         Componentes
                                     </p>
                                 </div>
                                 <div className="flex justify-end ml-3 w-6/12 my-auto">
                                     <div className="">
-                                        <p className="flex j text-sm xmd:text-base md:text-lg xl:text-xl font-medium h-full items-center">Valor</p>
+                                        <p className="flex mx-3 text-sm xmd:text-base md:text-lg xl:text-xl font-medium h-full items-center">Valores</p>
                                     </div>
-                                    <Tooltip overlay="Os valores podem ser alterados!" trigger="hover">
-                                        <div className="rounded-full p-1">
-                                            <BsFillQuestionCircleFill />
-                                        </div>
-                                    </Tooltip>
                                 </div>
                             </div>
                         </div>
