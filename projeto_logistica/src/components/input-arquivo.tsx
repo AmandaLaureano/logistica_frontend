@@ -2,14 +2,14 @@
 
 interface IInputArquivo {
     placeholder?: string
-    onClick?(): void | React.MouseEventHandler<HTMLButtonElement>
     onChange(e: React.ChangeEvent<HTMLInputElement>): void
+    onDrop?(files: FileList): void;
     accept?: string
     texto: string
     
 }
 
-export function InputArquivo({ placeholder, onClick, onChange, accept, texto }: IInputArquivo) {
+export function InputArquivo({ placeholder, onChange, accept, texto, onDrop }: IInputArquivo) {
 
     return (
         <label>
@@ -19,7 +19,6 @@ export function InputArquivo({ placeholder, onClick, onChange, accept, texto }: 
                     <input 
                         type='file' 
                         placeholder={placeholder} 
-                        onClick={onClick} 
                         onChange={onChange} 
                         multiple={false} 
                         readOnly

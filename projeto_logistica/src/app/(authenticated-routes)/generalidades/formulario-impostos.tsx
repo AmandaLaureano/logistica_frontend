@@ -8,8 +8,11 @@ import { useState } from "react"
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Swal from "sweetalert2"
+import { useRouter } from "next/navigation";
 
 export function FormularioImpostos({ trt, tda, despacho, pedagio, gris, adVal, cam, prazo, adv, kg, params }: IFormularioImpostos) {
+
+    const router = useRouter()
 
     const [values, setValues] = useState({
         trt,
@@ -138,7 +141,7 @@ export function FormularioImpostos({ trt, tda, despacho, pedagio, gris, adVal, c
             window.sessionStorage.setItem("vtex", res.data.vtex)
 
             setTimeout(() =>{
-                window.location.href='/downloads'
+                router.push(`/downloads/${params}`)
                 Swal.close()
             }, 1000)
 
@@ -297,7 +300,7 @@ export function FormularioImpostos({ trt, tda, despacho, pedagio, gris, adVal, c
                 <div className="w-full">
                     <button 
                     className="w-full py-1 h-fit shadow-inner bg-green-simple shadow-black-light/30 outline-none text-white rounded-sm lg:text-lg px-5 hover:scale-95 transition-all duration-200" 
-                    onClick={() => {handleSendFile();}}
+                    onClick={() => {handleSendFile()}}
                     >
                     <label className='h-full text-placeholder lg:text-lg overflow-hidden cursor-pointer font-medium'>
                         Enviar Alterações

@@ -1,12 +1,21 @@
 'use client'
-import { ButtonDefault } from "../../../components/button";
+import { ButtonDefault } from "../../../../components/button";
 import { FaDownload } from "react-icons/fa";
+import Lottie from 'react-lottie';
+import animationData from '../../downloads/[id]/Animation - 1704735080367 (1).json'
+import { IoMdArrowRoundBack } from "react-icons/io";
+import { useState } from "react";
+import { useRouter } from "next/navigation";
+import Tooltip from '@mui/material/Tooltip';
 
-export default async function Downloads() {
+export default function Downloads({params}: any) {
+
+    const [checkAnimation, setCheckAnimation] = useState({isStopped: false, isPaused: false})
+    const router = useRouter()
 
     const getDownloadLink = (key: string) => {
         const downloadLinks = sessionStorage.getItem(key)
-        return downloadLinks
+        return downloadLinks ?? null
     }
 
     const handleDownloadClick = (key: string) => { 
@@ -24,13 +33,37 @@ export default async function Downloads() {
         }
     }
 
+    const defaultOptions = {
+        loop: false,
+        autoplay: true, 
+        animationData: animationData,
+        rendererSettings: {
+        preserveAspectRatio: 'xMidYMid slice'
+        }
+    }
+
     return(
-        <div className="px-5 2xl:px-12 mt-24 h-full">
+        <div className="px-5 2xl:px-12 my-12 h-full">
             <div className="w-full pb-12 bg-white-simple shadow-md shadow-black-gray-border rounded-md">
-                <div className="text-center p-2 xmd:p-3 sm:p-4 pt-6">
-                    <h1 className="font-medium text-2xl lg:text-3xl p-5">
-                        Os arquivos foram convertidos
-                    </h1>
+                <div className="w-full">
+                    <Tooltip disableFocusListener title="Voltar para Generalidades" placement="right-start">
+                        <button onClick={() =>{(router.push(`/generalidades/${params.id}`))}} className="focus:outline-none m-5 p-2 hover:bg-green-simple rounded-full bg-black-gray-border">
+                            <IoMdArrowRoundBack className="h-6 w-6 fill-white"/>
+                        </button>
+                    </Tooltip>
+                    
+                    <Lottie 
+                    options={defaultOptions}
+                    height={250}
+                    width={250}
+                    isStopped={checkAnimation.isStopped}
+                    isPaused={checkAnimation.isPaused}
+                    />
+                </div>
+                <div className="text-center pb-5">
+                    <p className="animate-pulse font-medium text-2xl 2xl:text-3xl p-5">
+                        Os arquivos foram processados com sucesso!
+                    </p>
                 </div>
                 <div className="flex flex-col sm:flex-row justify-center gap-5 px-7">
                     <ButtonDefault onClick={() => {handleDownloadClick('fretefy')}} background="green-simple">

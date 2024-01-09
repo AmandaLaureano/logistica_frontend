@@ -12,6 +12,7 @@ export interface IFormularioImpostos {
     adv?: number | undefined
     kg?: number | undefined
     params:  number | undefined
+    nomeTransportadora?: string
 }
 
 export interface ILinhaFormulario {

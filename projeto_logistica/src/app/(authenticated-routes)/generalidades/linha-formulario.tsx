@@ -6,7 +6,7 @@ export default function Linha({ nomeImposto, infoImposto, valorImposto, onChange
         <div className="w-full border-b-[2px] border-gray-line h-12">
             <div className="flex hover:bg-green-simple/20 transition-all duration-500 w-full h-full text-sm md:text-base my-auto">
                 <div className="w-6/12 flex justify-start items-center my-auto">
-                    <span className="flex mx-3 text-xs sm:text-sm font-medium ">
+                    <span className="flex mx-3 text-xs sm:text-sm font-bold">
                         {nomeImposto}
                     </span>
                     <span className="hidden sm:flex text-xs font-medium text-green-simple truncate">
