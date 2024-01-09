@@ -49,11 +49,20 @@ export function FormularioImpostos({ trt, tda, despacho, pedagio, gris, adVal, c
             fileInput.value = ''
         }
     }
+    
+    const handleDropFile = (files: FileList) => {
+        const droppedFile = files[0];
+        if (droppedFile) {
+            setValues(prevState => ({
+                ...prevState,
+                arquivo: droppedFile,
+            }));
+        }
+    }
 
     const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         if (e.target.files) {
             const file = e.target.files[0]
-
             if(file){
                 const extension = file.name.split('.').pop()
 
@@ -204,6 +213,8 @@ export function FormularioImpostos({ trt, tda, despacho, pedagio, gris, adVal, c
             sendAllRequests()
         }
     }
+
+
     return (
         <div>
             <ToastContainer
@@ -279,9 +290,9 @@ export function FormularioImpostos({ trt, tda, despacho, pedagio, gris, adVal, c
             onChangeValue={(newValue: any) => handleChange('kg', newValue)} 
             />
             
-            <div className="flex flex-col lg:flex-row py-10 gap-5">
+            <div className="flex flex-col py-10 gap-5">
                 <div className="w-full">
-                    <InputArquivo placeholder={"Anexar Arquivo"} texto={"Anexar Arquivo"} onChange={handleFileChange}/>
+                    <InputArquivo texto={"Arraste e solte o arquivo ou clique para selecionar"} onChange={handleFileChange} onDrop={handleDropFile}/>
                     {values.arquivo.name != undefined &&
                         <div className="flex justify-between rounded-sm shadow-inner shadow-black-light/30 my-2 bg-white">
                             <div className="truncate py-1">
@@ -297,15 +308,17 @@ export function FormularioImpostos({ trt, tda, despacho, pedagio, gris, adVal, c
                         </div>
                     }
                 </div>
-                <div className="w-full">
-                    <button 
-                    className="w-full py-1 h-fit shadow-inner bg-green-simple shadow-black-light/30 outline-none text-white rounded-sm lg:text-lg px-5 hover:scale-95 transition-all duration-200" 
-                    onClick={() => {handleSendFile()}}
-                    >
-                    <label className='h-full text-placeholder lg:text-lg overflow-hidden cursor-pointer font-medium'>
-                        Enviar Alterações
-                    </label>
-                    </button>
+                <div className="w-full flex justify-center md:justify-end">
+                    <div>
+                        <button 
+                        className="md:mx-10 px-10 sm:px-16 py-1 h-fit shadow-inner bg-green-simple shadow-black-light/30 outline-none text-white rounded-lg lg:text-lg hover:scale-95 transition-all duration-200" 
+                        onClick={() => {handleSendFile()}}
+                        >
+                            <label className='h-full text-placeholder lg:text-lg overflow-hidden cursor-pointer font-medium'>
+                                Enviar Alterações
+                            </label>
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>

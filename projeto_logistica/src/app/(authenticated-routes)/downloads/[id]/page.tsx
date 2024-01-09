@@ -2,7 +2,7 @@
 import { ButtonDefault } from "../../../../components/button";
 import { FaDownload } from "react-icons/fa";
 import Lottie from 'react-lottie';
-import animationData from '../../downloads/[id]/Animation - 1704735080367 (1).json'
+import animationData from '../../downloads/[id]/Animation - 1704735080367.json'
 import { IoMdArrowRoundBack } from "react-icons/io";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
@@ -51,7 +51,6 @@ export default function Downloads({params}: any) {
                             <IoMdArrowRoundBack className="h-6 w-6 fill-white"/>
                         </button>
                     </Tooltip>
-                    
                     <Lottie 
                     options={defaultOptions}
                     height={250}

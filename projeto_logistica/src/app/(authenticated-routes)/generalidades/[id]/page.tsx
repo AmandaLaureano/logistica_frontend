@@ -39,21 +39,21 @@ export default function Generalidades({params}: any) {
                 <div className="w-full">
                     <div className="mb-12 w-full">
                         <div className="w-full flex flex-col justify-center text-center pb-10 pt-5">
-                            <p className="font-medium text-xl md:text-2xl lg:text-3xl py-4 sm:py-6 capitalize">Generalidades {transportadora && transportadora.nome}</p>
-                            <h1 className="px-2 xmd:px-3 sm:px-4 text-center font-medium text-sm md:text-base lg:text-lg">
+                            <p className="font-medium text-xl md:text-2xl 2xl:text-3xl py-4 sm:py-6 capitalize">Generalidades {transportadora && transportadora.nome}</p>
+                            <h1 className="px-2 xmd:px-3 sm:px-4 text-center font-medium text-sm lg:text-base">
                                 Para o processamento dos arquivos, é <span className="font-bold text-green-simple">OPCIONAL</span> a edição de valores e <span className="font-bold text-green-simple">OBRIGATÓRIO</span>  o anexo de um arquivo de transportadora válido
                             </h1>
                         </div>
-                        <div className="w-full h-12 border-b-2 border-gray-line">
+                        <div className="w-full h-12 border-b border-green-simple/20">
                             <div className="flex w-full h-full text-xl my-auto">
                                 <div className="mr-3 w-6/12 flex justify-start my-auto">
-                                    <p className="font-bold flex mx-3 justify-start text-sm xmd:text-base md:text-lg xl:text-xl">
+                                    <p className="font-medium flex mx-3 justify-start text-sm xmd:text-base md:text-lg xl:text-xl">
                                         Componentes
                                     </p>
                                 </div>
                                 <div className="flex justify-end ml-3 w-6/12 my-auto">
                                     <div className="">
-                                        <p className="font-bold flex mx-3 text-sm xmd:text-base md:text-lg xl:text-xl h-full items-center">Valores</p>
+                                        <p className="font-medium flex mx-3 text-sm xmd:text-base md:text-lg xl:text-xl h-full items-center">Valores</p>
                                     </div>
                                 </div>
                             </div>

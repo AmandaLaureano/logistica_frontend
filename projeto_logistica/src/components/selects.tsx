@@ -41,7 +41,7 @@ export function SelectTransportadoras({ transportadoras }: any) {
             <button className="text-white mx-3 xmd:mx-6 py-2" onClick={() => setList(!list)}>
                 <strong className="xl:text-2xl">
                     <div className="flex justify-between items-center font-normal">
-                        <span className="py-1 font-medium  text-sm sm:text-lg xl:text-xl">
+                        <span className="py-1 font-medium text-sm sm:text-lg lg:text-xl 2xl:text-2xl">
                             Transportadoras
                         </span>
                         <div className="text-white ml-3">
@@ -65,8 +65,8 @@ export function SelectTransportadoras({ transportadoras }: any) {
                 {transportadoras.map((transportadora: any, index: number) => {
                     return (
                         <div key={transportadora.id} className="pb-2">
-                            <button className="cursor-pointer text-sm sm:text-lg lg:text-xl ml-6" onClick={()=>{router.push(`/generalidades/${transportadora.id}`)}}>
-                                <span className="buttonGreenHover text-white capitalize">{transportadora.nome}</span>
+                            <button className="cursor-pointer text-sm sm:text-lg 2xl:text-xl ml-6" onClick={()=>{router.push(`/generalidades/${transportadora.id}`)}}>
+                                <span className="hover:text-green-simple transition-all duration-300 text-white capitalize">{transportadora.nome}</span>
                             </button>
                         </div>
                     )

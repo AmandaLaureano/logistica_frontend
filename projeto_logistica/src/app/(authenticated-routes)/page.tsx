@@ -17,7 +17,7 @@ export default async function Dashboard() {
         <div className="px-5 sm:px-10 2xl:px-12 mt-24 h-full">
             <div className="w-full pb-12 bg-white-simple shadow-md shadow-black-gray-border rounded-md px-3 xmd:px-5">
                 <div className="flex justify-center flex-col pt-5">
-                    <p className="font-medium text-xl xmd:text-2xl md:text-3xl 2xl:text-4xl text-center sm:p-4 py-4 sm:py-6">
+                    <p className="font-medium text-xl md:text-2xl 2xl:text-3xl text-center sm:p-4 py-4 sm:py-6">
                         Processar arquivos de transportadoras
                     </p>
                     <h1 className="px-2 xmd:px-3 sm:px-4 text-center font-medium text-sm md:text-base 2xl:text-lg">

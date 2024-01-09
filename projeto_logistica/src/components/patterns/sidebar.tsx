@@ -22,11 +22,11 @@ export default function Sidebar(){
 
     function mudaCorItemsSidebar(link: string){
         if(link == '/'){
-            return 'bg-gray'
+            return 'bg-green-simple'
         }else if (pathname.includes(link)){
             return 'shadow-inner shadow-white/50'
         }else {
-            return 'bg-gray'
+            return 'bg-green-simple'
         }
     }
 
@@ -82,7 +82,7 @@ export default function Sidebar(){
                             <div key={item.texto + index}>
                                 {item.href && (
                                     <Link href={item.href ?? ''}>
-                                        <div className={`rounded-md hover:scale-95 transition-all duration-200 p-5 hover:shadow-inner hover:shadow-white/50 ${mudaCorItemsSidebar(item.href)} font-medium flex justify-between items-center text-white`}>
+                                        <div className={`rounded-md hover:scale-95 transition-all duration-200 py-3 px-6 hover:bg-green-simple ${mudaCorItemsSidebar(item.href)} font-medium flex justify-between items-center text-white`}>
                                             {item.texto}
                                             <span>{trocaIcone(item.icon)}</span>
                                         </div>
