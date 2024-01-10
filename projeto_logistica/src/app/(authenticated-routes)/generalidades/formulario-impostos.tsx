@@ -1,14 +1,16 @@
 'use client'
-import { InputArquivo } from "@/src/components/input-arquivo"
+import { DragAndDrop } from "@/src/components/drag-and-drop"
 import Linha from "./linha-formulario"
-import { MdClose } from "react-icons/md"
 import { api } from "@/src/services/api"
 import { IFormularioImpostos } from "../../../interfaces/app/generalidades"
 import { useState } from "react"
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 import Swal from "sweetalert2"
-import { useRouter } from "next/navigation";
+import { useRouter } from "next/navigation"
+import { AiOutlinePercentage } from "react-icons/ai"
+import { MdAttachMoney } from "react-icons/md"
+import { TbCalendarTime } from "react-icons/tb"
 
 export function FormularioImpostos({ trt, tda, despacho, pedagio, gris, adVal, cam, prazo, adv, kg, params }: IFormularioImpostos) {
 
@@ -43,8 +45,7 @@ export function FormularioImpostos({ trt, tda, despacho, pedagio, gris, adVal, c
             ...prevState,
             arquivo: {} as File,
         }))
-
-        const fileInput = document.getElementById('InputArquivo') as HTMLInputElement
+        const fileInput = document.getElementById('drag-and-drop') as HTMLInputElement
         if(fileInput){
             fileInput.value = ''
         }
@@ -208,12 +209,12 @@ export function FormularioImpostos({ trt, tda, despacho, pedagio, gris, adVal, c
                 draggable: true,
                 progress: undefined,
                 theme: "light",
+                
             })
-        }else{
+        }else{ 
             sendAllRequests()
         }
     }
-
 
     return (
         <div>
@@ -228,90 +229,106 @@ export function FormularioImpostos({ trt, tda, despacho, pedagio, gris, adVal, c
                 draggable
                 pauseOnHover
                 theme="light"
+                toastClassName="mx-5 sm:mx-0"
             />
             <Linha
             nomeImposto={"TRT"} 
             infoImposto={"Taxa de Restrição de Trânsito"} 
-            valorImposto={values.trt ? values.trt: 0}
+            valorImposto={values.trt}
             onChangeValue={(newValue: any) => handleChange('trt', newValue)} 
-            />
+            >
+                <AiOutlinePercentage className="w-5 h-5 fill-black/60"/>
+            </Linha>
+
             <Linha 
             nomeImposto={"TDA"} 
             infoImposto={"Taxa de Difícil Acesso"} 
-            valorImposto={values.tda ? values.tda: 0}
-            onChangeValue={(newValue: any) => handleChange('tda', newValue)} 
-            />
+            valorImposto={values.tda}
+            onChangeValue={(newValue: any) => handleChange('tda', newValue)}
+            >
+                <AiOutlinePercentage className="w-5 h-5 fill-black/60"/> 
+            </Linha>
+
             <Linha
             nomeImposto={"TAXA DE DESPACHO"} 
             infoImposto={""} 
-            valorImposto={values.despacho ? values.despacho: 0}
-            onChangeValue={(newValue: any) => handleChange('despacho', newValue)} 
-            />
+            valorImposto={values.despacho}
+            onChangeValue={(newValue: any) => handleChange('despacho', newValue)}
+            >
+                <MdAttachMoney className="w-5 h-5 fill-green-simple"/> 
+            </Linha>
+
             <Linha
             nomeImposto={"PEDÁGIO"} 
             infoImposto={""} 
-            valorImposto={values.pedagio ? values.pedagio: 0}
-            onChangeValue={(newValue: any) => handleChange('pedagio', newValue)} 
-            />
+            valorImposto={values.pedagio}
+            onChangeValue={(newValue: any) => handleChange('pedagio', newValue)}
+            >
+                <MdAttachMoney className="w-5 h-5 fill-green-simple"/> 
+            </Linha>
+
             <Linha
             nomeImposto={"GRIS"} 
             infoImposto={"Gerenciamento de Riscos"} 
-            valorImposto={values.gris ? values.gris: 0}
-            onChangeValue={(newValue: any) => handleChange('gris', newValue)} 
-            />
+            valorImposto={values.gris}
+            onChangeValue={(newValue: any) => handleChange('gris', newValue)}
+            >
+                <AiOutlinePercentage className="w-5 h-5 fill-black/60"/> 
+            </Linha>
+
             <Linha
             nomeImposto={"ADVAL"} 
             infoImposto={""} 
-            valorImposto={values.adVal ? values.adVal: 0}
-            onChangeValue={(newValue: any) => handleChange('adVal', newValue)} 
-            />
+            valorImposto={values.adVal}
+            onChangeValue={(newValue: any) => handleChange('adVal', newValue)}
+            >
+                <AiOutlinePercentage className="w-5 h-5 fill-black/60"/> 
+            </Linha>
+
             <Linha
             nomeImposto={"CAM"} 
             infoImposto={"Custo Adicional de Manuseio e Separação"} 
-            valorImposto={values.cam ? values.cam: 0} 
+            valorImposto={values.cam}
             onChangeValue={(newValue: any) => handleChange('cam', newValue)} 
-            />
+            >
+                <AiOutlinePercentage className="w-5 h-5 fill-black/60"/>
+            </Linha>
+
             <Linha
             nomeImposto={"PRAZO"} 
             infoImposto={"SBA"} 
-            valorImposto={values.prazo ? values.prazo: 0}
+            valorImposto={values.prazo}
             onChangeValue={(newValue: any) => handleChange('prazo', newValue)} 
-            />
+            >
+                <TbCalendarTime className="w-5 h-5 stroke-green-simple" />
+            </Linha>
+
             <Linha
             nomeImposto={"ADV"} 
             infoImposto={"SBA"} 
-            valorImposto={values.adv ? values.adv: 0}
+            valorImposto={values.adv}
             onChangeValue={(newValue: any) => handleChange('adv', newValue)} 
-            />
+            >
+                <AiOutlinePercentage className="w-5 h-5 fill-black/60"/>
+            </Linha>
+
             <Linha
             nomeImposto={"KG"} 
             infoImposto={"SBA"} 
-            valorImposto={values.kg? values.kg: 0} 
+            valorImposto={values.kg}
             onChangeValue={(newValue: any) => handleChange('kg', newValue)} 
-            />
+            >
+                <AiOutlinePercentage className="w-5 h-5 fill-black/60"/>
+            </Linha>
             
             <div className="flex flex-col py-10 gap-5">
                 <div className="w-full">
-                    <InputArquivo texto={"Arraste e solte o arquivo ou clique para selecionar"} onChange={handleFileChange} onDrop={handleDropFile}/>
-                    {values.arquivo.name != undefined &&
-                        <div className="flex justify-between rounded-sm shadow-inner shadow-black-light/30 my-2 bg-white">
-                            <div className="truncate py-1">
-                                <span className="text-sm font-medium mx-2">
-                                    {values.arquivo.name}
-                                </span>
-                            </div>
-                            <div className="flex justify-end my-1">
-                                <button className="" onClick={() =>  handleRemoveFile()}>
-                                    <MdClose className=" hover:scale-95 duration-200 mx-2 fill-red" size={20} />
-                                </button>
-                            </div>
-                        </div>
-                    }
+                    <DragAndDrop onClick={handleRemoveFile} arquivo={values.arquivo} texto={values.arquivo.name !== undefined ? values.arquivo.name: 'Arraste e solte o arquivo ou clique para selecionar'} onChange={handleFileChange} onDrop={handleDropFile}/>
                 </div>
-                <div className="w-full flex justify-center md:justify-end">
+                <div className="w-full flex justify-center">
                     <div>
                         <button 
-                        className="md:mx-10 px-10 sm:px-16 py-1 h-fit shadow-inner bg-green-simple shadow-black-light/30 outline-none text-white rounded-lg lg:text-lg hover:scale-95 transition-all duration-200" 
+                        className="md:mx-10 px-5 xmd:px-10 sm:px-16 py-1 h-fit shadow-inner bg-green-simple shadow-black-light/30 outline-none text-white rounded-sm lg:text-lg hover:scale-95 transition-all duration-200" 
                         onClick={() => {handleSendFile()}}
                         >
                             <label className='h-full text-placeholder lg:text-lg overflow-hidden cursor-pointer font-medium'>

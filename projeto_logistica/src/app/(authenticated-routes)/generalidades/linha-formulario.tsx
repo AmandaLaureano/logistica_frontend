@@ -1,6 +1,6 @@
 import { ILinhaFormulario } from "@/src/interfaces/app/generalidades";
 
-export default function Linha({ nomeImposto, infoImposto, valorImposto, onChangeValue}: ILinhaFormulario,) {
+export default function Linha({ nomeImposto, infoImposto, valorImposto, onChangeValue, children}: ILinhaFormulario,) {
 
     return (
         <div className="w-full border-b border-green-simple/20 h-12">
@@ -14,12 +14,19 @@ export default function Linha({ nomeImposto, infoImposto, valorImposto, onChange
                     </span>
                 </div>
                 <div className="flex justify-end w-6/12 my-1 space-x-2 sm:space-x-10 mx-2">
-                    <input
-                    type="number"
-                    className="shadow-inner text-center shadow-black-light/30 text-sm lg:text-lg bg-slate-100 w-14 xmd:w-20 p-2 my-1 xl:m-0 rounded-md outline-none cursor-pointer"
-                    onChange={(e) => onChangeValue(e.target.value)}
-                    value={valorImposto}
-                    />
+                    <div className="flex items-stretch bg-white-normal rounded-md">
+                        <span className="flex items-center ml-2">
+                            {children}
+                        </span>
+                        <input
+                            placeholder="0"
+                            type="number"
+                            className="outline-none w-16 flex text-center mx-1 cursor-pointer bg-white-normal"
+                            onChange={(e) => onChangeValue(e.target.value)}
+                            value={valorImposto}
+                        >
+                        </input>
+                    </div>
                 </div>
             </div>
         </div>

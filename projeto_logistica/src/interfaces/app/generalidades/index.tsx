@@ -21,6 +21,7 @@ export interface ILinhaFormulario {
     valorImposto: number | undefined,
     onChangeValue?: any
     onValueChange?: any
+    children?: React.ReactNode
 }
 
 export interface ITransportadora {
