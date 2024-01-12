@@ -11,6 +11,7 @@ import { useRouter } from "next/navigation"
 import { AiOutlinePercentage } from "react-icons/ai"
 import { MdAttachMoney } from "react-icons/md"
 import { TbCalendarTime } from "react-icons/tb"
+import Tooltip from '@mui/material/Tooltip';
 
 export function FormularioImpostos({ trt, tda, despacho, pedagio, gris, adVal, cam, prazo, adv, kg, params }: IFormularioImpostos) {
 
@@ -31,9 +32,7 @@ export function FormularioImpostos({ trt, tda, despacho, pedagio, gris, adVal, c
     })
 
     const handleChange = (key: string, value: any) => {
-        if(value <0){
-            value = 0
-        }
+        
         setValues(prevState => ({
             ...prevState,
             [key]: value,
@@ -153,7 +152,7 @@ export function FormularioImpostos({ trt, tda, despacho, pedagio, gris, adVal, c
             setTimeout(() =>{
                 router.push(`/downloads/${params}`)
                 Swal.close()
-            }, 1000)
+            }, 2000)
 
             
         }
@@ -235,90 +234,150 @@ export function FormularioImpostos({ trt, tda, despacho, pedagio, gris, adVal, c
             nomeImposto={"TRT"} 
             infoImposto={"Taxa de Restrição de Trânsito"} 
             valorImposto={values.trt}
-            onChangeValue={(newValue: any) => handleChange('trt', newValue)} 
-            >
-                <AiOutlinePercentage className="w-5 h-5 fill-black/60"/>
+            onChange={(newValue: any) => handleChange('trt', newValue)}
+            mask={'reais'}
+            placeholder="0.00" 
+            >   
+                <Tooltip title="Imposto em reais" placement="top">
+                    <button disabled={true}>
+                        <MdAttachMoney className="w-5 h-5 fill-green-simple"/> 
+                    </button>
+                </Tooltip>
             </Linha>
 
             <Linha 
             nomeImposto={"TDA"} 
             infoImposto={"Taxa de Difícil Acesso"} 
             valorImposto={values.tda}
-            onChangeValue={(newValue: any) => handleChange('tda', newValue)}
+            onChange={(newValue: any) => handleChange('tda', newValue)}
+            mask={'reais'}
+            placeholder="0.00"
             >
-                <AiOutlinePercentage className="w-5 h-5 fill-black/60"/> 
+                <Tooltip title="Imposto em reais" placement="top">
+                    <button disabled={true}>
+                        <MdAttachMoney className="w-5 h-5 fill-green-simple"/> 
+                    </button>
+                </Tooltip>      
             </Linha>
 
             <Linha
             nomeImposto={"TAXA DE DESPACHO"} 
             infoImposto={""} 
             valorImposto={values.despacho}
-            onChangeValue={(newValue: any) => handleChange('despacho', newValue)}
+            mask={'reais'}
+            placeholder="0.00"
+            onChange={(newValue: any) => handleChange('despacho', newValue)}
             >
-                <MdAttachMoney className="w-5 h-5 fill-green-simple"/> 
+                <Tooltip title="Imposto em reais" placement="top">
+                    <button disabled={true}>
+                        <MdAttachMoney className="w-5 h-5 fill-green-simple"/> 
+                    </button>
+                </Tooltip>
             </Linha>
 
             <Linha
             nomeImposto={"PEDÁGIO"} 
             infoImposto={""} 
             valorImposto={values.pedagio}
-            onChangeValue={(newValue: any) => handleChange('pedagio', newValue)}
+            onChange={(newValue: any) => handleChange('pedagio', newValue)}
+            mask={'reais'}
+            placeholder="0.00"
             >
-                <MdAttachMoney className="w-5 h-5 fill-green-simple"/> 
+                <Tooltip title="Imposto em reais" placement="top">
+                    <button disabled={true}>
+                        <MdAttachMoney className="w-5 h-5 fill-green-simple"/> 
+                    </button>
+                </Tooltip> 
             </Linha>
 
             <Linha
             nomeImposto={"GRIS"} 
             infoImposto={"Gerenciamento de Riscos"} 
             valorImposto={values.gris}
-            onChangeValue={(newValue: any) => handleChange('gris', newValue)}
+            onChange={(newValue: any) => handleChange('gris', newValue)}
+            mask={'porcentagem'}
+            placeholder="0"
             >
-                <AiOutlinePercentage className="w-5 h-5 fill-black/60"/> 
+                <Tooltip title="Imposto em porcentagem" placement="top">
+                    <button disabled={true}>
+                        <AiOutlinePercentage className="w-5 h-5 fill-black/60"/>
+                    </button>
+                </Tooltip> 
             </Linha>
 
             <Linha
             nomeImposto={"ADVAL"} 
             infoImposto={""} 
             valorImposto={values.adVal}
-            onChangeValue={(newValue: any) => handleChange('adVal', newValue)}
+            onChange={(newValue: any) => handleChange('adVal', newValue)}
+            mask={'porcentagem'}
+            placeholder="0"
             >
-                <AiOutlinePercentage className="w-5 h-5 fill-black/60"/> 
+                <Tooltip title="Imposto em porcentagem" placement="top">
+                    <button disabled={true}>
+                        <AiOutlinePercentage className="w-5 h-5 fill-black/60"/>
+                    </button>
+                </Tooltip> 
             </Linha>
 
             <Linha
             nomeImposto={"CAM"} 
             infoImposto={"Custo Adicional de Manuseio e Separação"} 
             valorImposto={values.cam}
-            onChangeValue={(newValue: any) => handleChange('cam', newValue)} 
+            onChange={(newValue: any) => handleChange('cam', newValue)}
+            mask={'porcentagem'}
+            placeholder="0" 
             >
-                <AiOutlinePercentage className="w-5 h-5 fill-black/60"/>
+                <Tooltip title="Imposto em porcentagem" placement="top">
+                    <button disabled={true}>
+                        <AiOutlinePercentage className="w-5 h-5 fill-black/60"/>
+                    </button>
+                </Tooltip>
             </Linha>
 
             <Linha
             nomeImposto={"PRAZO"} 
             infoImposto={"SBA"} 
             valorImposto={values.prazo}
-            onChangeValue={(newValue: any) => handleChange('prazo', newValue)} 
+            onChange={(newValue: any) => handleChange('prazo', newValue)} 
+            mask={'porcentagem'}
+            placeholder="0"
             >
-                <TbCalendarTime className="w-5 h-5 stroke-green-simple" />
+                <Tooltip title="Prazo SBA em dias" placement="top">
+                    <button disabled={true}>
+                        <TbCalendarTime className="w-5 h-5 stroke-green-simple" />
+                    </button>
+                </Tooltip>
             </Linha>
 
             <Linha
             nomeImposto={"ADV"} 
             infoImposto={"SBA"} 
             valorImposto={values.adv}
-            onChangeValue={(newValue: any) => handleChange('adv', newValue)} 
+            onChange={(newValue: any) => handleChange('adv', newValue)}
+            mask={'porcentagem'}
+            placeholder="0" 
             >
-                <AiOutlinePercentage className="w-5 h-5 fill-black/60"/>
+                <Tooltip title="Imposto SBA em porcentagem" placement="top">
+                    <button disabled={true}>
+                        <AiOutlinePercentage className="w-5 h-5 fill-black/60"/>
+                    </button>
+                </Tooltip>
             </Linha>
 
             <Linha
             nomeImposto={"KG"} 
             infoImposto={"SBA"} 
             valorImposto={values.kg}
-            onChangeValue={(newValue: any) => handleChange('kg', newValue)} 
+            onChange={(newValue: any) => handleChange('kg', newValue)}
+            mask={'reais'}
+            placeholder="0.00" 
             >
-                <AiOutlinePercentage className="w-5 h-5 fill-black/60"/>
+                <Tooltip title="Imposto em reais" placement="top">
+                    <button disabled={true}>
+                        <MdAttachMoney className="w-5 h-5 fill-green-simple"/> 
+                    </button>
+                </Tooltip>
             </Linha>
             
             <div className="flex flex-col py-10 gap-5">

@@ -1,27 +1,27 @@
 export interface IFormularioImpostos {
-    id?: number
-    transportadoraId?: number
-    trt?: number | undefined
-    tda?: number | undefined
-    despacho?: number |undefined
-    pedagio?: number | undefined
-    gris?: number | undefined
-    adVal?: number | undefined
-    cam?: number | undefined
-    prazo?: number | undefined
-    adv?: number | undefined
-    kg?: number | undefined
-    params:  number | undefined
-    nomeTransportadora?: string
+    id: number
+    transportadoraId: number
+    trt: number 
+    tda: number 
+    despacho: number 
+    pedagio: number 
+    gris: number 
+    adVal: number 
+    cam: number 
+    prazo: number 
+    adv: number 
+    kg: number 
+    params:  number
 }
 
 export interface ILinhaFormulario {
     nomeImposto: string,
     infoImposto: string,
-    valorImposto: number | undefined,
-    onChangeValue?: any
-    onValueChange?: any
-    children?: React.ReactNode
+    valorImposto: number,
+    onChange?: any,
+    children?: React.ReactNode,
+    mask: string,
+    placeholder: string
 }
 
 export interface ITransportadora {

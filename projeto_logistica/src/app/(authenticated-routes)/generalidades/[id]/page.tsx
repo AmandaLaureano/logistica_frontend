@@ -34,52 +34,53 @@ export default function Generalidades({params}: any) {
     }, [params.id]);
 
     return (
-        <div className="bg-white-simple rounded-sm shadow-md shadow-black-gray-border mt-12 mx-3 xmd:mx-5 md:mx-24">
-            <div className="m-3 xmd:m-5 sm:m-7">
-                <div className="w-full">
-                    <div className="mb-12 w-full">
-                        <div className="w-full flex flex-col justify-center text-center pb-10 pt-5">
+        <div className="grid">
+            <div className="bg-white-simple justify-self-center rounded-sm shadow-md shadow-black-gray-border my-12 w-full lg:w-2/3">
+                <div className="m-3 xmd:m-5 sm:m-7">
+                    <div className="mb-12">
+                        <div className="flex flex-col justify-center text-center pb-10 pt-5">
                             <p className="font-medium text-xl md:text-2xl 2xl:text-3xl py-4 sm:py-6 capitalize">Generalidades {transportadora && transportadora.nome}</p>
                             <h1 className="px-2 xmd:px-3 sm:px-4 text-center font-medium text-sm lg:text-base">
                                 Para o processamento dos arquivos, é <span className="font-bold text-green-simple">OPCIONAL</span> a edição de valores e <span className="font-bold text-green-simple">OBRIGATÓRIO</span>  o anexo de um arquivo de transportadora válido
                             </h1>
                         </div>
-                        <div className="w-full h-12 border-b border-green-simple/20">
-                            <div className="flex w-full h-full text-xl my-auto">
-                                <div className="mr-3 w-6/12 flex justify-start my-auto">
-                                    <p className="font-medium flex mx-3 justify-start text-sm xmd:text-base md:text-lg xl:text-xl">
-                                        Componentes
-                                    </p>
-                                </div>
-                                <div className="flex justify-end ml-3 w-6/12 my-auto">
-                                    <div className="">
-                                        <p className="font-medium flex mx-3 text-sm xmd:text-base md:text-lg xl:text-xl h-full items-center">Valores</p>
+                        <div className=" m-auto">
+                            <div className="w-full h-12 border-b border-green-simple/20">
+                                <div className="flex w-full h-full text-xl my-auto">
+                                    <div className="mr-3 w-6/12 flex justify-start my-auto">
+                                        <p className="font-medium flex justify-start text-sm xmd:text-base md:text-lg xl:text-xl">
+                                            Componentes
+                                        </p>
+                                    </div>
+                                    <div className="flex justify-end ml-3 w-6/12 my-auto">
+                                        <div className="">
+                                            <p className="font-medium flex mx-3 text-sm xmd:text-base md:text-lg xl:text-xl h-full items-center">Valores</p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
+                            {impostos && impostosSBA ? (
+                                <div className="">
+                                    <FormularioImpostos
+                                        trt={impostos.trt}
+                                        tda={impostos.tda}
+                                        despacho={impostos.despacho}
+                                        pedagio={impostos.pedagio}
+                                        gris={impostos.gris}
+                                        adVal={impostos.adVal}
+                                        cam={impostos.cam}
+                                        prazo={impostosSBA.prazo}
+                                        adv={impostosSBA.adv}
+                                        kg={impostosSBA.kg}
+                                        params={params.id} id={0} transportadoraId={0}                                    
+                                    />
+                                </div>
+                            ): (
+                                <div className="pt-10 pb-10 animate-pulse">
+                                    <Skeleton className="h-12 m-2" baseColor="#CCCCCC" enableAnimation={false} count={6}/>
+                                </div>
+                            )}
                         </div>
-                        {impostos && impostosSBA ? (
-                            <div className="">
-                                <FormularioImpostos
-                                    trt={impostos.trt}
-                                    tda={impostos.tda}
-                                    despacho={impostos.despacho}
-                                    pedagio={impostos.pedagio}
-                                    gris={impostos.gris}
-                                    adVal={impostos.adVal}
-                                    cam={impostos.cam}
-                                    prazo={impostosSBA.prazo}
-                                    adv={impostosSBA.adv}
-                                    kg={impostosSBA.kg}
-                                    params={params.id}
-                                    nomeTransportadora={transportadora?.nome}
-                                />
-                            </div>
-                        ): (
-                            <div className="pt-10 pb-10 animate-pulse">
-                                <Skeleton className="h-12 m-2" baseColor="#CCCCCC" enableAnimation={false} count={6}/>
-                            </div>
-                        )}
                     </div>
                 </div>
             </div>
