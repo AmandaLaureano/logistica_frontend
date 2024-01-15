@@ -8,7 +8,7 @@ const montserrat = Montserrat({
 })
 
 export const metadata = {
-  title: 'STP',
+  title: 'Sincronizador de transportadoras',
 }
 
 export default function RootLayout({children}: {children: React.ReactNode}){
@@ -16,7 +16,7 @@ export default function RootLayout({children}: {children: React.ReactNode}){
     <html lang="pt-BR">
       <body className={montserrat.className}>
         <div className='containerAside'>
-         <Sidebar/>
+          <Sidebar/>
         </div>
         <div className="containerChildren">
           {children}

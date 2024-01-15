@@ -151,9 +151,7 @@ export function FormularioImpostos({ trt, tda, despacho, pedagio, gris, adVal, c
 
             setTimeout(() =>{
                 router.push(`/downloads/${params}`)
-                Swal.close()
             }, 2000)
-
             
         }
         catch(err){
@@ -161,7 +159,7 @@ export function FormularioImpostos({ trt, tda, despacho, pedagio, gris, adVal, c
             Swal.fire({
                 icon: 'error',
                 title: 'Erro ao processar o arquivo',
-                text: 'Somente arquivos de transportadoras devem ser anexados',
+                text: 'Somente arquivos da transportadora correspondente devem ser anexados',
                 confirmButtonText: "OK",
                 confirmButtonColor: "#509D45"
             })
@@ -186,8 +184,8 @@ export function FormularioImpostos({ trt, tda, despacho, pedagio, gris, adVal, c
                 patchImpostos(),
                 patchSba()
             ])
-            
-            
+
+            Swal.close()
         }catch(err){
             Swal.fire({
                 icon: 'error',
@@ -238,8 +236,8 @@ export function FormularioImpostos({ trt, tda, despacho, pedagio, gris, adVal, c
             mask={'reais'}
             placeholder="0.00" 
             >   
-                <Tooltip title="Imposto em reais" placement="top">
-                    <button disabled={true}>
+                <Tooltip title="Imposto em reais" placement="top" arrow>
+                    <button>
                         <MdAttachMoney className="w-5 h-5 fill-green-simple"/> 
                     </button>
                 </Tooltip>
@@ -253,8 +251,8 @@ export function FormularioImpostos({ trt, tda, despacho, pedagio, gris, adVal, c
             mask={'reais'}
             placeholder="0.00"
             >
-                <Tooltip title="Imposto em reais" placement="top">
-                    <button disabled={true}>
+                <Tooltip title="Imposto em reais" placement="top" arrow>
+                    <button>
                         <MdAttachMoney className="w-5 h-5 fill-green-simple"/> 
                     </button>
                 </Tooltip>      
@@ -268,8 +266,8 @@ export function FormularioImpostos({ trt, tda, despacho, pedagio, gris, adVal, c
             placeholder="0.00"
             onChange={(newValue: any) => handleChange('despacho', newValue)}
             >
-                <Tooltip title="Imposto em reais" placement="top">
-                    <button disabled={true}>
+                <Tooltip title="Imposto em reais" placement="top" arrow>
+                    <button>
                         <MdAttachMoney className="w-5 h-5 fill-green-simple"/> 
                     </button>
                 </Tooltip>
@@ -283,8 +281,8 @@ export function FormularioImpostos({ trt, tda, despacho, pedagio, gris, adVal, c
             mask={'reais'}
             placeholder="0.00"
             >
-                <Tooltip title="Imposto em reais" placement="top">
-                    <button disabled={true}>
+                <Tooltip title="Imposto em reais" placement="top" arrow>
+                    <button>
                         <MdAttachMoney className="w-5 h-5 fill-green-simple"/> 
                     </button>
                 </Tooltip> 
@@ -298,8 +296,8 @@ export function FormularioImpostos({ trt, tda, despacho, pedagio, gris, adVal, c
             mask={'porcentagem'}
             placeholder="0"
             >
-                <Tooltip title="Imposto em porcentagem" placement="top">
-                    <button disabled={true}>
+                <Tooltip title="Imposto em porcentagem" placement="top" arrow>
+                    <button>
                         <AiOutlinePercentage className="w-5 h-5 fill-black/60"/>
                     </button>
                 </Tooltip> 
@@ -313,8 +311,8 @@ export function FormularioImpostos({ trt, tda, despacho, pedagio, gris, adVal, c
             mask={'porcentagem'}
             placeholder="0"
             >
-                <Tooltip title="Imposto em porcentagem" placement="top">
-                    <button disabled={true}>
+                <Tooltip title="Imposto em porcentagem" placement="top" arrow>
+                    <button>
                         <AiOutlinePercentage className="w-5 h-5 fill-black/60"/>
                     </button>
                 </Tooltip> 
@@ -328,8 +326,8 @@ export function FormularioImpostos({ trt, tda, despacho, pedagio, gris, adVal, c
             mask={'porcentagem'}
             placeholder="0" 
             >
-                <Tooltip title="Imposto em porcentagem" placement="top">
-                    <button disabled={true}>
+                <Tooltip title="Imposto em porcentagem" placement="top" arrow>
+                    <button>
                         <AiOutlinePercentage className="w-5 h-5 fill-black/60"/>
                     </button>
                 </Tooltip>
@@ -343,8 +341,8 @@ export function FormularioImpostos({ trt, tda, despacho, pedagio, gris, adVal, c
             mask={'porcentagem'}
             placeholder="0"
             >
-                <Tooltip title="Prazo SBA em dias" placement="top">
-                    <button disabled={true}>
+                <Tooltip title="Prazo SBA em dias" placement="top" arrow>
+                    <button>
                         <TbCalendarTime className="w-5 h-5 stroke-green-simple" />
                     </button>
                 </Tooltip>
@@ -358,8 +356,8 @@ export function FormularioImpostos({ trt, tda, despacho, pedagio, gris, adVal, c
             mask={'porcentagem'}
             placeholder="0" 
             >
-                <Tooltip title="Imposto SBA em porcentagem" placement="top">
-                    <button disabled={true}>
+                <Tooltip title="Imposto SBA em porcentagem" placement="top" arrow>
+                    <button>
                         <AiOutlinePercentage className="w-5 h-5 fill-black/60"/>
                     </button>
                 </Tooltip>
@@ -373,8 +371,8 @@ export function FormularioImpostos({ trt, tda, despacho, pedagio, gris, adVal, c
             mask={'reais'}
             placeholder="0.00" 
             >
-                <Tooltip title="Imposto em reais" placement="top">
-                    <button disabled={true}>
+                <Tooltip title="Imposto em reais" placement="top" arrow>
+                    <button>
                         <MdAttachMoney className="w-5 h-5 fill-green-simple"/> 
                     </button>
                 </Tooltip>

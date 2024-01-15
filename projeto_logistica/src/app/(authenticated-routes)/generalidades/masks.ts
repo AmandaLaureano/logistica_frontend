@@ -1,17 +1,16 @@
-export function reais (e: React.FormEvent<HTMLInputElement>){
+export function reais (e: React.FormEvent<HTMLInputElement>): string{
     let value = e.currentTarget.value
     value = value.replace(/\D/g, '')
     value = value.replace(/(\d)(\d{2})$/, "$1.$2")
-    e.currentTarget.value = value
 
-    return e
+    return value
 }
 
-export function porcentagem (e: React.FormEvent<HTMLInputElement>){
+export function porcentagem (e: React.FormEvent<HTMLInputElement>): string {
     e.currentTarget.maxLength = 3
     let value = e.currentTarget.value
     value = value.replace(/\D/g, '')
     e.currentTarget.value = value
     
-    return e
+    return value
 }

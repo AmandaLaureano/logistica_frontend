@@ -10,7 +10,6 @@ import Tooltip from '@mui/material/Tooltip';
 
 export default function Downloads({params}: any) {
 
-    const [checkAnimation, setCheckAnimation] = useState({isStopped: false, isPaused: false})
     const router = useRouter()
 
     const getDownloadLink = (key: string) => {
@@ -55,8 +54,6 @@ export default function Downloads({params}: any) {
                     options={defaultOptions}
                     height={250}
                     width={250}
-                    isStopped={checkAnimation.isStopped}
-                    isPaused={checkAnimation.isPaused}
                     />
                 </div>
                 <div className="text-center pb-5">

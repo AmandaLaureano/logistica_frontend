@@ -51,7 +51,7 @@ export function DragAndDrop({ accept, texto, onDrop, onChange, onClick, arquivo 
     return (
         <label className="flex justify-center pb-6">
             <div 
-            className={`${dragging && 'outline-dashed outline-green-simple/50 bg-green-simple/10 outline-offset-[-25px] transition-all duration-500 ease-in-out'} flex justify-center items-center w-full h-64 bg-white-normal hover:bg-green-simple/10 transition duration-500 cursor-pointer outline-dashed outline-offset-[-15px] outline-green-simple/50 text-white rounded-sm lg:text-lg mx-5 sm:mx-10 py-1`}
+            className={`${dragging ? 'outline-dashed outline-green-simple/50 bg-green-simple/10 outline-offset-[-25px] transition-all duration-500 ease-in-out': 'bg-white-normal hover:bg-green-simple/10'} flex justify-center items-center w-full h-64 transition duration-500 cursor-pointer outline-dashed outline-offset-[-15px] outline-green-simple/50 text-white rounded-sm lg:text-lg mx-5 sm:mx-10 py-1`}
             onDragOver={handleDragOver}
             onDragLeave={handleDragLeave}
             onDrop={handleDrop}
