@@ -4,7 +4,6 @@ import { useCallback } from "react";
 import { Tooltip } from "@mui/material";
 import { PiQuestion } from "react-icons/pi";
 
-
 export default function Linha({ nomeImposto, infoImposto, valorImposto, onChange, children, mask, placeholder}: ILinhaFormulario,) {
 
     const handleKeyUp = useCallback(

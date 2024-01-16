@@ -4,7 +4,6 @@ import logo from "@assets/logo-pormade.png"
 import Folha from "@assets/folha.png"
 import { ImEye, ImEyeBlocked } from 'react-icons/im'
 import { useState } from 'react';
-import { version } from '../../../../package.json';
 import Link from "next/link"
 
 export default function Login  () {
@@ -72,9 +71,6 @@ export default function Login  () {
                             </Link>
                         </div>
                     </div>
-                </div>
-                <div className='containerVersion flex justify-center w-full my-5'>
-                    <span className='text-sm font-medium text-green-simple/50 tracking-widest'>Version {version}</span>
                 </div>
             </section>
         </main>  

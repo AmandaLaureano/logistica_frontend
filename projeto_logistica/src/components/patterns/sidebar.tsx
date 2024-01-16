@@ -9,7 +9,6 @@ import { VscMenu } from "react-icons/vsc"
 import { PiTruck } from "react-icons/pi"
 import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
-import {version} from '../../../package.json'
 import { titulosSidebar } from '../items-sidebar/items-sidebar'
 import { usePathname } from 'next/navigation'
 
@@ -91,9 +90,7 @@ export default function Sidebar(){
                             </div>
                         )
                     })}
-                    <div className='flex justify-center w-full h-full'>
-                        <span className='self-end text-green-simple font-medium text-sm mb-12'>Version {version}</span>
-                    </div>
+                    
                 </div>
             </div>
         </>

@@ -31,6 +31,19 @@ export function FormularioImpostos({ trt, tda, despacho, pedagio, gris, adVal, c
         arquivo: {} as File,
     })
 
+    const impostosData = [
+        { nome: "TRT", info: "Taxa de Restrição de Trânsito", valor: values.trt, onChange: (newValue: any) => handleChange('trt', newValue), mask: "reais", placeholder: "0.00", icon: <MdAttachMoney className="w-5 h-5 fill-green-simple"/>},
+        { nome: "TDA", info: "Taxa de Difícil Acesso", valor: values.tda, onChange: (newValue: any) => handleChange('tda', newValue), mask: "reais", placeholder: "0.00", icon: <MdAttachMoney className="w-5 h-5 fill-green-simple"/>},
+        { nome: "TAXA DE DESPACHO", info: "", valor: values.despacho, onChange: (newValue: any) => handleChange('despacho', newValue), mask: "reais", placeholder: "0.00", icon: <MdAttachMoney className="w-5 h-5 fill-green-simple"/>},
+        { nome: "PEDÁGIO", info: "", valor: values.pedagio, onChange: (newValue: any) => handleChange('pedagio', newValue), mask: "reais", placeholder: "0.00", icon: <MdAttachMoney className="w-5 h-5 fill-green-simple"/>},
+        { nome: "GRIS", info: "Gerenciamento de Riscos", valor: values.gris, onChange: (newValue: any) => handleChange('gris', newValue), mask: "porcentagem", placeholder: "0", icon: <AiOutlinePercentage className="w-5 h-5 fill-black/60"/>},
+        { nome: "ADVAL", info: "", valor: values.adVal, onChange: (newValue: any) => handleChange('adVal', newValue), mask: "porcentagem", placeholder: "0", icon: <AiOutlinePercentage className="w-5 h-5 fill-black/60"/>},
+        { nome: "CAM", info: "Custo Adicional de Manuseio e Separação", valor: values.cam, onChange: (newValue: any) => handleChange('cam', newValue), mask: "porcentagem", placeholder: "0", icon: <AiOutlinePercentage className="w-5 h-5 fill-black/60"/>},
+        { nome: "PRAZO", info: "SBA", valor: values.prazo, onChange: (newValue: any) => handleChange('prazo', newValue), mask: "porcentagem", placeholder: "0", tooltipMessage: "Imposto em dias", icon: <TbCalendarTime className="w-5 h-5 stroke-green-simple" />},
+        { nome: "ADV", info: "SBA", valor: values.adv, onChange: (newValue: any) => handleChange('adv', newValue), mask: "porcentagem", placeholder: "0", icon: <AiOutlinePercentage className="w-5 h-5 fill-black/60"/>},
+        { nome: "KG", info: "SBA", valor: values.kg, onChange: (newValue: any) => handleChange('kg', newValue), mask: "reais", placeholder: "0.00", icon: <MdAttachMoney className="w-5 h-5 fill-green-simple"/>},
+    ]
+
     const handleChange = (key: string, value: any) => {
         
         setValues(prevState => ({
@@ -228,156 +241,25 @@ export function FormularioImpostos({ trt, tda, despacho, pedagio, gris, adVal, c
                 theme="light"
                 toastClassName="mx-5 sm:mx-0"
             />
-            <Linha
-            nomeImposto={"TRT"} 
-            infoImposto={"Taxa de Restrição de Trânsito"} 
-            valorImposto={values.trt}
-            onChange={(newValue: any) => handleChange('trt', newValue)}
-            mask={'reais'}
-            placeholder="0.00" 
-            >   
-                <Tooltip title="Imposto em reais" placement="top" arrow>
-                    <button>
-                        <MdAttachMoney className="w-5 h-5 fill-green-simple"/> 
-                    </button>
-                </Tooltip>
-            </Linha>
 
-            <Linha 
-            nomeImposto={"TDA"} 
-            infoImposto={"Taxa de Difícil Acesso"} 
-            valorImposto={values.tda}
-            onChange={(newValue: any) => handleChange('tda', newValue)}
-            mask={'reais'}
-            placeholder="0.00"
-            >
-                <Tooltip title="Imposto em reais" placement="top" arrow>
-                    <button>
-                        <MdAttachMoney className="w-5 h-5 fill-green-simple"/> 
-                    </button>
-                </Tooltip>      
-            </Linha>
+            {impostosData.map((impostosData, index) => (
+                <Linha
+                key={index}
+                nomeImposto={impostosData.nome} 
+                infoImposto={impostosData.info} 
+                valorImposto={impostosData.valor}
+                onChange={impostosData.onChange}
+                mask={impostosData.mask}
+                placeholder={impostosData.placeholder} 
+                >   
+                    <Tooltip title={impostosData.nome === "PRAZO" ? impostosData.tooltipMessage :`Imposto em ${impostosData.mask === 'reais' ? 'reais' : 'porcentagem'}`} placement="top" arrow>
+                        <button>
+                            {impostosData.icon} 
+                        </button>
+                    </Tooltip>
+                </Linha>
+            ))}
 
-            <Linha
-            nomeImposto={"TAXA DE DESPACHO"} 
-            infoImposto={""} 
-            valorImposto={values.despacho}
-            mask={'reais'}
-            placeholder="0.00"
-            onChange={(newValue: any) => handleChange('despacho', newValue)}
-            >
-                <Tooltip title="Imposto em reais" placement="top" arrow>
-                    <button>
-                        <MdAttachMoney className="w-5 h-5 fill-green-simple"/> 
-                    </button>
-                </Tooltip>
-            </Linha>
-
-            <Linha
-            nomeImposto={"PEDÁGIO"} 
-            infoImposto={""} 
-            valorImposto={values.pedagio}
-            onChange={(newValue: any) => handleChange('pedagio', newValue)}
-            mask={'reais'}
-            placeholder="0.00"
-            >
-                <Tooltip title="Imposto em reais" placement="top" arrow>
-                    <button>
-                        <MdAttachMoney className="w-5 h-5 fill-green-simple"/> 
-                    </button>
-                </Tooltip> 
-            </Linha>
-
-            <Linha
-            nomeImposto={"GRIS"} 
-            infoImposto={"Gerenciamento de Riscos"} 
-            valorImposto={values.gris}
-            onChange={(newValue: any) => handleChange('gris', newValue)}
-            mask={'porcentagem'}
-            placeholder="0"
-            >
-                <Tooltip title="Imposto em porcentagem" placement="top" arrow>
-                    <button>
-                        <AiOutlinePercentage className="w-5 h-5 fill-black/60"/>
-                    </button>
-                </Tooltip> 
-            </Linha>
-
-            <Linha
-            nomeImposto={"ADVAL"} 
-            infoImposto={""} 
-            valorImposto={values.adVal}
-            onChange={(newValue: any) => handleChange('adVal', newValue)}
-            mask={'porcentagem'}
-            placeholder="0"
-            >
-                <Tooltip title="Imposto em porcentagem" placement="top" arrow>
-                    <button>
-                        <AiOutlinePercentage className="w-5 h-5 fill-black/60"/>
-                    </button>
-                </Tooltip> 
-            </Linha>
-
-            <Linha
-            nomeImposto={"CAM"} 
-            infoImposto={"Custo Adicional de Manuseio e Separação"} 
-            valorImposto={values.cam}
-            onChange={(newValue: any) => handleChange('cam', newValue)}
-            mask={'porcentagem'}
-            placeholder="0" 
-            >
-                <Tooltip title="Imposto em porcentagem" placement="top" arrow>
-                    <button>
-                        <AiOutlinePercentage className="w-5 h-5 fill-black/60"/>
-                    </button>
-                </Tooltip>
-            </Linha>
-
-            <Linha
-            nomeImposto={"PRAZO"} 
-            infoImposto={"SBA"} 
-            valorImposto={values.prazo}
-            onChange={(newValue: any) => handleChange('prazo', newValue)} 
-            mask={'porcentagem'}
-            placeholder="0"
-            >
-                <Tooltip title="Prazo SBA em dias" placement="top" arrow>
-                    <button>
-                        <TbCalendarTime className="w-5 h-5 stroke-green-simple" />
-                    </button>
-                </Tooltip>
-            </Linha>
-
-            <Linha
-            nomeImposto={"ADV"} 
-            infoImposto={"SBA"} 
-            valorImposto={values.adv}
-            onChange={(newValue: any) => handleChange('adv', newValue)}
-            mask={'porcentagem'}
-            placeholder="0" 
-            >
-                <Tooltip title="Imposto SBA em porcentagem" placement="top" arrow>
-                    <button>
-                        <AiOutlinePercentage className="w-5 h-5 fill-black/60"/>
-                    </button>
-                </Tooltip>
-            </Linha>
-
-            <Linha
-            nomeImposto={"KG"} 
-            infoImposto={"SBA"} 
-            valorImposto={values.kg}
-            onChange={(newValue: any) => handleChange('kg', newValue)}
-            mask={'reais'}
-            placeholder="0.00" 
-            >
-                <Tooltip title="Imposto em reais" placement="top" arrow>
-                    <button>
-                        <MdAttachMoney className="w-5 h-5 fill-green-simple"/> 
-                    </button>
-                </Tooltip>
-            </Linha>
-            
             <div className="flex flex-col py-10 gap-5">
                 <div className="w-full">
                     <DragAndDrop onClick={handleRemoveFile} arquivo={values.arquivo} texto={values.arquivo.name !== undefined ? values.arquivo.name: 'Arraste e solte o arquivo ou clique para selecionar'} onChange={handleFileChange} onDrop={handleDropFile}/>
