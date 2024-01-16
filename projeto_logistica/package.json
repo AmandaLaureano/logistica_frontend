@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "host": "next dev -H 192.168.155.26"
   },
   "dependencies": {
     "@emotion/react": "^11.11.3",

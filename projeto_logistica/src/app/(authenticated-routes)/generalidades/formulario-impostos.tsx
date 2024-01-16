@@ -151,7 +151,7 @@ export function FormularioImpostos({ trt, tda, despacho, pedagio, gris, adVal, c
 
             setTimeout(() =>{
                 router.push(`/downloads/${params}`)
-            }, 2000)
+            }, 1000)
             
         }
         catch(err){
