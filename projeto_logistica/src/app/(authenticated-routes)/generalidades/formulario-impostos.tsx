@@ -17,20 +17,8 @@ export function FormularioImpostos({ trt, tda, despacho, pedagio, gris, adVal, c
 
     const router = useRouter()
 
-    const [values, setValues] = useState({
-        trt,
-        tda,
-        despacho,
-        pedagio,
-        gris,
-        adVal,
-        cam,
-        prazo,
-        adv,
-        kg,
-        arquivo: {} as File,
-    })
-
+    const [values, setValues] = useState({ trt, tda, despacho, pedagio, gris, adVal, cam, prazo, adv, kg, arquivo: {} as File })
+    
     const impostosData = [
         { nome: "TRT", info: "Taxa de Restrição de Trânsito", valor: values.trt, onChange: (newValue: any) => handleChange('trt', newValue), mask: "reais", placeholder: "0.00", icon: <MdAttachMoney className="w-5 h-5 fill-green-simple"/>},
         { nome: "TDA", info: "Taxa de Difícil Acesso", valor: values.tda, onChange: (newValue: any) => handleChange('tda', newValue), mask: "reais", placeholder: "0.00", icon: <MdAttachMoney className="w-5 h-5 fill-green-simple"/>},
@@ -124,6 +112,13 @@ export function FormularioImpostos({ trt, tda, despacho, pedagio, gris, adVal, c
         }
         catch(err) {
             console.log('Erro: Não foi possível enviar os dados dos impostos!', err)
+            Swal.fire({
+                icon: 'error',
+                title: 'Erro ao enviar os dados dos impostos',
+                text: '',
+                confirmButtonText: "OK",
+                confirmButtonColor: "#509D45"
+            })
         }
     }
 
@@ -144,6 +139,13 @@ export function FormularioImpostos({ trt, tda, despacho, pedagio, gris, adVal, c
         }
         catch(err) {
             console.log('Erro: Não foi possível enviar os dados do SBA!', err)
+            Swal.fire({
+                icon: 'error',
+                title: 'Erro ao enviar os dados da SBA',
+                text: '',
+                confirmButtonText: "OK",
+                confirmButtonColor: "#509D45"
+            })
         }
     }
     

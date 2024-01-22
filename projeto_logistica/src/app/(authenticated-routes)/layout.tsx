@@ -1,6 +1,7 @@
+import Navbar from '../../components/patterns/navbar'
+import Sidebar from '../../components/patterns/sidebar'
 import '../globals.css'
 import { Montserrat } from 'next/font/google' 
-import Sidebar from '@/src/components/patterns/sidebar'
 
 const montserrat = Montserrat({
   subsets: ['latin'],
@@ -15,10 +16,13 @@ export default function RootLayout({children}: {children: React.ReactNode}){
   return (
     <html lang="pt-BR">
       <body className={montserrat.className}>
-        <div className='containerAside'>
+        <div className='containerNav'>
+          <Navbar/>
+        </div>
+        <div>
           <Sidebar/>
         </div>
-        <div className="containerChildren">
+        <div>
           {children}
         </div>
       </body>                        

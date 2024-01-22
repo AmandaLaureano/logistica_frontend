@@ -42,8 +42,8 @@ export default function Downloads({params}: any) {
     }
 
     return(
-        <div className="px-5 2xl:px-12 my-12 h-full">
-            <div className="w-full pb-12 bg-white-simple shadow-md shadow-black-gray-border rounded-md">
+        <div className="grid">
+            <div className="bg-white-simple justify-self-center rounded-sm shadow-md shadow-black-gray-border my-20 w-11/12 lg:w-2/3">
                 <div className="w-full">
                     <Tooltip disableFocusListener title="Voltar para Generalidades" placement="right-start">
                         <button onClick={() =>{(router.push(`/generalidades/${params.id}`))}} className="focus:outline-none m-5 p-2 hover:bg-green-simple rounded-full bg-black-gray-border">
@@ -61,7 +61,7 @@ export default function Downloads({params}: any) {
                         Os arquivos foram processados com sucesso!
                     </p>
                 </div>
-                <div className="flex flex-col sm:flex-row justify-center gap-5 px-7">
+                <div className="flex flex-col sm:flex-row justify-center gap-5 px-7 pb-20">
                     <ButtonDefault onClick={() => {handleDownloadClick('fretefy')}} background="green-simple">
                         <div className="flex justify-center flex-row-reverse place-items-center sm:px-6">
                             <div className="">
