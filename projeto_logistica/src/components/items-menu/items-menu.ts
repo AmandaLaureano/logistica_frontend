@@ -1,4 +1,4 @@
-export const titulosSidebar = [
+export const titulosMenu = [
     {
         id: 1,
         texto:'Transportadoras',

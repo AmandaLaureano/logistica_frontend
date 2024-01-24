@@ -24,11 +24,11 @@ export function FormularioImpostos({ trt, tda, despacho, pedagio, gris, adVal, c
         { nome: "TDA", info: "Taxa de Difícil Acesso", valor: values.tda, onChange: (newValue: any) => handleChange('tda', newValue), mask: "reais", placeholder: "0.00", icon: <MdAttachMoney className="w-5 h-5 fill-green-simple"/>},
         { nome: "TAXA DE DESPACHO", info: "", valor: values.despacho, onChange: (newValue: any) => handleChange('despacho', newValue), mask: "reais", placeholder: "0.00", icon: <MdAttachMoney className="w-5 h-5 fill-green-simple"/>},
         { nome: "PEDÁGIO", info: "", valor: values.pedagio, onChange: (newValue: any) => handleChange('pedagio', newValue), mask: "reais", placeholder: "0.00", icon: <MdAttachMoney className="w-5 h-5 fill-green-simple"/>},
-        { nome: "GRIS", info: "Gerenciamento de Riscos", valor: values.gris, onChange: (newValue: any) => handleChange('gris', newValue), mask: "porcentagem", placeholder: "0", icon: <AiOutlinePercentage className="w-5 h-5 fill-black/60"/>},
-        { nome: "ADVAL", info: "", valor: values.adVal, onChange: (newValue: any) => handleChange('adVal', newValue), mask: "porcentagem", placeholder: "0", icon: <AiOutlinePercentage className="w-5 h-5 fill-black/60"/>},
-        { nome: "CAM", info: "Custo Adicional de Manuseio e Separação", valor: values.cam, onChange: (newValue: any) => handleChange('cam', newValue), mask: "porcentagem", placeholder: "0", icon: <AiOutlinePercentage className="w-5 h-5 fill-black/60"/>},
-        { nome: "PRAZO", info: "SBA", valor: values.prazo, onChange: (newValue: any) => handleChange('prazo', newValue), mask: "porcentagem", placeholder: "0", tooltipMessage: "Imposto em dias", icon: <TbCalendarTime className="w-5 h-5 stroke-green-simple" />},
-        { nome: "ADV", info: "SBA", valor: values.adv, onChange: (newValue: any) => handleChange('adv', newValue), mask: "porcentagem", placeholder: "0", icon: <AiOutlinePercentage className="w-5 h-5 fill-black/60"/>},
+        { nome: "GRIS", info: "Gerenciamento de Riscos", valor: values.gris, onChange: (newValue: any) => handleChange('gris', newValue), mask: "reais", placeholder: "0.00", icon: <AiOutlinePercentage className="w-5 h-5 fill-black/60"/>},
+        { nome: "ADVAL", info: "", valor: values.adVal, onChange: (newValue: any) => handleChange('adVal', newValue), mask: "reais", placeholder: "0.00", icon: <AiOutlinePercentage className="w-5 h-5 fill-black/60"/>},
+        { nome: "CAM", info: "Custo Adicional de Manuseio e Separação", valor: values.cam, onChange: (newValue: any) => handleChange('cam', newValue), mask: "reais", placeholder: "0.00", icon: <AiOutlinePercentage className="w-5 h-5 fill-black/60"/>},
+        { nome: "PRAZO", info: "SBA", valor: values.prazo, onChange: (newValue: any) => handleChange('prazo', newValue), mask: "dias", placeholder: "0", tooltipMessage: "Valor do imposto em dias", icon: <TbCalendarTime className="w-5 h-5 stroke-green-simple" />},
+        { nome: "ADV", info: "SBA", valor: values.adv, onChange: (newValue: any) => handleChange('adv', newValue), mask: "reais", placeholder: "0.00", icon: <AiOutlinePercentage className="w-5 h-5 fill-black/60"/>},
         { nome: "KG", info: "SBA", valor: values.kg, onChange: (newValue: any) => handleChange('kg', newValue), mask: "reais", placeholder: "0.00", icon: <MdAttachMoney className="w-5 h-5 fill-green-simple"/>},
     ]
 
@@ -103,7 +103,7 @@ export function FormularioImpostos({ trt, tda, despacho, pedagio, gris, adVal, c
             cam: values.cam
             }
 
-            const res = await api.patch(`http://192.168.155.22:3000/impostos/${params}`, {
+            const res = await api.patch(`/impostos/${params}`, {
                 transportadoraId: params,
                 ...impostosData,
             })
@@ -131,7 +131,7 @@ export function FormularioImpostos({ trt, tda, despacho, pedagio, gris, adVal, c
             adv: values.adv,
             kg: values.kg 
             }
-            const res = await api.patch(`http://192.168.155.22:3000/sba/${params}`, {
+            const res = await api.patch(`/sba/${params}`, {
                 transportadoraId: params,
                 ...sbaData,
             })
@@ -142,7 +142,7 @@ export function FormularioImpostos({ trt, tda, despacho, pedagio, gris, adVal, c
             Swal.fire({
                 icon: 'error',
                 title: 'Erro ao enviar os dados da SBA',
-                text: '',
+                text: ``,
                 confirmButtonText: "OK",
                 confirmButtonColor: "#509D45"
             })
@@ -154,7 +154,7 @@ export function FormularioImpostos({ trt, tda, despacho, pedagio, gris, adVal, c
         try{
             const formData = new FormData()
             formData.append('file', values.arquivo)
-            const res = await api.post(`http://192.168.155.22:3000/gobor/upload`, formData, {
+            const res = await api.post(`/gobor/upload`, formData, {
                 headers:{
                     "Content-Type": 'multipart/form-data'
                 }
@@ -163,10 +163,6 @@ export function FormularioImpostos({ trt, tda, despacho, pedagio, gris, adVal, c
             
             window.sessionStorage.setItem("fretefy", res.data.fretefy)
             window.sessionStorage.setItem("vtex", res.data.vtex)
-
-            setTimeout(() =>{
-                router.push(`/downloads/${params}`)
-            }, 1000)
             
         }
         catch(err){
@@ -174,7 +170,7 @@ export function FormularioImpostos({ trt, tda, despacho, pedagio, gris, adVal, c
             Swal.fire({
                 icon: 'error',
                 title: 'Erro ao processar o arquivo',
-                text: 'Somente arquivos da transportadora correspondente devem ser anexados',
+                text: 'Somente o arquivo da transportadora correspondente deve ser anexado',
                 confirmButtonText: "OK",
                 confirmButtonColor: "#509D45"
             })
@@ -182,7 +178,7 @@ export function FormularioImpostos({ trt, tda, despacho, pedagio, gris, adVal, c
         }
     }
 
-    const sendAllRequests = async () =>{
+    const sendAllRequests = async () => {
         try{
             Swal.fire({
                 title: 'Convertendo arquivos...',
@@ -197,17 +193,25 @@ export function FormularioImpostos({ trt, tda, despacho, pedagio, gris, adVal, c
             await Promise.all([
                 patchArquivo(),
                 patchImpostos(),
-                patchSba()
+                patchSba(),
+
             ])
+            
+            setTimeout(() =>{
+                router.push(`/downloads/${params}`)
+            }, 1000)
 
             Swal.close()
+
         }catch(err){
+
             Swal.fire({
                 icon: 'error',
                 title: 'Erro ao enviar os dados!',
                 text: 'Verifique sua conexão com a internet ou entre em contato com o suporte.'
             })
-        }
+            
+        } 
     }
     
     const handleSendFile = () => {
@@ -254,7 +258,7 @@ export function FormularioImpostos({ trt, tda, despacho, pedagio, gris, adVal, c
                 mask={impostosData.mask}
                 placeholder={impostosData.placeholder} 
                 >   
-                    <Tooltip title={impostosData.nome === "PRAZO" ? impostosData.tooltipMessage :`Imposto em ${impostosData.mask === 'reais' ? 'reais' : 'porcentagem'}`} placement="top" arrow>
+                    <Tooltip title={impostosData.nome === "PRAZO" ? impostosData.tooltipMessage :`Valor do imposto em ${impostosData.mask === 'reais' ? 'decimais' : 'inteiro'}`} placement="top" arrow>
                         <button>
                             {impostosData.icon} 
                         </button>

@@ -6,8 +6,8 @@ import SpeedDialNavbar from './speed-dial'
 export default function Navbar() {
     return(
         <>
-            <div className="grid grid-cols-2 place-content-evenly w-screen shadow-sm shadow-black-light bg-black h-[60px] border-b-2 border-black-gray-border">
-                <div className='mx-5'>
+            <div className="grid grid-cols-2 place-content-evenly w-screen shadow-sm shadow-black-light bg-black h-[60px] border-b-2 border-black-gray-border fixed">
+                <div className='ml-2'>
                     <SpeedDialNavbar/>
                 </div>
                 <div className='flex items-center'>

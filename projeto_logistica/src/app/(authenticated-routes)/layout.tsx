@@ -14,15 +14,15 @@ export const metadata = {
 
 export default function RootLayout({children}: {children: React.ReactNode}){
   return (
-    <html lang="pt-BR">
+    <html lang="pt-BR" suppressHydrationWarning>
       <body className={montserrat.className}>
-        <div className='containerNav'>
+        <div className=''>
           <Navbar/>
         </div>
         <div>
           <Sidebar/>
         </div>
-        <div>
+        <div className='pt-12'>
           {children}
         </div>
       </body>                        

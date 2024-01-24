@@ -1,5 +1,5 @@
 import { ILinhaFormulario } from "@/src/interfaces/app/generalidades";
-import { reais, porcentagem } from './masks'
+import { ValorInteiro, ValorDecimal } from './masks'
 import { useCallback } from "react";
 import { Tooltip } from "@mui/material";
 import { PiQuestion } from "react-icons/pi";
@@ -11,10 +11,10 @@ export default function Linha({ nomeImposto, infoImposto, valorImposto, onChange
             let newValue = e.currentTarget.value
 
             if(mask === "reais"){
-                newValue = reais(e)
+                newValue = ValorDecimal(e)
             }
-            else if(mask === "porcentagem"){
-                newValue = porcentagem(e)
+            else if(mask === "dias"){
+                newValue = ValorInteiro(e)
             }
             
             onChange(newValue)

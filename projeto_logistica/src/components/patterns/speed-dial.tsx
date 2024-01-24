@@ -1,12 +1,12 @@
 'use client'
 import Link from "next/link"
 import { useEffect, useState, useRef } from "react"
-import { IoMenu } from "react-icons/io5"
+import { BsThreeDotsVertical  } from "react-icons/bs"
 import { IoClose } from "react-icons/io5"
-import { LuHeadphones } from "react-icons/lu"
-import { LuClipboardList } from "react-icons/lu"
+import { MdOutlineHeadsetMic} from "react-icons/md"
+import { FaTruckFast } from "react-icons/fa6"
 import { motion } from "framer-motion"
-import Tooltip from '@mui/material/Tooltip'
+import { titulosMenu } from '../items-menu/items-menu'
 
 export default function SpeedDialNavbar(){
     const [speedIsOpened, setSpeedIsOpened] = useState(false)
@@ -26,41 +26,56 @@ export default function SpeedDialNavbar(){
         };
     }, []);
 
+    function changeIcon(icon: string | undefined){
+        switch(icon){
+            case(icon = 'transportadoras'):
+                return (
+                    <FaTruckFast className={`fill-white-simple hover:scale-95 w-5 h-5`}/>
+                )
+            case(icon = 'suporte'):
+                return (
+                    <MdOutlineHeadsetMic className={`fill-white-simple hover:scale-95 w-5 h-5`}/>
+                ) 
+        }
+    }
+
     return(
         <div ref={speedDialRef} className="flex items-center h-full lg:hidden">
-            <div className={` ${!speedIsOpened ? 'bg-gray': 'bg-green-simple'} rounded-full w-10 h-10 flex justify-center items-center hover:scale-95 transition-all duration-200`} onClick={openSpeedDial}>
+            <div className={`w-10 h-10 flex justify-center items-center hover:scale-95 transition-all duration-200`} onClick={openSpeedDial}>
                 {speedIsOpened? (
-                    <button>
-                        <IoClose className="fill-white-simple w-5 h-5" />
+                    <button className="outline-none">
+                        <IoClose className="fill-red w-8 h-8" />
                     </button>
                 ):(
-                    <button>
-                        <IoMenu className="stroke-white-simple w-5 h-5" />
+                    <button className="outline-none">
+                        <BsThreeDotsVertical  className="fill-green-simple w-8 h-8" />
                     </button>
                 )}
             </div>
-            {speedIsOpened ? (
-                <div className="top-16 absolute grid gap-2 mx-1">
-                    <div className="bg-black/60 rounded-full w-8 h-8 flex justify-center items-center hover:scale-95 transition-all duration-200 hover:bg-green-simple">
-                    <Tooltip title="Transportadoras" placement="right">
-                        <button>
-                            <Link href={'/'}>
-                                <LuClipboardList className={`stroke-white-simple hover:scale-95 w-4 h-4`}/>
-                            </Link>
-                        </button>
-                    </Tooltip>
-                    </div>
-                    <div className="bg-black/60 rounded-full w-8 h-8 flex justify-center items-center hover:scale-95 transition-all duration-200 hover:bg-green-simple">
-                    <Tooltip title="suporte" placement="right" >
-                        <button>
-                            <Link href={'http://ti.pormade.com.br:8080/ords/r/tecinfo/suporte-petim/home?session=15546297356718'}>
-                                <LuHeadphones className={`stroke-white-simple hover:scale-95 w-4 h-4`}/>
-                            </Link>
-                        </button>
-                    </Tooltip>    
-                    </div>
-                </div>
-            ): ""}
+            {speedIsOpened && (
+                <motion.div
+                    initial={{ y: -10, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    transition={{ type: "spring", duration: 1 }}
+                    className="top-16 absolute grid bg-black/90 p-2 rounded-md">
+                        {titulosMenu.map((item, index) => {
+                            return(
+                                item.href && (
+                                    <Link className="hover:bg-white-simple/20 py-1 rounded-sm hover:scale-95 transition-all duration-200" key={index} href={item.href ?? ''}>
+                                        <div className="flex items-strech ml-1">
+                                            <div className="m-1">
+                                                <span>{changeIcon(item.icon)}</span>
+                                            </div>
+                                            <div className="mx-3 flex items-end">
+                                                <span className="text-white-simple font-medium mt-1">{item.texto}</span>
+                                            </div>
+                                        </div>
+                                    </Link>
+                                )
+                            )
+                        })}
+                </motion.div>
+            )}
         </div>
     )
 }
