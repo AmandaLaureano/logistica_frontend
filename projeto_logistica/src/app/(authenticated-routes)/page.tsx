@@ -5,14 +5,16 @@ import { ITransportadoras } from "../../interfaces/app/dashboard"
 export default async function Dashboard() {
     const getTransportadoras = await api.get(`/transportadora`)
         .then(resp => {
+            console.log(resp.data)
             return resp.data
+
         }).catch(err => {
             console.log(err)
             return []
         })
         
         const listaTransportadoras: Array<ITransportadoras> = getTransportadoras
-    
+        console.log(listaTransportadoras)
     return (
         <div className="grid">
             <div className="bg-white-simple justify-self-center rounded-sm shadow-md shadow-black-gray-border my-20 w-11/12 lg:w-2/3">

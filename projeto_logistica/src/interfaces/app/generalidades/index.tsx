@@ -1,23 +1,23 @@
 export interface IFormularioImpostos {
-    id: number
-    transportadoraId: number
-    trt: number 
-    tda: number 
-    despacho: number 
-    pedagio: number 
-    gris: number 
-    adVal: number 
-    cam: number 
-    prazo: number 
-    adv: number 
-    kg: number 
-    params:  number
+    id: string
+    transportadoraId: string
+    trt: string 
+    tda: string 
+    despacho: string 
+    pedagio: string 
+    gris: string 
+    adVal: string 
+    cam: string 
+    prazo: string 
+    adv: string 
+    kg: string 
+    params:  string
 }
 
 export interface ILinhaFormulario {
     nomeImposto: string,
     infoImposto: string,
-    valorImposto: number,
+    valorImposto: string,
     onChange?: any,
     children?: React.ReactNode,
     mask: string,

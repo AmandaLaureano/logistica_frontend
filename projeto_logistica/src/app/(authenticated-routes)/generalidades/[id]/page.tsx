@@ -12,7 +12,9 @@ export default function Generalidades({params}: any) {
     const [impostosSBA, setImpostosSBA] = useState<IFormularioImpostos | null>(null)
     const [transportadora, setTransportadora] = useState< ITransportadora | null>(null)
 
+    
     useEffect(() => {
+        params.id = parseInt(params.id)
         const fetchImpostos = async () => {
             try {
                 const responseImpostos = await api.get(`http://192.168.155.22:3000/impostos/${params.id}`)
@@ -72,7 +74,9 @@ export default function Generalidades({params}: any) {
                                         prazo={impostosSBA.prazo}
                                         adv={impostosSBA.adv}
                                         kg={impostosSBA.kg}
-                                        params={params.id} id={0} transportadoraId={0}                                    
+                                        params={params.id} 
+                                        id={params.id} 
+                                        transportadoraId={params.id}    
                                     />
                                 </div>
                             ): (

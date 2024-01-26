@@ -40,6 +40,7 @@ export default function Linha({ nomeImposto, infoImposto, valorImposto, onChange
                 <div className="flex justify-end w-6/12 my-1 space-x-2 sm:space-x-10 mx-2">
                     <div className="flex items-stretch bg-white-normal rounded-md">
                         <input
+                            type="number"
                             placeholder={placeholder}
                             onKeyUp={handleKeyUp}
                             className="outline-none w-16 flex text-start cursor-pointer bg-white-normal ml-3"

@@ -8,7 +8,7 @@ import { FaTruckFast } from "react-icons/fa6"
 import { motion } from "framer-motion"
 import { titulosMenu } from '../items-menu/items-menu'
 
-export default function SpeedDialNavbar(){
+export default function DropdownNav(){
     const [speedIsOpened, setSpeedIsOpened] = useState(false)
     const speedDialRef = useRef<HTMLDivElement | null>(null)
 

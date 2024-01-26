@@ -7,9 +7,8 @@ export function ValorDecimal (e: React.FormEvent<HTMLInputElement>): string{
 }
 
 export function ValorInteiro (e: React.FormEvent<HTMLInputElement>): string {
-    e.currentTarget.maxLength = 3
     let value = e.currentTarget.value
-    value = value.replace(/\D/g, '')
+    value = value.replace(/\D/g, '').slice(0, 3)
     e.currentTarget.value = value
     
     return value

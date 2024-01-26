@@ -19,24 +19,23 @@ export function FormularioImpostos({ trt, tda, despacho, pedagio, gris, adVal, c
 
     const [values, setValues] = useState({ trt, tda, despacho, pedagio, gris, adVal, cam, prazo, adv, kg, arquivo: {} as File })
     
-    const impostosData = [
-        { nome: "TRT", info: "Taxa de Restrição de Trânsito", valor: values.trt, onChange: (newValue: any) => handleChange('trt', newValue), mask: "reais", placeholder: "0.00", icon: <MdAttachMoney className="w-5 h-5 fill-green-simple"/>},
-        { nome: "TDA", info: "Taxa de Difícil Acesso", valor: values.tda, onChange: (newValue: any) => handleChange('tda', newValue), mask: "reais", placeholder: "0.00", icon: <MdAttachMoney className="w-5 h-5 fill-green-simple"/>},
-        { nome: "TAXA DE DESPACHO", info: "", valor: values.despacho, onChange: (newValue: any) => handleChange('despacho', newValue), mask: "reais", placeholder: "0.00", icon: <MdAttachMoney className="w-5 h-5 fill-green-simple"/>},
-        { nome: "PEDÁGIO", info: "", valor: values.pedagio, onChange: (newValue: any) => handleChange('pedagio', newValue), mask: "reais", placeholder: "0.00", icon: <MdAttachMoney className="w-5 h-5 fill-green-simple"/>},
-        { nome: "GRIS", info: "Gerenciamento de Riscos", valor: values.gris, onChange: (newValue: any) => handleChange('gris', newValue), mask: "reais", placeholder: "0.00", icon: <AiOutlinePercentage className="w-5 h-5 fill-black/60"/>},
-        { nome: "ADVAL", info: "", valor: values.adVal, onChange: (newValue: any) => handleChange('adVal', newValue), mask: "reais", placeholder: "0.00", icon: <AiOutlinePercentage className="w-5 h-5 fill-black/60"/>},
-        { nome: "CAM", info: "Custo Adicional de Manuseio e Separação", valor: values.cam, onChange: (newValue: any) => handleChange('cam', newValue), mask: "reais", placeholder: "0.00", icon: <AiOutlinePercentage className="w-5 h-5 fill-black/60"/>},
-        { nome: "PRAZO", info: "SBA", valor: values.prazo, onChange: (newValue: any) => handleChange('prazo', newValue), mask: "dias", placeholder: "0", tooltipMessage: "Valor do imposto em dias", icon: <TbCalendarTime className="w-5 h-5 stroke-green-simple" />},
-        { nome: "ADV", info: "SBA", valor: values.adv, onChange: (newValue: any) => handleChange('adv', newValue), mask: "reais", placeholder: "0.00", icon: <AiOutlinePercentage className="w-5 h-5 fill-black/60"/>},
-        { nome: "KG", info: "SBA", valor: values.kg, onChange: (newValue: any) => handleChange('kg', newValue), mask: "reais", placeholder: "0.00", icon: <MdAttachMoney className="w-5 h-5 fill-green-simple"/>},
+    const infoImpostos = [
+        { nome: "TRT", info: "Taxa de Restrição de Trânsito", valor: values.trt, onChange: (newValue: string) => handleChange('trt', newValue), mask: "reais", placeholder: "0.00", tooltipMessage: "reais", icon: <MdAttachMoney className="w-5 h-5 fill-green-simple"/>},
+        { nome: "TDA", info: "Taxa de Difícil Acesso", valor: values.tda, onChange: (newValue: string) => handleChange('tda', newValue), mask: "reais", placeholder: "0.00", tooltipMessage: "reais", icon: <MdAttachMoney className="w-5 h-5 fill-green-simple"/>},
+        { nome: "TAXA DE DESPACHO", info: "", valor: values.despacho, onChange: (newValue: string) => handleChange('despacho', newValue), mask: "reais", placeholder: "0.00", tooltipMessage: "reais", icon: <MdAttachMoney className="w-5 h-5 fill-green-simple"/>},
+        { nome: "PEDÁGIO", info: "", valor: values.pedagio, onChange: (newValue: string) => handleChange('pedagio', newValue), mask: "reais", placeholder: "0.00", tooltipMessage: "reais", icon: <MdAttachMoney className="w-5 h-5 fill-green-simple"/>},
+        { nome: "GRIS", info: "Gerenciamento de Riscos", valor: values.gris, onChange: (newValue: string) => handleChange('gris', newValue), mask: "reais", placeholder: "0.00", tooltipMessage: "porcentagem", icon: <AiOutlinePercentage className="w-5 h-5 fill-black/60"/>},
+        { nome: "ADVAL", info: "", valor: values.adVal, onChange: (newValue: string) => handleChange('adVal', newValue), mask: "reais", placeholder: "0.00", tooltipMessage: "porcentagem", icon: <AiOutlinePercentage className="w-5 h-5 fill-black/60"/>},
+        { nome: "CAM", info: "Custo Adicional de Manuseio e Separação", valor: values.cam, onChange: (newValue: string) => handleChange('cam', newValue), mask: "reais", placeholder: "0.00", tooltipMessage: "porcentagem", icon: <AiOutlinePercentage className="w-5 h-5 fill-black/60"/>},
+        { nome: "PRAZO", info: "SBA", valor: values.prazo, onChange: (newValue: string) => handleChange('prazo', newValue), mask: "dias", placeholder: "0", tooltipMessage: "Valor do imposto em dias", icon: <TbCalendarTime className="w-5 h-5 stroke-green-simple" />},
+        { nome: "ADV", info: "SBA", valor: values.adv, onChange: (newValue: string) => handleChange('adv', newValue), mask: "reais", placeholder: "0.00", tooltipMessage: "porcentagem", icon: <AiOutlinePercentage className="w-5 h-5 fill-black/60"/>},
+        { nome: "KG", info: "SBA", valor: values.kg, onChange: (newValue: string) => handleChange('kg', newValue), mask: "reais", placeholder: "0.00", tooltipMessage: "reais", icon: <MdAttachMoney className="w-5 h-5 fill-green-simple"/>},
     ]
 
-    const handleChange = (key: string, value: any) => {
-        
+    const handleChange = (key: string, value: string) => {
         setValues(prevState => ({
             ...prevState,
-            [key]: value,
+            [key]: (value),
         }))
     }
 
@@ -89,72 +88,76 @@ export function FormularioImpostos({ trt, tda, despacho, pedagio, gris, adVal, c
             
         }
     }
+
     
     // Envio da requisição para impostos
     const patchImpostos = async () => {
         try{
             const { ...impostosData } = {
-            trt: values.trt,
-            tda: values.tda,
-            despacho: values.despacho,
-            pedagio: values.pedagio,
-            gris: values.gris,
-            adVal: values.adVal,
-            cam: values.cam
+            trt: parseFloat(values.trt),
+            tda: parseFloat(values.tda),
+            despacho: parseFloat(values.despacho),
+            pedagio: parseFloat(values.pedagio),
+            gris: parseFloat(values.gris),
+            adVal: parseFloat(values.adVal),
+            cam: parseFloat(values.cam),
+            transportadoraId: params
             }
-
-            const res = await api.patch(`/impostos/${params}`, {
-                transportadoraId: params,
+            console.log({...impostosData})
+            const res = await api.patch(`http://192.168.155.22:3000/impostos/${params}`, {
                 ...impostosData,
             })
             console.log(res)
-            
         }
-        catch(err) {
-            console.log('Erro: Não foi possível enviar os dados dos impostos!', err)
-            Swal.fire({
-                icon: 'error',
-                title: 'Erro ao enviar os dados dos impostos',
-                text: '',
-                confirmButtonText: "OK",
-                confirmButtonColor: "#509D45"
-            })
+        catch(err: any) {
+            console.log('Erro: Não foi possível enviar os dados dos impostos!', err.response.data.message)
+            setTimeout(() => {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Erro ao enviar os dados dos impostos',
+                    text: `${err.response.data.message[0]} O campo não pode estar vazio`,
+                    confirmButtonText: "OK",
+                    confirmButtonColor: "#509D45"
+                })
+            }, 2000)
         }
     }
 
     // Envio da requisição para SBA
+    // Envio da requisição para SBA
     const patchSba = async () => { 
-
         try{
             const { ...sbaData } = {
-            prazo: values.prazo,
-            adv: values.adv,
-            kg: values.kg 
+            prazo: parseInt(values.prazo),
+            adv: parseFloat(values.adv),
+            kg: parseFloat(values.kg),
+            transportadoraId: params 
             }
-            const res = await api.patch(`/sba/${params}`, {
-                transportadoraId: params,
+            const res = await api.patch(`http://192.168.155.22:3000/sba/${params}`, {
                 ...sbaData,
             })
             console.log(res)
         }
-        catch(err) {
-            console.log('Erro: Não foi possível enviar os dados do SBA!', err)
-            Swal.fire({
+        catch(err: any) {
+            console.log('Erro: Não foi possível enviar os dados do SBA!', err.response.data.message)
+            setTimeout(() => {
+                Swal.fire({
                 icon: 'error',
                 title: 'Erro ao enviar os dados da SBA',
-                text: ``,
+                text: `${err.response.data.message[0]} O campo não pode estar vazio.`,
                 confirmButtonText: "OK",
                 confirmButtonColor: "#509D45"
-            })
+                })
+            }, 2000)
         }
     }
-    
+
     // Envio da requisição para upload do arquivo
     const patchArquivo = async () => {
         try{
             const formData = new FormData()
             formData.append('file', values.arquivo)
-            const res = await api.post(`/gobor/upload`, formData, {
+            const res = await api.post(`http://192.168.155.22:3000/gobor/upload`, formData, {
                 headers:{
                     "Content-Type": 'multipart/form-data'
                 }
@@ -167,13 +170,16 @@ export function FormularioImpostos({ trt, tda, despacho, pedagio, gris, adVal, c
         }
         catch(err){
             console.log('Erro ao processar arquivo', err)
-            Swal.fire({
-                icon: 'error',
-                title: 'Erro ao processar o arquivo',
-                text: 'Somente o arquivo da transportadora correspondente deve ser anexado',
-                confirmButtonText: "OK",
-                confirmButtonColor: "#509D45"
-            })
+            setTimeout(() =>{
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Erro ao processar o arquivo',
+                    text: 'Somente o arquivo da transportadora correspondente deve ser anexado',
+                    confirmButtonText: "OK",
+                    confirmButtonColor: "#509D45"
+                })
+            }, 2000)
+
             handleRemoveFile()
         }
     }
@@ -194,7 +200,6 @@ export function FormularioImpostos({ trt, tda, despacho, pedagio, gris, adVal, c
                 patchArquivo(),
                 patchImpostos(),
                 patchSba(),
-
             ])
             
             setTimeout(() =>{
@@ -204,13 +209,11 @@ export function FormularioImpostos({ trt, tda, despacho, pedagio, gris, adVal, c
             Swal.close()
 
         }catch(err){
-
             Swal.fire({
                 icon: 'error',
                 title: 'Erro ao enviar os dados!',
                 text: 'Verifique sua conexão com a internet ou entre em contato com o suporte.'
             })
-            
         } 
     }
     
@@ -248,19 +251,19 @@ export function FormularioImpostos({ trt, tda, despacho, pedagio, gris, adVal, c
                 toastClassName="mx-5 sm:mx-0"
             />
 
-            {impostosData.map((impostosData, index) => (
+            {infoImpostos.map((infoImpostos, index) => (
                 <Linha
                 key={index}
-                nomeImposto={impostosData.nome} 
-                infoImposto={impostosData.info} 
-                valorImposto={impostosData.valor}
-                onChange={impostosData.onChange}
-                mask={impostosData.mask}
-                placeholder={impostosData.placeholder} 
+                nomeImposto={infoImpostos.nome} 
+                infoImposto={infoImpostos.info} 
+                valorImposto={infoImpostos.valor}
+                onChange={infoImpostos.onChange}
+                mask={infoImpostos.mask}
+                placeholder={infoImpostos.placeholder} 
                 >   
-                    <Tooltip title={impostosData.nome === "PRAZO" ? impostosData.tooltipMessage :`Valor do imposto em ${impostosData.mask === 'reais' ? 'decimais' : 'inteiro'}`} placement="top" arrow>
+                    <Tooltip title={infoImpostos.nome === "PRAZO" ? infoImpostos.tooltipMessage :`Valor do imposto em ${infoImpostos.tooltipMessage === 'reais' ? 'reais' : 'porcentagem'}`} placement="top" arrow>
                         <button>
-                            {impostosData.icon} 
+                            {infoImpostos.icon} 
                         </button>
                     </Tooltip>
                 </Linha>

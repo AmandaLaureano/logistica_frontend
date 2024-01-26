@@ -1,14 +1,14 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import folha from "@assets/folhap.png"
-import SpeedDialNavbar from './speed-dial'
+import DropdownNav from './dropdown-nav'
 
 export default function Navbar() {
     return(
         <>
             <div className="grid grid-cols-2 place-content-evenly w-screen shadow-sm shadow-black-light bg-black h-[60px] border-b-2 border-black-gray-border fixed">
                 <div className='ml-2'>
-                    <SpeedDialNavbar/>
+                    <DropdownNav/>
                 </div>
                 <div className='flex items-center'>
                     <Link className='' href='/'>
