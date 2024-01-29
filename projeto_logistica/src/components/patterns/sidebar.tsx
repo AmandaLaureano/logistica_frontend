@@ -46,14 +46,12 @@ export default function Sidebar(){
             <div ref={sidebarRef} className={`hidden lg:block ${!sidebarIsOpen ? 'bg-black/90 h-screen w-24 fixed duration-500 top-0' : 'top-0 left-0 w-[270px] duration-500 h-screen bg-black/90 fixed'}`}>
                 <div className="flex flex-col gap-3 px-2 h-full mt-20">
                     <div className='w-full h-[70px] mt-4 relative'>
-                        
                         <div className={`${sidebarIsOpen ? 'opacity-100': 'opacity-0'} transition-opacity duration-100 absolute grid justify-items-start`}>
                             <div className="">
                                 <Image className="h-[60px] w-[200px]" src={logoPormade} alt="Logo Pormade Portas" quality={100} />
                             </div>
                         </div>
-                    
-                        <div className={`${!sidebarIsOpen ? 'opacity-100': 'opacity-0'} transition-opacity duration-200 absolute grid justify-items-center mx-2`}>
+                        <div className={`${!sidebarIsOpen ? 'opacity-100': 'opacity-0'} transition-opacity duration-200 absolute flex justify-center mx-5`}>
                             <div>
                                 <Image className="h-9 w-10" src={folha} alt="Logo Folha Pormade" quality={100}/>
                             </div>
@@ -72,8 +70,8 @@ export default function Sidebar(){
                             <div key={item.texto + index}>
                                 {item.href && (
                                     <Link href={item.href ?? ''}>
-                                        <div className={`rounded-md hover:scale-95 transition-all duration-200 py-3 px-4 flex justify-items-center hover:bg-gray font-medium gap-5 text-white`}>
-                                            <div className={`${!sidebarIsOpen ? 'grid justify-items-center': ''} `}>
+                                        <div className={`rounded-md hover:scale-95 transition-all duration-200 py-3 px-4 flex hover:bg-gray font-medium gap-5 text-white`}>
+                                            <div className={`flex justify-items-center ml-2`}>
                                                 <div>
                                                     <span>{changeIcon(item.icon)}</span>
                                                 </div>

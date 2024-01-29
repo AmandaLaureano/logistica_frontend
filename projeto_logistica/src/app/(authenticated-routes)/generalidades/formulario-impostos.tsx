@@ -3,7 +3,7 @@ import { DragAndDrop } from "@/src/components/drag-and-drop"
 import Linha from "./linha-formulario"
 import { api } from "@/src/services/api"
 import { IFormularioImpostos } from "../../../interfaces/app/generalidades"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import Swal from "sweetalert2"
@@ -89,7 +89,6 @@ export function FormularioImpostos({ trt, tda, despacho, pedagio, gris, adVal, c
         }
     }
 
-    
     // Envio da requisição para impostos
     const patchImpostos = async () => {
         try{
@@ -110,20 +109,10 @@ export function FormularioImpostos({ trt, tda, despacho, pedagio, gris, adVal, c
             console.log(res)
         }
         catch(err: any) {
-            console.log('Erro: Não foi possível enviar os dados dos impostos!', err.response.data.message)
-            setTimeout(() => {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Erro ao enviar os dados dos impostos',
-                    text: `${err.response.data.message[0]} O campo não pode estar vazio`,
-                    confirmButtonText: "OK",
-                    confirmButtonColor: "#509D45"
-                })
-            }, 2000)
+            throw {title: 'Erro ao enviar os dados dos impostos', text:`${err.response.data.message[0]} O campo não pode estar vazio`}
         }
     }
 
-    // Envio da requisição para SBA
     // Envio da requisição para SBA
     const patchSba = async () => { 
         try{
@@ -139,16 +128,7 @@ export function FormularioImpostos({ trt, tda, despacho, pedagio, gris, adVal, c
             console.log(res)
         }
         catch(err: any) {
-            console.log('Erro: Não foi possível enviar os dados do SBA!', err.response.data.message)
-            setTimeout(() => {
-                Swal.fire({
-                icon: 'error',
-                title: 'Erro ao enviar os dados da SBA',
-                text: `${err.response.data.message[0]} O campo não pode estar vazio.`,
-                confirmButtonText: "OK",
-                confirmButtonColor: "#509D45"
-                })
-            }, 2000)
+            throw {title: 'Erro ao enviar os dados do SBA', text:`${err.response.data.message[0]} O campo não pode estar vazio`}
         }
     }
 
@@ -166,21 +146,12 @@ export function FormularioImpostos({ trt, tda, despacho, pedagio, gris, adVal, c
             
             window.sessionStorage.setItem("fretefy", res.data.fretefy)
             window.sessionStorage.setItem("vtex", res.data.vtex)
-            
         }
         catch(err){
-            console.log('Erro ao processar arquivo', err)
-            setTimeout(() =>{
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Erro ao processar o arquivo',
-                    text: 'Somente o arquivo da transportadora correspondente deve ser anexado',
-                    confirmButtonText: "OK",
-                    confirmButtonColor: "#509D45"
-                })
-            }, 2000)
-
             handleRemoveFile()
+            throw {
+            title: 'Erro ao processar o arquivo',
+            text: 'Somente o arquivo da transportadora correspondente deve ser anexado'}
         }
     }
 
@@ -199,14 +170,23 @@ export function FormularioImpostos({ trt, tda, despacho, pedagio, gris, adVal, c
             await Promise.all([
                 patchArquivo(),
                 patchImpostos(),
-                patchSba(),
+                patchSba()
             ])
-            
-            setTimeout(() =>{
-                router.push(`/downloads/${params}`)
-            }, 1000)
-
-            Swal.close()
+                .then(() =>{
+                    setTimeout(() =>{
+                        Swal.close()
+                        router.push(`/downloads/${params}`)
+                    }, 2000)
+                })
+                .catch((err) =>{
+                    Swal.fire({
+                    icon: 'error',
+                    title: err.title,
+                    text: err.text,
+                    confirmButtonText: "OK",
+                    confirmButtonColor: "#509D45"
+                    })
+                })
 
         }catch(err){
             Swal.fire({
