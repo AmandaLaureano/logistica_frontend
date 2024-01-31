@@ -4,7 +4,7 @@ import { useCallback } from "react";
 import { Tooltip } from "@mui/material";
 import { PiQuestion } from "react-icons/pi";
 
-export default function Linha({ nomeImposto, infoImposto, valorImposto, onChange, children, mask, placeholder}: ILinhaFormulario,) {
+export default function Linha({ nomeImposto, infoImposto, valorImposto, onChange, children, mask, placeholder, invalidField}: ILinhaFormulario,) {
 
     const handleKeyUp = useCallback(
         (e: React.FormEvent<HTMLInputElement>) => {
@@ -38,12 +38,12 @@ export default function Linha({ nomeImposto, infoImposto, valorImposto, onChange
                     ): ""}
                 </div>
                 <div className="flex justify-end w-6/12 my-1 space-x-2 sm:space-x-10 mx-2">
-                    <div className="flex items-stretch bg-white-normal rounded-md">
+                    <div className={`${invalidField ? 'shadow shadow-red' : ''} flex items-stretch bg-white-normal rounded-md`}>
                         <input
                             type="number"
                             placeholder={placeholder}
                             onKeyUp={handleKeyUp}
-                            className="outline-none w-16 flex text-start cursor-pointer bg-white-normal ml-3"
+                            className={`outline-none w-16 flex text-start cursor-pointer bg-white-normal ml-3`}
                             onChange={(e) => onChange(e.target.value)}
                             value={valorImposto}
                         >

@@ -58,7 +58,7 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts"
-  ],
+, "src/app/(authenticated-routes)/generalidades/[id]/toast-error.js"  ],
   "exclude": [
     "node_modules"
   ]

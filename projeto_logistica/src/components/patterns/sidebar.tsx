@@ -46,7 +46,7 @@ export default function Sidebar(){
             <div ref={sidebarRef} className={`hidden lg:block ${!sidebarIsOpen ? 'bg-black/90 h-screen w-24 fixed duration-500 top-0' : 'top-0 left-0 w-[270px] duration-500 h-screen bg-black/90 fixed'}`}>
                 <div className="flex flex-col gap-3 px-2 h-full mt-20">
                     <div className='w-full h-[70px] mt-4 relative'>
-                        <div className={`${sidebarIsOpen ? 'opacity-100': 'opacity-0'} transition-opacity duration-100 absolute grid justify-items-start`}>
+                        <div className={`${sidebarIsOpen ? 'opacity-100': 'opacity-0'} mx-2 transition-opacity duration-100 absolute grid justify-items-start`}>
                             <div className="">
                                 <Image className="h-[60px] w-[200px]" src={logoPormade} alt="Logo Pormade Portas" quality={100} />
                             </div>

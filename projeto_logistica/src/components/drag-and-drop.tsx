@@ -1,8 +1,7 @@
 'use client'
 import { useState } from "react"
-import animationData from './Animation - 1704821217959.json'
-import Lottie from 'react-lottie';
 import { VscClose } from "react-icons/vsc"
+import { PiCloudArrowUpThin } from "react-icons/pi"
 
 interface IDragAndDrop {
     onDrop?(files: FileList): void;
@@ -39,15 +38,6 @@ export function DragAndDrop({ accept, texto, onDrop, onChange, onClick, arquivo 
         setDragging(true);
     }
 
-    const defaultOptions = {
-        loop: true,
-        autoplay: true, 
-        animationData: animationData,
-        rendererSettings: {
-        preserveAspectRatio: 'xMidYMid slice'
-        }
-    }
-
     return (
         <label className="flex justify-center pb-6">
             <div 
@@ -69,17 +59,15 @@ export function DragAndDrop({ accept, texto, onDrop, onChange, onClick, arquivo 
                     </input> 
                 </div>
                 <div className="flex flex-col justify-center items-center mx-5 h-full">
-                    <div className="my-5">
-                        <Lottie 
-                        options={defaultOptions}
-                        height={100}
-                        width={200}
-                        />
+                    <div className="mt-20">
+                        <div className="animate-bounce">
+                            <PiCloudArrowUpThin className="w-20 h-20 sm:w-24 sm:h-24 fill-green-simple/50"/>
+                        </div>
                     </div>
                     <div className="mx-5">
-                        <div className="flex flex-col sm:flex-row justify-items-center">
+                        <div className="flex flex-col sm:flex-row justify-items-center mb-10">
                             <div className="flex items-center break-all">
-                                <h1 className='flex text-black/50 text-center cursor-pointer text-xs xmd:text-sm sm:text-lg font-medium'>
+                                <h1 className='flex text-black/50 text-center cursor-pointer text-sm sm:text-lg font-medium mb-10'>
                                 {texto}
                                 </h1>
                             </div>

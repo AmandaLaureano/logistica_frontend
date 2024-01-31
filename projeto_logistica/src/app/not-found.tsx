@@ -1,16 +1,33 @@
 'use client'
 import { PiArrowBendDownLeftBold } from "react-icons/pi"
 import { useRouter } from 'next/navigation';
+import Lottie from 'lottie-react';
+import animationData from './Animation - 1704829687849.json'
 
 export default function NotFound(){
 
     const router = useRouter()
 
+    const style = {
+        height: 250,
+        width: 250
+    }
+
     return(
         <main className="flex h-screen w-screen bg-black justify-center place-content-center">
             <div className="place-self-center">
-                <div className="mt-8 mx-5">
-                    <h1 className="text-center text-white font-bold text-2xl sm:text-3xl xl:text-5xl tracking-wide">Página não encontrada!</h1>
+                <div className="flex flex-col justify-items-center">
+                    <div className="flex justify-center">
+                        <Lottie
+                        animationData={animationData}
+                        style={style}
+                        autoplay={true}
+                        loop={true}
+                        />
+                    </div>
+                    <div className="mt-3 mx-5">
+                        <h1 className="text-center text-white font-bold text-2xl sm:text-3xl tracking-wide">Página não encontrada!</h1>
+                    </div>
                 </div>
                 <div className="mt-8 mx-5">
                     <button onClick={() => router.push('/')} className="h-full w-full rounded-md bg-black-light shadow-sm shadow-green-simple hover:scale-95 transition-all duration-200">

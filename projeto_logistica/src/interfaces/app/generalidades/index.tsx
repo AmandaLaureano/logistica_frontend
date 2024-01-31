@@ -21,7 +21,8 @@ export interface ILinhaFormulario {
     onChange?: any,
     children?: React.ReactNode,
     mask: string,
-    placeholder: string
+    placeholder: string,
+    invalidField: boolean
 }
 
 export interface ITransportadora {

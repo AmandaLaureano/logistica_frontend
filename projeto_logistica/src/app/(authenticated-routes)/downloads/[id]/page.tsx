@@ -1,10 +1,9 @@
 'use client'
 import { ButtonDefault } from "../../../../components/button";
 import { FaDownload } from "react-icons/fa";
-import Lottie from 'react-lottie';
+import Lottie from 'lottie-react';
 import animationData from '../../downloads/[id]/Animation - 1704735080367.json'
 import { IoMdArrowRoundBack } from "react-icons/io";
-import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Tooltip from '@mui/material/Tooltip';
 
@@ -32,29 +31,30 @@ export default function Downloads({params}: any) {
         }
     }
 
-    const defaultOptions = {
-        loop: false,
-        autoplay: true, 
-        animationData: animationData,
-        rendererSettings: {
-        preserveAspectRatio: 'xMidYMid slice'
-        }
+    const style = {
+        height: 250,
+        width: 250
     }
 
     return(
         <div className="grid">
             <div className="bg-white-simple justify-self-center rounded-sm shadow-md shadow-black-gray-border my-20 w-11/12 lg:w-2/3">
-                <div className="w-full">
+                <div>
                     <Tooltip disableFocusListener title="Voltar para Generalidades" placement="right-start">
                         <button onClick={() =>{(router.push(`/generalidades/${params.id}`))}} className="focus:outline-none m-5 p-2 hover:bg-green-simple rounded-full bg-black-gray-border">
                             <IoMdArrowRoundBack className="h-6 w-6 fill-white"/>
                         </button>
                     </Tooltip>
-                    <Lottie 
-                    options={defaultOptions}
-                    height={250}
-                    width={250}
-                    />
+                </div>
+                <div className="w-full flex justify-center">
+                    <div>
+                        <Lottie 
+                        animationData={animationData}
+                        style={style}
+                        autoplay={true}
+                        loop={false}
+                        />
+                    </div>
                 </div>
                 <div className="text-center pb-5">
                     <p className="animate-pulse font-medium text-2xl 2xl:text-3xl p-5">

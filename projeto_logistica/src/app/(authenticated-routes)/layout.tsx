@@ -1,7 +1,8 @@
 import Navbar from '../../components/patterns/navbar'
 import Sidebar from '../../components/patterns/sidebar'
 import '../globals.css'
-import { Montserrat } from 'next/font/google' 
+import { Montserrat } from 'next/font/google'
+import { ToastContainer } from 'react-toastify' 
 
 const montserrat = Montserrat({
   subsets: ['latin'],
@@ -23,6 +24,19 @@ export default function RootLayout({children}: {children: React.ReactNode}){
           <Sidebar/>
         </div>
         <div className='pt-12'>
+              <ToastContainer
+                position="top-right"
+                autoClose={3000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="light"
+                toastClassName="mx-5 sm:mx-0"
+            />
           {children}
         </div>
       </body>                        

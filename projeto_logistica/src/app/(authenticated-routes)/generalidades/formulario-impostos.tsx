@@ -3,8 +3,8 @@ import { DragAndDrop } from "@/src/components/drag-and-drop"
 import Linha from "./linha-formulario"
 import { api } from "@/src/services/api"
 import { IFormularioImpostos } from "../../../interfaces/app/generalidades"
-import { useEffect, useState } from "react"
-import { ToastContainer, toast } from 'react-toastify'
+import { useState } from "react"
+import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import Swal from "sweetalert2"
 import { useRouter } from "next/navigation"
@@ -12,12 +12,15 @@ import { AiOutlinePercentage } from "react-icons/ai"
 import { MdAttachMoney } from "react-icons/md"
 import { TbCalendarTime } from "react-icons/tb"
 import Tooltip from '@mui/material/Tooltip';
+import {ToastErrorMessage} from './[id]/toast-error' 
 
 export function FormularioImpostos({ trt, tda, despacho, pedagio, gris, adVal, cam, prazo, adv, kg, params }: IFormularioImpostos) {
-
+    
     const router = useRouter()
-
-    const [values, setValues] = useState({ trt, tda, despacho, pedagio, gris, adVal, cam, prazo, adv, kg, arquivo: {} as File })
+    
+    const [values, setValues] = useState({ trt, tda, despacho, pedagio, gris, adVal, cam, prazo, adv, kg })
+    const [arquivo, setArquivo] = useState({ arquivo: {} as File })
+    const [invalidFields, setInvalidFields] = useState<string[]>([])
     
     const infoImpostos = [
         { nome: "TRT", info: "Taxa de Restrição de Trânsito", valor: values.trt, onChange: (newValue: string) => handleChange('trt', newValue), mask: "reais", placeholder: "0.00", tooltipMessage: "reais", icon: <MdAttachMoney className="w-5 h-5 fill-green-simple"/>},
@@ -40,7 +43,7 @@ export function FormularioImpostos({ trt, tda, despacho, pedagio, gris, adVal, c
     }
 
     const handleRemoveFile = () => {
-        setValues(prevState => ({
+        setArquivo(prevState => ({
             ...prevState,
             arquivo: {} as File,
         }))
@@ -53,7 +56,7 @@ export function FormularioImpostos({ trt, tda, despacho, pedagio, gris, adVal, c
     const handleDropFile = (files: FileList) => {
         const droppedFile = files[0];
         if (droppedFile) {
-            setValues(prevState => ({
+            setArquivo(prevState => ({
                 ...prevState,
                 arquivo: droppedFile,
             }));
@@ -79,7 +82,7 @@ export function FormularioImpostos({ trt, tda, despacho, pedagio, gris, adVal, c
                         })
                     return
                 }
-                setValues(prevState => ({
+                setArquivo(prevState => ({
                     ...prevState,
                     arquivo: file,
                 }))
@@ -136,7 +139,7 @@ export function FormularioImpostos({ trt, tda, despacho, pedagio, gris, adVal, c
     const patchArquivo = async () => {
         try{
             const formData = new FormData()
-            formData.append('file', values.arquivo)
+            formData.append('file', arquivo.arquivo)
             const res = await api.post(`http://192.168.155.22:3000/gobor/upload`, formData, {
                 headers:{
                     "Content-Type": 'multipart/form-data'
@@ -156,49 +159,63 @@ export function FormularioImpostos({ trt, tda, despacho, pedagio, gris, adVal, c
     }
 
     const sendAllRequests = async () => {
-        try{
-            Swal.fire({
-                title: 'Convertendo arquivos...',
-                allowOutsideClick: false,
-                allowEscapeKey: false,
-                showConfirmButton: false,
-                willOpen: () => {
-                    Swal.showLoading();
-                },
-            })
+        const emptyFieldsList = new Set<string>()
 
-            await Promise.all([
-                patchArquivo(),
-                patchImpostos(),
-                patchSba()
-            ])
-                .then(() =>{
-                    setTimeout(() =>{
-                        Swal.close()
-                        router.push(`/downloads/${params}`)
-                    }, 2000)
+        if(Object.entries(values).some(([key, value]) => value === "" || value === null || value === undefined)){
+            Object.entries(values).forEach(([key, value]) => {
+                if(value === "" || value === null || value === undefined){
+                    emptyFieldsList.add(key)
+                }
+            })
+            const emptyFields = Array.from(emptyFieldsList)
+            setInvalidFields(emptyFields)
+
+            ToastErrorMessage({text:`É obrigatório o preenchimento dos seguintes campos: *${emptyFields.join(', ')}*`, duration: 3000})
+        }else{
+            try{
+                Swal.fire({
+                    title: 'Convertendo arquivos...',
+                    allowOutsideClick: false,
+                    allowEscapeKey: false,
+                    showConfirmButton: false,
+                    willOpen: () => {
+                        Swal.showLoading();
+                    },
                 })
-                .catch((err) =>{
-                    Swal.fire({
-                    icon: 'error',
-                    title: err.title,
-                    text: err.text,
-                    confirmButtonText: "OK",
-                    confirmButtonColor: "#509D45"
+    
+                await Promise.all([
+                    patchArquivo(),
+                    patchImpostos(),
+                    patchSba()
+                ])
+                    .then(() =>{
+                        setTimeout(() =>{
+                            Swal.close()
+                            router.push(`/downloads/${params}`)
+                        }, 2000)
                     })
+                    .catch((err) =>{
+                        Swal.fire({
+                        icon: 'error',
+                        title: err.title,
+                        text: err.text,
+                        confirmButtonText: "OK",
+                        confirmButtonColor: "#509D45"
+                        })
+                    })
+    
+            }catch(err){
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Erro ao enviar os dados!',
+                    text: 'Verifique sua conexão com a internet ou entre em contato com o suporte.'
                 })
-
-        }catch(err){
-            Swal.fire({
-                icon: 'error',
-                title: 'Erro ao enviar os dados!',
-                text: 'Verifique sua conexão com a internet ou entre em contato com o suporte.'
-            })
-        } 
+            } 
+        }
     }
     
     const handleSendFile = () => {
-        if(!values.arquivo || !values.arquivo.name){
+        if(!arquivo.arquivo || !arquivo.arquivo.name){
             toast.error('Por favor, anexe um arquivo antes de enviar as alterações!', {
                 position: "top-right",
                 autoClose: 3000,
@@ -214,32 +231,19 @@ export function FormularioImpostos({ trt, tda, despacho, pedagio, gris, adVal, c
             sendAllRequests()
         }
     }
-
+    
     return (
         <div>
-            <ToastContainer
-                position="top-right"
-                autoClose={3000}
-                hideProgressBar={false}
-                newestOnTop={false}
-                closeOnClick
-                rtl={false}
-                pauseOnFocusLoss
-                draggable
-                pauseOnHover
-                theme="light"
-                toastClassName="mx-5 sm:mx-0"
-            />
-
-            {infoImpostos.map((infoImpostos, index) => (
+            {infoImpostos.map((infoImpostos) => (
                 <Linha
-                key={index}
-                nomeImposto={infoImpostos.nome} 
-                infoImposto={infoImpostos.info} 
-                valorImposto={infoImpostos.valor}
-                onChange={infoImpostos.onChange}
-                mask={infoImpostos.mask}
-                placeholder={infoImpostos.placeholder} 
+                    key={infoImpostos.nome}
+                    nomeImposto={infoImpostos.nome} 
+                    infoImposto={infoImpostos.info} 
+                    valorImposto={infoImpostos.valor}
+                    onChange={infoImpostos.onChange}
+                    mask={infoImpostos.mask}
+                    placeholder={infoImpostos.placeholder}
+                    invalidField={invalidFields.includes(infoImpostos.nome)} 
                 >   
                     <Tooltip title={infoImpostos.nome === "PRAZO" ? infoImpostos.tooltipMessage :`Valor do imposto em ${infoImpostos.tooltipMessage === 'reais' ? 'reais' : 'porcentagem'}`} placement="top" arrow>
                         <button>
@@ -251,7 +255,7 @@ export function FormularioImpostos({ trt, tda, despacho, pedagio, gris, adVal, c
 
             <div className="flex flex-col py-10 gap-5">
                 <div className="w-full">
-                    <DragAndDrop onClick={handleRemoveFile} arquivo={values.arquivo} texto={values.arquivo.name !== undefined ? values.arquivo.name: 'Arraste e solte o arquivo ou clique para selecionar'} onChange={handleFileChange} onDrop={handleDropFile}/>
+                    <DragAndDrop onClick={handleRemoveFile} arquivo={arquivo.arquivo} texto={arquivo.arquivo.name !== undefined ? arquivo.arquivo.name: 'Arraste e solte o arquivo ou clique para selecionar'} onChange={handleFileChange} onDrop={handleDropFile}/>
                 </div>
                 <div className="w-full flex justify-center">
                     <div>

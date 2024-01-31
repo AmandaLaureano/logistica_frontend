@@ -6,14 +6,14 @@ export const titulosMenu = [
         href: '/',
         open: false
     },
-    {
+    /*{
         id: 3,
         texto:'Suporte',
         href: 'http://ti.pormade.com.br:8080/ords/r/tecinfo/suporte-petim/home?session=15546297356718',
         icon: 'suporte',
         open: false
     },
-    /*{
+    {
         id: 2,
         texto:'Arquivos',
         icon: 'arquivos',
