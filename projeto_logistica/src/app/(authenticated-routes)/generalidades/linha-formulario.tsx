@@ -21,6 +21,7 @@ export default function Linha({ nomeImposto, infoImposto, valorImposto, onChange
 
         }, [mask, onChange]
     )
+    console.log(invalidField)
 
     return (
         <div className="w-full border-b border-green-simple/20 h-14">
@@ -38,12 +39,12 @@ export default function Linha({ nomeImposto, infoImposto, valorImposto, onChange
                     ): ""}
                 </div>
                 <div className="flex justify-end w-6/12 my-1 space-x-2 sm:space-x-10 mx-2">
-                    <div className={`${invalidField ? 'shadow shadow-red' : ''} flex items-stretch bg-white-normal rounded-md`}>
+                    <div className={`${invalidField ? 'border-2 border-red flex items-stretch rounded-md bg-white-normal':'flex items-stretch bg-white-normal rounded-md'}`}>
                         <input
                             type="number"
                             placeholder={placeholder}
                             onKeyUp={handleKeyUp}
-                            className={`outline-none w-16 flex text-start cursor-pointer bg-white-normal ml-3`}
+                            className={`outline-none w-16 flex my-2 text-start cursor-pointer bg-white-normal ml-3`}
                             onChange={(e) => onChange(e.target.value)}
                             value={valorImposto}
                         >
