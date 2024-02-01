@@ -29,7 +29,7 @@ export function ToastErrorMessage({ text, duration}) {
         {
           toastId: text,
           autoClose: duration <= 0 ? false : duration,
-          className: 'shadow-md shadow-red',
+          className: 'shadow-md shadow-red mx-5',
         }
       );
     }

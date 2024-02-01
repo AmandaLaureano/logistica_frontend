@@ -12,35 +12,33 @@ import { AiOutlinePercentage } from "react-icons/ai"
 import { MdAttachMoney } from "react-icons/md"
 import { TbCalendarTime } from "react-icons/tb"
 import Tooltip from '@mui/material/Tooltip';
-import {ToastErrorMessage} from './[id]/toast-error' 
+import { ToastErrorMessage } from './[id]/toast-error' 
 
 export function FormularioImpostos({ trt, tda, despacho, pedagio, gris, adVal, cam, prazo, adv, kg, params }: IFormularioImpostos) {
     
     const router = useRouter()
-    
     const [values, setValues] = useState({ trt, tda, despacho, pedagio, gris, adVal, cam, prazo, adv, kg })
     const [arquivo, setArquivo] = useState({ arquivo: {} as File })
     const [invalidFields, setInvalidFields] = useState<string[]>([])
     
     const infoImpostos = [
-        { nome:'trt', titulo: "TRT", info: "Taxa de Restrição de Trânsito", valor: values.trt, onChange: (newValue: string) => handleChange('trt', newValue), mask: "reais", placeholder: "0.00", tooltipMessage: "reais", icon: <MdAttachMoney className="w-5 h-5 fill-green-simple"/>},
-        { nome:'tda', titulo: "TDA", info: "Taxa de Difícil Acesso", valor: values.tda, onChange: (newValue: string) => handleChange('tda', newValue), mask: "reais", placeholder: "0.00", tooltipMessage: "reais", icon: <MdAttachMoney className="w-5 h-5 fill-green-simple"/>},
-        { nome:'despacho', titulo: "TAXA DE DESPACHO", info: "", valor: values.despacho, onChange: (newValue: string) => handleChange('despacho', newValue), mask: "reais", placeholder: "0.00", tooltipMessage: "reais", icon: <MdAttachMoney className="w-5 h-5 fill-green-simple"/>},
-        { nome:'pedagio', titulo: "PEDÁGIO", info: "", valor: values.pedagio, onChange: (newValue: string) => handleChange('pedagio', newValue), mask: "reais", placeholder: "0.00", tooltipMessage: "reais", icon: <MdAttachMoney className="w-5 h-5 fill-green-simple"/>},
-        { nome:'gris', titulo: "GRIS", info: "Gerenciamento de Riscos", valor: values.gris, onChange: (newValue: string) => handleChange('gris', newValue), mask: "reais", placeholder: "0.00", tooltipMessage: "porcentagem", icon: <AiOutlinePercentage className="w-5 h-5 fill-black/60"/>},
-        { nome:'adVal', titulo: "ADVAL", info: "", valor: values.adVal, onChange: (newValue: string) => handleChange('adVal', newValue), mask: "reais", placeholder: "0.00", tooltipMessage: "porcentagem", icon: <AiOutlinePercentage className="w-5 h-5 fill-black/60"/>},
-        { nome:'cam', titulo: "CAM", info: "Custo Adicional de Manuseio e Separação", valor: values.cam, onChange: (newValue: string) => handleChange('cam', newValue), mask: "reais", placeholder: "0.00", tooltipMessage: "porcentagem", icon: <AiOutlinePercentage className="w-5 h-5 fill-black/60"/>},
-        { nome:'prazo', titulo: "PRAZO", info: "SBA", valor: values.prazo, onChange: (newValue: string) => handleChange('prazo', newValue), mask: "dias", placeholder: "0", tooltipMessage: "Valor do imposto em dias", icon: <TbCalendarTime className="w-5 h-5 stroke-green-simple" />},
-        { nome:'adv', titulo: "ADV", info: "SBA", valor: values.adv, onChange: (newValue: string) => handleChange('adv', newValue), mask: "reais", placeholder: "0.00", tooltipMessage: "porcentagem", icon: <AiOutlinePercentage className="w-5 h-5 fill-black/60"/>},
-        { nome:'kg', titulo: "kg", info: "SBA", valor: values.kg, onChange: (newValue: string) => handleChange('kg', newValue), mask: "reais", placeholder: "0.00", tooltipMessage: "reais", icon: <MdAttachMoney className="w-5 h-5 fill-green-simple"/>},
+        { nome:'trt', titulo: "TRT", info: "Taxa de Restrição de Trânsito", valor: values.trt, onChange: (newValue: string) => handleChangeValue('trt', newValue), mask: "reais", placeholder: "0.00", tooltipMessage: "reais", icon: <MdAttachMoney className="w-5 h-5 fill-green-simple"/>},
+        { nome:'tda', titulo: "TDA", info: "Taxa de Difícil Acesso", valor: values.tda, onChange: (newValue: string) => handleChangeValue('tda', newValue), mask: "reais", placeholder: "0.00", tooltipMessage: "reais", icon: <MdAttachMoney className="w-5 h-5 fill-green-simple"/>},
+        { nome:'despacho', titulo: "TAXA DE DESPACHO", info: "", valor: values.despacho, onChange: (newValue: string) => handleChangeValue('despacho', newValue), mask: "reais", placeholder: "0.00", tooltipMessage: "reais", icon: <MdAttachMoney className="w-5 h-5 fill-green-simple"/>},
+        { nome:'pedagio', titulo: "PEDÁGIO", info: "", valor: values.pedagio, onChange: (newValue: string) => handleChangeValue('pedagio', newValue), mask: "reais", placeholder: "0.00", tooltipMessage: "reais", icon: <MdAttachMoney className="w-5 h-5 fill-green-simple"/>},
+        { nome:'gris', titulo: "GRIS", info: "Gerenciamento de Riscos", valor: values.gris, onChange: (newValue: string) => handleChangeValue('gris', newValue), mask: "reais", placeholder: "0.00", tooltipMessage: "porcentagem", icon: <AiOutlinePercentage className="w-5 h-5 fill-black/60"/>},
+        { nome:'adVal', titulo: "ADVAL", info: "", valor: values.adVal, onChange: (newValue: string) => handleChangeValue('adVal', newValue), mask: "reais", placeholder: "0.00", tooltipMessage: "porcentagem", icon: <AiOutlinePercentage className="w-5 h-5 fill-black/60"/>},
+        { nome:'cam', titulo: "CAM", info: "Custo Adicional de Manuseio e Separação", valor: values.cam, onChange: (newValue: string) => handleChangeValue('cam', newValue), mask: "reais", placeholder: "0.00", tooltipMessage: "porcentagem", icon: <AiOutlinePercentage className="w-5 h-5 fill-black/60"/>},
+        { nome:'prazo', titulo: "PRAZO", info: "SBA", valor: values.prazo, onChange: (newValue: string) => handleChangeValue('prazo', newValue), mask: "dias", placeholder: "0", tooltipMessage: "Valor do imposto em dias", icon: <TbCalendarTime className="w-5 h-5 stroke-green-simple" />},
+        { nome:'adv', titulo: "ADV", info: "SBA", valor: values.adv, onChange: (newValue: string) => handleChangeValue('adv', newValue), mask: "reais", placeholder: "0.00", tooltipMessage: "porcentagem", icon: <AiOutlinePercentage className="w-5 h-5 fill-black/60"/>},
+        { nome:'kg', titulo: "KG", info: "SBA", valor: values.kg, onChange: (newValue: string) => handleChangeValue('kg', newValue), mask: "reais", placeholder: "0.00", tooltipMessage: "reais", icon: <MdAttachMoney className="w-5 h-5 fill-green-simple"/>},
     ]
 
-    const handleChange = (key: string, value: string) => {
+    const handleChangeValue = (key: string, value: string) => {
         setValues(prevState => ({
             ...prevState,
             [key]: (value),
         }))
-
         setInvalidFields(invalidFields.filter((item) => 
             item !== key
         ))
@@ -72,7 +70,6 @@ export function FormularioImpostos({ trt, tda, despacho, pedagio, gris, adVal, c
             const file = e.target.files[0]
             if(file){
                 const extension = file.name.split('.').pop()
-
                 if (extension !== 'xlsx' && file.type !== 'application/vnd.ms-excel') {
                     toast.error('Por favor, selecione um arquivo .xlsx válido!', {
                         position: "top-right",
@@ -162,19 +159,27 @@ export function FormularioImpostos({ trt, tda, despacho, pedagio, gris, adVal, c
         }
     }
 
-    const sendAllRequests = async () => {
+    const findInvalidFields = () => {
         const emptyFieldsList = new Set<string>()
-
+        const inputTitlesList = new Set<string>()
+        
         if(Object.entries(values).some(([key, value]) => value === "" || value === null || value === undefined)){
             Object.entries(values).forEach(([key, value]) => {
                 if(value === "" || value === null || value === undefined){
                     emptyFieldsList.add(key)
+                    inputTitlesList.add(infoImpostos.find(info => info.nome === key)?.titulo || "")
                 }
             })
             const emptyFields = Array.from(emptyFieldsList)
             setInvalidFields(emptyFields)
+        }
+        return Array.from(inputTitlesList)
+    }
 
-            ToastErrorMessage({text:`É obrigatório o preenchimento dos seguintes campos: *${emptyFields.join(', ')}*`, duration: 3000})
+    const sendAllRequests = async () => {
+        const storeInvalidFields = findInvalidFields()        
+        if(storeInvalidFields.length > 0){
+            ToastErrorMessage({text:`É obrigatório o preenchimento dos seguintes campos: *${storeInvalidFields.join(', ')}*`, duration: 3000})
         }else{
             try{
                 Swal.fire({
@@ -186,7 +191,6 @@ export function FormularioImpostos({ trt, tda, despacho, pedagio, gris, adVal, c
                         Swal.showLoading();
                     },
                 })
-    
                 await Promise.all([
                     patchArquivo(),
                     patchImpostos(),
@@ -207,7 +211,6 @@ export function FormularioImpostos({ trt, tda, despacho, pedagio, gris, adVal, c
                         confirmButtonColor: "#509D45"
                         })
                     })
-    
             }catch(err){
                 Swal.fire({
                     icon: 'error',
@@ -217,7 +220,6 @@ export function FormularioImpostos({ trt, tda, despacho, pedagio, gris, adVal, c
             } 
         }
     }
-    console.log(invalidFields)
     
     const handleSendFile = () => {
         if(!arquivo.arquivo || !arquivo.arquivo.name){

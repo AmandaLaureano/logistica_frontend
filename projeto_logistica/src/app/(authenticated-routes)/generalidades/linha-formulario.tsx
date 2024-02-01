@@ -21,11 +21,10 @@ export default function Linha({ nomeImposto, infoImposto, valorImposto, onChange
 
         }, [mask, onChange]
     )
-    console.log(invalidField)
 
     return (
-        <div className="w-full border-b border-green-simple/20 h-14">
-            <div className="flex hover:bg-green-simple/20 transition-all duration-500 w-full h-full text-sm md:text-base my-auto">
+        <div className={` ${invalidField ? 'border-y border-red/30':'border-b border-green-simple/20'} w-full h-14`}>
+            <div className={`flex ${invalidField ? 'bg-red/20':' hover:bg-green-simple/20'} transition-all duration-500 w-full h-full text-sm md:text-base my-auto`}>
                 <div className="w-6/12 flex justify-start items-center my-auto">
                     <span className="flex mx-3 text-xs sm:text-sm font-medium w-fit">
                         {nomeImposto}
@@ -39,7 +38,7 @@ export default function Linha({ nomeImposto, infoImposto, valorImposto, onChange
                     ): ""}
                 </div>
                 <div className="flex justify-end w-6/12 my-1 space-x-2 sm:space-x-10 mx-2">
-                    <div className={`${invalidField ? 'border-2 border-red flex items-stretch rounded-md bg-white-normal':'flex items-stretch bg-white-normal rounded-md'}`}>
+                    <div className={`flex items-stretch bg-white-normal rounded-md`}>
                         <input
                             type="number"
                             placeholder={placeholder}

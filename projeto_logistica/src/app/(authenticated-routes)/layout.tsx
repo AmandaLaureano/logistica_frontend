@@ -35,7 +35,7 @@ export default function RootLayout({children}: {children: React.ReactNode}){
                 draggable
                 pauseOnHover
                 theme="light"
-                toastClassName="mx-5 sm:mx-0"
+                toastClassName="mx-5"
             />
           {children}
         </div>

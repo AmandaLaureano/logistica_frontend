@@ -62,12 +62,12 @@ export default function DropdownNav(){
                             return(
                                 item.href && (
                                     <Link className="hover:bg-white-simple/20 py-1 rounded-sm hover:scale-95 transition-all duration-200" key={index} href={item.href ?? ''}>
-                                        <div className="flex items-strech ml-1">
+                                        <div className="flex items-strech mx-2">
+                                            <div className="mx-3 flex items-end">
+                                                <span className="text-white-simple font-medium">{item.texto}</span>
+                                            </div>
                                             <div className="m-1">
                                                 <span>{changeIcon(item.icon)}</span>
-                                            </div>
-                                            <div className="mx-3 flex items-end">
-                                                <span className="text-white-simple font-medium mt-1">{item.texto}</span>
                                             </div>
                                         </div>
                                     </Link>
