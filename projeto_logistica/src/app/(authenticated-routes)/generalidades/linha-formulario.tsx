@@ -1,3 +1,4 @@
+'use client'
 import { ILinhaFormulario } from "@/src/interfaces/app/generalidades";
 import { ValorInteiro, ValorDecimal } from './masks'
 import { useCallback } from "react";

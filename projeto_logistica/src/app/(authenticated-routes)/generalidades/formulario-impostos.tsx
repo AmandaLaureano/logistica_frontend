@@ -4,7 +4,11 @@ import Linha from "./linha-formulario"
 import { api } from "@/src/services/api"
 import { IFormularioImpostos } from "../../../interfaces/app/generalidades"
 import { useState } from "react"
+<<<<<<< Updated upstream
 import { toast } from 'react-toastify'
+=======
+import { ToastContainer, toast } from 'react-toastify'
+>>>>>>> Stashed changes
 import 'react-toastify/dist/ReactToastify.css'
 import Swal from "sweetalert2"
 import { useRouter } from "next/navigation"
@@ -106,11 +110,11 @@ export function FormularioImpostos({ trt, tda, despacho, pedagio, gris, adVal, c
             cam: parseFloat(values.cam),
             transportadoraId: params
             }
-            console.log({...impostosData})
-            const res = await api.patch(`http://192.168.155.22:3000/impostos/${params}`, {
+            
+            await api.patch(`http://192.168.155.22:3000/impostos/${params}`, {
                 ...impostosData,
             })
-            console.log(res)
+            
         }
         catch(err: any) {
             throw {title: 'Erro ao enviar os dados dos impostos', text:`${err.response.data.message[0]}`}
@@ -126,10 +130,9 @@ export function FormularioImpostos({ trt, tda, despacho, pedagio, gris, adVal, c
             kg: parseFloat(values.kg),
             transportadoraId: params 
             }
-            const res = await api.patch(`http://192.168.155.22:3000/sba/${params}`, {
+            await api.patch(`http://192.168.155.22:3000/sba/${params}`, {
                 ...sbaData,
             })
-            console.log(res)
         }
         catch(err: any) {
             throw {title: 'Erro ao enviar os dados do SBA', text:`${err.response.data.message}`}
@@ -146,7 +149,6 @@ export function FormularioImpostos({ trt, tda, despacho, pedagio, gris, adVal, c
                     "Content-Type": 'multipart/form-data'
                 }
             })
-            console.log(res.data)
             
             window.sessionStorage.setItem("fretefy", res.data.fretefy)
             window.sessionStorage.setItem("vtex", res.data.vtex)
@@ -177,6 +179,7 @@ export function FormularioImpostos({ trt, tda, despacho, pedagio, gris, adVal, c
     }
 
     const sendAllRequests = async () => {
+<<<<<<< Updated upstream
         const storeInvalidFields = findInvalidFields()        
         if(storeInvalidFields.length > 0){
             ToastErrorMessage({text:`É obrigatório o preenchimento dos seguintes campos: *${storeInvalidFields.join(', ')}*`, duration: 3000})
@@ -190,6 +193,28 @@ export function FormularioImpostos({ trt, tda, despacho, pedagio, gris, adVal, c
                     willOpen: () => {
                         Swal.showLoading();
                     },
+=======
+        try{
+            Swal.fire({
+                title: 'Convertendo arquivos...',
+                allowOutsideClick: false,
+                allowEscapeKey: false,
+                showConfirmButton: false,
+                willOpen: () => {
+                    Swal.showLoading();
+                },
+            })
+            await Promise.all([
+                patchArquivo(),
+                patchImpostos(),
+                patchSba()
+            ])
+                .then(() =>{
+                    setTimeout(() =>{
+                        Swal.close()
+                        router.push(`/downloads/${params}`)
+                    }, 2000)
+>>>>>>> Stashed changes
                 })
                 await Promise.all([
                     patchArquivo(),
@@ -273,7 +298,7 @@ export function FormularioImpostos({ trt, tda, despacho, pedagio, gris, adVal, c
                             <label className='h-full text-placeholder lg:text-lg overflow-hidden cursor-pointer font-medium'>
                                 Enviar Alterações
                             </label>
-                        </button>
+                        </button> 
                     </div>
                 </div>
             </div>

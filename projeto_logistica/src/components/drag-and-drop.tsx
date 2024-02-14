@@ -67,7 +67,11 @@ export function DragAndDrop({ accept, texto, onDrop, onChange, onClick, arquivo 
                     <div className="mx-5">
                         <div className="flex flex-col sm:flex-row justify-items-center mb-10">
                             <div className="flex items-center break-all">
+<<<<<<< Updated upstream
                                 <h1 className='flex text-black/50 text-center cursor-pointer text-sm sm:text-lg font-medium'>
+=======
+                                <h1 className='flex text-black/50 text-center cursor-pointer text-sm sm:text-lg font-medium mb-10'>
+>>>>>>> Stashed changes
                                 {texto}
                                 </h1>
                             </div>

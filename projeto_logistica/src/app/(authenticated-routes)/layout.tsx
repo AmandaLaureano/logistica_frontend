@@ -15,9 +15,9 @@ export const metadata = {
 
 export default function RootLayout({children}: {children: React.ReactNode}){
   return (
-    <html lang="pt-BR" suppressHydrationWarning>
+    <html lang="pt-BR" suppressHydrationWarning={true}>
       <body className={montserrat.className}>
-        <div className=''>
+        <div>
           <Navbar/>
         </div>
         <div>

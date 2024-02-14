@@ -7,7 +7,7 @@ const montserrat = Montserrat({
 })
 
 export const metadata = {
-  title: 'STP',
+  title: 'Sincronizador de transportadoras',
 }
 
 export default function RootLayout({
