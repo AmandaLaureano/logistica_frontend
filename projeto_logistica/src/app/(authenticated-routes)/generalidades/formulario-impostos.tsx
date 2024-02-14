@@ -4,11 +4,7 @@ import Linha from "./linha-formulario"
 import { api } from "@/src/services/api"
 import { IFormularioImpostos } from "../../../interfaces/app/generalidades"
 import { useState } from "react"
-<<<<<<< Updated upstream
 import { toast } from 'react-toastify'
-=======
-import { ToastContainer, toast } from 'react-toastify'
->>>>>>> Stashed changes
 import 'react-toastify/dist/ReactToastify.css'
 import Swal from "sweetalert2"
 import { useRouter } from "next/navigation"
@@ -179,7 +175,6 @@ export function FormularioImpostos({ trt, tda, despacho, pedagio, gris, adVal, c
     }
 
     const sendAllRequests = async () => {
-<<<<<<< Updated upstream
         const storeInvalidFields = findInvalidFields()        
         if(storeInvalidFields.length > 0){
             ToastErrorMessage({text:`É obrigatório o preenchimento dos seguintes campos: *${storeInvalidFields.join(', ')}*`, duration: 3000})
@@ -193,28 +188,6 @@ export function FormularioImpostos({ trt, tda, despacho, pedagio, gris, adVal, c
                     willOpen: () => {
                         Swal.showLoading();
                     },
-=======
-        try{
-            Swal.fire({
-                title: 'Convertendo arquivos...',
-                allowOutsideClick: false,
-                allowEscapeKey: false,
-                showConfirmButton: false,
-                willOpen: () => {
-                    Swal.showLoading();
-                },
-            })
-            await Promise.all([
-                patchArquivo(),
-                patchImpostos(),
-                patchSba()
-            ])
-                .then(() =>{
-                    setTimeout(() =>{
-                        Swal.close()
-                        router.push(`/downloads/${params}`)
-                    }, 2000)
->>>>>>> Stashed changes
                 })
                 await Promise.all([
                     patchArquivo(),
