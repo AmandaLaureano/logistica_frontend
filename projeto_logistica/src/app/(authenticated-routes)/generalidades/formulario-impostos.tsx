@@ -113,7 +113,7 @@ export function FormularioImpostos({ trt, tda, despacho, pedagio, gris, adVal, c
             console.log(res)
         }
         catch(err: any) {
-            throw {title: 'Erro ao enviar os dados dos impostos', text:`${err.response.data.message[0]}`}
+            throw {title: 'Erro ao enviar os dados dos impostos', text:`${err.response.data.message[0]} O campo não pode estar vazio`}
         }
     }
 
@@ -132,7 +132,7 @@ export function FormularioImpostos({ trt, tda, despacho, pedagio, gris, adVal, c
             console.log(res)
         }
         catch(err: any) {
-            throw {title: 'Erro ao enviar os dados do SBA', text:`${err.response.data.message}`}
+            throw {title: 'Erro ao enviar os dados do SBA', text:`${err.response.data.message[0]} O campo não pode estar vazio`}
         }
     }
 
