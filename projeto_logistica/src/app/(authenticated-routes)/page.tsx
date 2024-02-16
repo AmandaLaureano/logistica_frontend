@@ -1,4 +1,4 @@
-import { SelectTransportadoras } from "../../components/selects";
+import { SelectTransportadoras } from "../../components/dropdown-transportadora";
 import { api } from "../../services/api";
 import { ITransportadoras } from "../../interfaces/app/dashboard"
 

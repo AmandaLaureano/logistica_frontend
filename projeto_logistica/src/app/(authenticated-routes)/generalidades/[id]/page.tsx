@@ -20,7 +20,6 @@ export default function Generalidades({params}: any) {
                 const responseImpostos = await api.get(`http://192.168.155.22:3000/impostos/${params.id}`)
                 const responseImpostosSBA = await api.get(`http://192.168.155.22:3000/sba/${params.id}`)
                 const responseNomeTransportadora = await api.get(`http://192.168.155.22:3000/transportadora/${params.id}`)
-
                 setImpostos(responseImpostos.data)
                 setImpostosSBA(responseImpostosSBA.data)
                 setTransportadora(responseNomeTransportadora.data)
@@ -79,10 +78,12 @@ export default function Generalidades({params}: any) {
                                         transportadoraId={params.id}    
                                     />
                                 </div>
-                            ): (
-                                <div className="pt-10 pb-10 animate-pulse">
-                                    <Skeleton className="h-12 m-2" baseColor="#CCCCCC" enableAnimation={false} count={6}/>
-                                </div>
+                            ):(
+                                <>
+                                    <div className="pt-10 pb-10 animate-pulse">
+                                        <Skeleton className="h-12 m-2" baseColor="#CCCCCC" enableAnimation={false} count={6}/>
+                                    </div>
+                                </>
                             )}
                         </div>
                     </div>
