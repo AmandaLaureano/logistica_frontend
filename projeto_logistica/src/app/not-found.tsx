@@ -1,7 +1,8 @@
 'use client'
-import { PiArrowBendDownLeftBold } from "react-icons/pi"
 import { useRouter } from 'next/navigation';
 import { TbError404 } from "react-icons/tb";
+import { Button } from "@/components/ui/button"
+
 
 export default function NotFound(){
 
@@ -19,11 +20,9 @@ export default function NotFound(){
                     </div>
                 </div>
                 <div className="mt-8 mx-14">
-                    <button onClick={() => router.push('/')} className="h-full w-full rounded-md bg-black-light hover:scale-95 transition-all duration-200">
-                        <div className="flex mx-2 justify-center place-items-center items-stretch">
-                            <h1 className="m-2 font-bold text-sm xmd:text-base sm:text-lg text-white">Voltar ao início</h1>
-                        </div>
-                    </button>
+                    <Button className='h-full w-full' onClick={() => router.push('/')} variant="default">
+                        <span className='text-lg mx-2'>Voltar ao início</span>
+                    </Button>
                 </div>
             </div>
         </main>

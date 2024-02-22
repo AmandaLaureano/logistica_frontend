@@ -17,8 +17,8 @@ export default async function Dashboard() {
         console.log(listaTransportadoras)
     return (
         <div className="grid">
-            <div className="bg-white-simple justify-self-center rounded-sm shadow-md shadow-black-gray-border my-20 w-11/12 lg:w-2/3">
-                <div className="w-full pb-12 bg-white-simple shadow-md shadow-black-gray-border rounded-md px-3 xmd:px-5">
+            <div className="justify-self-center rounded-sm shadow-md shadow-black-gray-border my-20 w-11/12 lg:w-2/3">
+                <div className="w-full pb-12 bg-white-normal rounded-md px-3 xmd:px-5">
                     <div className="flex justify-center flex-col pt-5">
                         <p className="font-medium text-xl md:text-2xl 2xl:text-3xl text-center sm:p-4 py-4 sm:py-6">
                             Processar arquivos de transportadoras
