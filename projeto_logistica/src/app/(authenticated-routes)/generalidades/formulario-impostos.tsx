@@ -1,6 +1,6 @@
 'use client'
 import { DragAndDrop } from "@/src/components/drag-and-drop"
-import Linha from "./linha-formulario"
+import TabelaFormulario from "./tabela-formulario"
 import { api } from "@/src/services/api"
 import { IFormularioImpostos } from "../../../interfaces/app/generalidades"
 import { useState } from "react"
@@ -13,6 +13,7 @@ import { MdAttachMoney } from "react-icons/md"
 import { TbCalendarTime } from "react-icons/tb"
 import Tooltip from '@mui/material/Tooltip';
 import { ToastErrorMessage } from './[id]/toast-error' 
+import { TableDemo } from "./table-form"
 
 export function FormularioImpostos({ trt, tda, despacho, pedagio, gris, adVal, cam, prazo, adv, kg, params }: IFormularioImpostos) {
     
@@ -128,12 +129,14 @@ export function FormularioImpostos({ trt, tda, despacho, pedagio, gris, adVal, c
             }
             await api.patch(`http://192.168.155.22:3000/sba/${params}`, {
                 ...sbaData,
+                
             })
         }
         catch(err: any) {
             throw {title: 'Erro ao enviar os dados do SBA', text:`${err.response.data.message}`}
         }
     }
+    
 
     // Envio da requisição para upload do arquivo
     const patchArquivo = async () => {
@@ -237,10 +240,11 @@ export function FormularioImpostos({ trt, tda, despacho, pedagio, gris, adVal, c
         }
     }
     
+    
     return (
         <div>
             {infoImpostos.map((infoImpostos) => (
-                <Linha
+                <TabelaFormulario
                     key={infoImpostos.titulo}
                     nomeImposto={infoImpostos.titulo} 
                     infoImposto={infoImpostos.info} 
@@ -255,7 +259,7 @@ export function FormularioImpostos({ trt, tda, despacho, pedagio, gris, adVal, c
                             {infoImpostos.icon} 
                         </button>
                     </Tooltip>
-                </Linha>
+                </TabelaFormulario>
             ))}
 
             <div className="flex flex-col py-10 gap-5">

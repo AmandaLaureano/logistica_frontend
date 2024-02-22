@@ -36,7 +36,7 @@ export default function Generalidades({params}: any) {
 
     return (
         <div className="grid">
-            <div className="bg-white-simple justify-self-center rounded-sm shadow-md shadow-black-gray-border my-20 w-11/12 lg:w-2/3 p-2 xmd:p-5">
+            <div className="bg-white-normal/50 justify-self-center rounded-sm shadow-md shadow-black-gray-border my-20 w-11/12 lg:w-2/3 p-2 xmd:p-5">
                 <div className="mb-12">
                     <div className="">
                         <div className="flex flex-col justify-center text-center pb-10 pt-5">
@@ -49,13 +49,13 @@ export default function Generalidades({params}: any) {
                             <div className="w-full h-12 border-b border-green-simple/20">
                                 <div className="flex w-full h-full text-xl my-auto">
                                     <div className="mr-3 w-6/12 flex justify-start my-auto">
-                                        <p className="font-medium flex justify-start text-sm xmd:text-base md:text-lg xl:text-xl">
+                                        <p className="font-medium flex justify-start text-sm xmd:text-base md:text-lg ">
                                             Componentes
                                         </p>
                                     </div>
                                     <div className="flex justify-end ml-3 w-6/12 my-auto">
                                         <div className="">
-                                            <p className="font-medium flex mx-3 text-sm xmd:text-base md:text-lg xl:text-xl h-full items-center">Valores</p>
+                                            <p className="font-medium flex mx-3 text-sm xmd:text-base md:text-lg h-full items-center">Valores</p>
                                         </div>
                                     </div>
                                 </div>

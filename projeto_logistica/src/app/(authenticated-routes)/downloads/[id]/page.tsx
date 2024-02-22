@@ -38,7 +38,7 @@ export default function Downloads({params}: any) {
 
     return(
         <div className="grid">
-            <div className="bg-white-simple justify-self-center rounded-sm shadow-md shadow-black-gray-border my-20 w-11/12 lg:w-2/3">
+            <div className="bg-white-normal/50 justify-self-center rounded-sm shadow-md shadow-black-gray-border my-20 w-11/12 lg:w-2/3">
                 <div>
                     <Tooltip disableFocusListener title="Voltar para Generalidades" placement="right-start">
                         <button onClick={() =>{(router.push(`/generalidades/${params.id}`))}} className="focus:outline-none m-5 p-2 hover:bg-green-simple rounded-full bg-black-gray-border">
