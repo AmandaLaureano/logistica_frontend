@@ -15,17 +15,17 @@ export interface IFormularioImpostos {
 }
 
 export interface ILinhaFormulario {
-    nomeImposto: string,
-    infoImposto: string,
-    valorImposto: string,
-    onChange?: any,
-    children?: React.ReactNode,
-    mask: string,
-    placeholder: string,
+    nomeImposto: string
+    infoImposto: string
+    valorImposto: string
+    onChange?: any
+    children?: React.ReactNode
+    mask: string
+    placeholder: string
     invalidField: boolean
 }
 
 export interface ITransportadora {
-    id: number,
+    id: number
     nome: string
 }

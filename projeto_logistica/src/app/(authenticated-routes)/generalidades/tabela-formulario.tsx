@@ -27,16 +27,16 @@ export default function TabelaFormulario({ nomeImposto, infoImposto, valorImpost
         <div className={` ${invalidField ? 'border-y border-red/30':'border-b border-green-simple/20'} w-full h-14`}>
             <div className={`flex ${invalidField ? 'bg-red/20':' hover:bg-green-simple/20'} transition-all duration-500 w-full h-full text-sm md:text-base my-auto`}>
                 <div className="w-6/12 flex justify-start items-center my-auto">
-                    <span className="flex mx-3 text-xs sm:text-sm font-medium w-fit">
-                        {nomeImposto}
-                    </span>
                     {infoImposto !== "" ? (
                         <Tooltip title={infoImposto} placement="top" arrow>
                             <button >
-                                <PiQuestion className="w-6 h-6 fill-green-simple stroke-2 stroke-green-simple"/>
+                                <PiQuestion className="w-5 h-5 fill-green-simple stroke-2 stroke-green-simple"/>
                             </button>
                         </Tooltip>
                     ): ""}
+                    <span className="flex mx-1 text-xs sm:text-sm font-medium w-fit">
+                        {nomeImposto}
+                    </span>
                 </div>
                 <div className="flex justify-end w-6/12 my-1 space-x-2 sm:space-x-10 mx-2">
                     <div className={`flex items-stretch bg-white rounded-md`}>
