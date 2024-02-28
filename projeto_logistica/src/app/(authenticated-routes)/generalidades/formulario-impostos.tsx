@@ -6,14 +6,13 @@ import { IFormularioImpostos } from "../../../interfaces/app/generalidades"
 import { useState } from "react"
 import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
-import Swal from "sweetalert2"
+import Swal from "sweetalert2"          
 import { useRouter } from "next/navigation"
 import { AiOutlinePercentage } from "react-icons/ai"
 import { MdAttachMoney } from "react-icons/md"
 import { TbCalendarTime } from "react-icons/tb"
 import Tooltip from '@mui/material/Tooltip';
 import { ToastErrorMessage } from './[id]/toast-error' 
-import { TableDemo } from "./table-form"
 
 export function FormularioImpostos({ trt, tda, despacho, pedagio, gris, adVal, cam, prazo, adv, kg, params }: IFormularioImpostos) {
     
